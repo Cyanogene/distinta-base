@@ -16,3 +16,12 @@ C:\Users\matte\Desktop\asdsa\distinta-base\obj\Debug\distinta_base.Properties.Re
 C:\Users\matte\Desktop\asdsa\distinta-base\obj\Debug\distinta-base.csproj.GenerateResource.cache
 C:\Users\matte\Desktop\asdsa\distinta-base\obj\Debug\distinta-base.exe
 C:\Users\matte\Desktop\asdsa\distinta-base\obj\Debug\distinta-base.pdb
+D:\Fork\distinta-base\distinta-base\bin\Debug\distinta-base.exe.config
+D:\Fork\distinta-base\distinta-base\bin\Debug\distinta-base.exe
+D:\Fork\distinta-base\distinta-base\bin\Debug\distinta-base.pdb
+D:\Fork\distinta-base\distinta-base\obj\Debug\distinta-base.csprojAssemblyReference.cache
+D:\Fork\distinta-base\distinta-base\obj\Debug\distinta_base.Form1.resources
+D:\Fork\distinta-base\distinta-base\obj\Debug\distinta_base.Properties.Resources.resources
+D:\Fork\distinta-base\distinta-base\obj\Debug\distinta-base.csproj.GenerateResource.cache
+D:\Fork\distinta-base\distinta-base\obj\Debug\distinta-base.exe
+D:\Fork\distinta-base\distinta-base\obj\Debug\distinta-base.pdb
