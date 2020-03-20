@@ -18,13 +18,19 @@ namespace distinta_base
             XmlSerializer serializer = new XmlSerializer(typeof(List<Nodo>));
             StreamWriter stream = new StreamWriter("magazzino.xml");
             serializer.Serialize(stream, nodi);
+            stream.Close();
         }
 
         public List<Nodo> CaricaAlbero()
         {
-            StreamReader stream = new StreamReader("magazzino.xml");
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Nodo>));
-            List<Nodo> risultato = (List<Nodo>)serializer.Deserialize(stream);
+            List<Nodo> risultato = new List<Nodo>();
+            if (File.Exists("magazzino.xml"))
+            {
+                StreamReader stream = new StreamReader("magazzino.xml");
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Nodo>));
+                risultato = (List<Nodo>)serializer.Deserialize(stream);
+                stream.Close();
+            }
             return risultato;
         }
     }
