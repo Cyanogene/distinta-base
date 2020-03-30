@@ -9,26 +9,26 @@ using System.Xml.Serialization;
 namespace distinta_base
 {
     /// <summary>
-    /// Classe utilizzata per salvataggio del magazzino.
+    /// Classe utilizzata per salvataggio della distinta base.
     /// </summary>
+    
     class Salvataggio
     {
-        public void SalvaAlbero(List<Nodo> nodi)
+        public void SalvaDistintaBase(Node nodi,StreamWriter sw)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Nodo>));
-            StreamWriter stream = new StreamWriter("magazzino.xml");
-            serializer.Serialize(stream, nodi);
-            stream.Close();
+            XmlSerializer serializer = new XmlSerializer(typeof(Node));
+            serializer.Serialize(sw, nodi);
+            sw.Close();
         }
 
-        public List<Nodo> CaricaAlbero()
+        public Node CaricaDistintaBase(string filePosition)
         {
-            List<Nodo> risultato = new List<Nodo>();
-            if (File.Exists("magazzino.xml"))
+            Node risultato = new Node();
+            if (File.Exists(filePosition))
             {
-                StreamReader stream = new StreamReader("magazzino.xml");
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Nodo>));
-                risultato = (List<Nodo>)serializer.Deserialize(stream);
+                StreamReader stream = new StreamReader(filePosition);
+                XmlSerializer serializer = new XmlSerializer(typeof(Node));
+                risultato = (Node)serializer.Deserialize(stream);
                 stream.Close();
             }
             return risultato;
