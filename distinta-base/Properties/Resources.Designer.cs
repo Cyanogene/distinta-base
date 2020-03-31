@@ -73,9 +73,9 @@ namespace distinta_base.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Premuto {
+        internal static System.Drawing.Bitmap IconaPremuta {
             get {
-                object obj = ResourceManager.GetObject("Premuto", resourceCulture);
+                object obj = ResourceManager.GetObject("IconaPremuta", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

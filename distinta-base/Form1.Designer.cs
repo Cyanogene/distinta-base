@@ -41,6 +41,9 @@
             this.Cms_TreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.rimuoviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aggiungiSottonodoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.caricaDaCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.caricaSemilavoratoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creaNuovoNodoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.informazioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.daCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,17 +56,14 @@
             this.informazioniToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.Btn_Informazioni = new System.Windows.Forms.PictureBox();
             this.Cms_Informazioni = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.guidaSullaDistintaBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guidaSulCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.caricaDaCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.caricaSemilavoratoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.creaNuovoNodoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Btn_Informazioni = new System.Windows.Forms.PictureBox();
             this.Cms_TreeView.SuspendLayout();
             this.Cms_ListBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Btn_Informazioni)).BeginInit();
             this.Cms_Informazioni.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Btn_Informazioni)).BeginInit();
             this.SuspendLayout();
             // 
             // treeView_DistintaBase
@@ -180,6 +180,27 @@
             this.aggiungiSottonodoToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.aggiungiSottonodoToolStripMenuItem.Text = "Aggiungi Sottonodo";
             // 
+            // caricaDaCatalogoToolStripMenuItem
+            // 
+            this.caricaDaCatalogoToolStripMenuItem.Name = "caricaDaCatalogoToolStripMenuItem";
+            this.caricaDaCatalogoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.caricaDaCatalogoToolStripMenuItem.Text = "Carica da catalogo";
+            this.caricaDaCatalogoToolStripMenuItem.Click += new System.EventHandler(this.daCatalogoToolStripMenuItem_Click);
+            // 
+            // caricaSemilavoratoToolStripMenuItem
+            // 
+            this.caricaSemilavoratoToolStripMenuItem.Name = "caricaSemilavoratoToolStripMenuItem";
+            this.caricaSemilavoratoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.caricaSemilavoratoToolStripMenuItem.Text = "Carica semilavorato";
+            this.caricaSemilavoratoToolStripMenuItem.Click += new System.EventHandler(this.daFileToolStripMenuItem_Click);
+            // 
+            // creaNuovoNodoToolStripMenuItem1
+            // 
+            this.creaNuovoNodoToolStripMenuItem1.Name = "creaNuovoNodoToolStripMenuItem1";
+            this.creaNuovoNodoToolStripMenuItem1.Size = new System.Drawing.Size(178, 22);
+            this.creaNuovoNodoToolStripMenuItem1.Text = "Crea nuovo nodo";
+            this.creaNuovoNodoToolStripMenuItem1.Click += new System.EventHandler(this.creaNuovoNodoToolStripMenuItem_Click_1);
+            // 
             // informazioniToolStripMenuItem
             // 
             this.informazioniToolStripMenuItem.Name = "informazioniToolStripMenuItem";
@@ -275,19 +296,6 @@
             this.label2.TabIndex = 20;
             this.label2.Text = "CATALOGO";
             // 
-            // Btn_Informazioni
-            // 
-            this.Btn_Informazioni.BackColor = System.Drawing.Color.Transparent;
-            this.Btn_Informazioni.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Informazioni.Image")));
-            this.Btn_Informazioni.Location = new System.Drawing.Point(1002, -1);
-            this.Btn_Informazioni.Name = "Btn_Informazioni";
-            this.Btn_Informazioni.Size = new System.Drawing.Size(71, 80);
-            this.Btn_Informazioni.TabIndex = 21;
-            this.Btn_Informazioni.TabStop = false;
-            this.Btn_Informazioni.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseClick);
-            this.Btn_Informazioni.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseDown);
-            this.Btn_Informazioni.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseUp);
-            // 
             // Cms_Informazioni
             // 
             this.Cms_Informazioni.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -310,32 +318,24 @@
             this.guidaSulCatalogoToolStripMenuItem.Text = "Guida sul catalogo";
             this.guidaSulCatalogoToolStripMenuItem.Click += new System.EventHandler(this.guidaSulCatalogoToolStripMenuItem_Click);
             // 
-            // caricaDaCatalogoToolStripMenuItem
+            // Btn_Informazioni
             // 
-            this.caricaDaCatalogoToolStripMenuItem.Name = "caricaDaCatalogoToolStripMenuItem";
-            this.caricaDaCatalogoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.caricaDaCatalogoToolStripMenuItem.Text = "Carica da catalogo";
-            this.caricaDaCatalogoToolStripMenuItem.Click += new System.EventHandler(this.daCatalogoToolStripMenuItem_Click);
-            // 
-            // caricaSemilavoratoToolStripMenuItem
-            // 
-            this.caricaSemilavoratoToolStripMenuItem.Name = "caricaSemilavoratoToolStripMenuItem";
-            this.caricaSemilavoratoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.caricaSemilavoratoToolStripMenuItem.Text = "Carica semilavorato";
-            this.caricaSemilavoratoToolStripMenuItem.Click += new System.EventHandler(this.daFileToolStripMenuItem_Click);
-            // 
-            // creaNuovoNodoToolStripMenuItem1
-            // 
-            this.creaNuovoNodoToolStripMenuItem1.Name = "creaNuovoNodoToolStripMenuItem1";
-            this.creaNuovoNodoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.creaNuovoNodoToolStripMenuItem1.Text = "Crea nuovo nodo";
-            this.creaNuovoNodoToolStripMenuItem1.Click += new System.EventHandler(this.creaNuovoNodoToolStripMenuItem_Click_1);
+            this.Btn_Informazioni.BackColor = System.Drawing.Color.Transparent;
+            this.Btn_Informazioni.Image = global::distinta_base.Properties.Resources.IconaNormale;
+            this.Btn_Informazioni.Location = new System.Drawing.Point(1026, 12);
+            this.Btn_Informazioni.Name = "Btn_Informazioni";
+            this.Btn_Informazioni.Size = new System.Drawing.Size(72, 79);
+            this.Btn_Informazioni.TabIndex = 21;
+            this.Btn_Informazioni.TabStop = false;
+            this.Btn_Informazioni.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseClick);
+            this.Btn_Informazioni.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseDown);
+            this.Btn_Informazioni.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseUp);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1074, 619);
+            this.ClientSize = new System.Drawing.Size(1091, 619);
             this.Controls.Add(this.Btn_Informazioni);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -354,8 +354,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Cms_TreeView.ResumeLayout(false);
             this.Cms_ListBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Btn_Informazioni)).EndInit();
             this.Cms_Informazioni.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Btn_Informazioni)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

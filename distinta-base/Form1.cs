@@ -470,7 +470,7 @@ namespace distinta_base
         private void Btn_Informazioni_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-                Btn_Informazioni.Image = Properties.Resources.Premuto;
+                Btn_Informazioni.Image = Properties.Resources.IconaPremuta;
         }
 
         private void Btn_Informazioni_MouseUp(object sender, MouseEventArgs e)
