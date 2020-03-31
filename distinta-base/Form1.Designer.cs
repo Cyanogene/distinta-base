@@ -52,8 +52,6 @@
             this.informazioniToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.Cms_TreeView.SuspendLayout();
             this.Cms_ListBox.SuspendLayout();
             this.SuspendLayout();
@@ -267,26 +265,6 @@
             this.label2.TabIndex = 20;
             this.label2.Text = "CATALOGO";
             // 
-            // shapeContainer1
-            // 
-            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(1074, 619);
-            this.shapeContainer1.TabIndex = 21;
-            this.shapeContainer1.TabStop = false;
-            // 
-            // rectangleShape1
-            // 
-            this.rectangleShape1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rectangleShape1.FillGradientColor = System.Drawing.Color.Maroon;
-            this.rectangleShape1.Location = new System.Drawing.Point(537, 94);
-            this.rectangleShape1.Name = "rectangleShape1";
-            this.rectangleShape1.SelectionColor = System.Drawing.SystemColors.GrayText;
-            this.rectangleShape1.Size = new System.Drawing.Size(75, 61);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,7 +281,6 @@
             this.Controls.Add(this.Btn_CaricaDistintaBase);
             this.Controls.Add(this.Btn_SalvaDistintaBase);
             this.Controls.Add(this.treeView_DistintaBase);
-            this.Controls.Add(this.shapeContainer1);
             this.Name = "Form1";
             this.Text = "Distinta base";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -339,8 +316,6 @@
         private System.Windows.Forms.ToolStripMenuItem modificaToolStripMenuItem1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
     }
 }
 
