@@ -41,11 +41,11 @@
             this.Cms_TreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.rimuoviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aggiungiSottonodoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informazioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.daCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.daFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creaNuovoNodoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.informazioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modificaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.Btn_creaNuovaDistintaBase = new System.Windows.Forms.Button();
             this.Cms_ListBox = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.rimuoviToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +57,9 @@
             this.Cms_Informazioni = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.guidaSullaDistintaBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guidaSulCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.caricaDaCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.caricaSemilavoratoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creaNuovoNodoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.Cms_TreeView.SuspendLayout();
             this.Cms_ListBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Btn_Informazioni)).BeginInit();
@@ -169,9 +172,27 @@
             // 
             // aggiungiSottonodoToolStripMenuItem
             // 
+            this.aggiungiSottonodoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.caricaDaCatalogoToolStripMenuItem,
+            this.caricaSemilavoratoToolStripMenuItem,
+            this.creaNuovoNodoToolStripMenuItem1});
             this.aggiungiSottonodoToolStripMenuItem.Name = "aggiungiSottonodoToolStripMenuItem";
             this.aggiungiSottonodoToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.aggiungiSottonodoToolStripMenuItem.Text = "Aggiungi Sottonodo";
+            // 
+            // informazioniToolStripMenuItem
+            // 
+            this.informazioniToolStripMenuItem.Name = "informazioniToolStripMenuItem";
+            this.informazioniToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.informazioniToolStripMenuItem.Text = "Informazioni";
+            this.informazioniToolStripMenuItem.Click += new System.EventHandler(this.informazioniToolStripMenuItem_Click);
+            // 
+            // modificaToolStripMenuItem1
+            // 
+            this.modificaToolStripMenuItem1.Name = "modificaToolStripMenuItem1";
+            this.modificaToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
+            this.modificaToolStripMenuItem1.Text = "Modifica";
+            this.modificaToolStripMenuItem1.Click += new System.EventHandler(this.modificaToolStripMenuItem1_Click);
             // 
             // daCatalogoToolStripMenuItem
             // 
@@ -193,20 +214,6 @@
             this.creaNuovoNodoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.creaNuovoNodoToolStripMenuItem.Text = "Crea nuovo nodo";
             this.creaNuovoNodoToolStripMenuItem.Click += new System.EventHandler(this.creaNuovoNodoToolStripMenuItem_Click_1);
-            // 
-            // informazioniToolStripMenuItem
-            // 
-            this.informazioniToolStripMenuItem.Name = "informazioniToolStripMenuItem";
-            this.informazioniToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.informazioniToolStripMenuItem.Text = "Informazioni";
-            this.informazioniToolStripMenuItem.Click += new System.EventHandler(this.informazioniToolStripMenuItem_Click);
-            // 
-            // modificaToolStripMenuItem1
-            // 
-            this.modificaToolStripMenuItem1.Name = "modificaToolStripMenuItem1";
-            this.modificaToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
-            this.modificaToolStripMenuItem1.Text = "Modifica";
-            this.modificaToolStripMenuItem1.Click += new System.EventHandler(this.modificaToolStripMenuItem1_Click);
             // 
             // Btn_creaNuovaDistintaBase
             // 
@@ -303,6 +310,27 @@
             this.guidaSulCatalogoToolStripMenuItem.Text = "Guida sul catalogo";
             this.guidaSulCatalogoToolStripMenuItem.Click += new System.EventHandler(this.guidaSulCatalogoToolStripMenuItem_Click);
             // 
+            // caricaDaCatalogoToolStripMenuItem
+            // 
+            this.caricaDaCatalogoToolStripMenuItem.Name = "caricaDaCatalogoToolStripMenuItem";
+            this.caricaDaCatalogoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.caricaDaCatalogoToolStripMenuItem.Text = "Carica da catalogo";
+            this.caricaDaCatalogoToolStripMenuItem.Click += new System.EventHandler(this.daCatalogoToolStripMenuItem_Click);
+            // 
+            // caricaSemilavoratoToolStripMenuItem
+            // 
+            this.caricaSemilavoratoToolStripMenuItem.Name = "caricaSemilavoratoToolStripMenuItem";
+            this.caricaSemilavoratoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.caricaSemilavoratoToolStripMenuItem.Text = "Carica semilavorato";
+            this.caricaSemilavoratoToolStripMenuItem.Click += new System.EventHandler(this.daFileToolStripMenuItem_Click);
+            // 
+            // creaNuovoNodoToolStripMenuItem1
+            // 
+            this.creaNuovoNodoToolStripMenuItem1.Name = "creaNuovoNodoToolStripMenuItem1";
+            this.creaNuovoNodoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.creaNuovoNodoToolStripMenuItem1.Text = "Crea nuovo nodo";
+            this.creaNuovoNodoToolStripMenuItem1.Click += new System.EventHandler(this.creaNuovoNodoToolStripMenuItem_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,6 +390,9 @@
         private System.Windows.Forms.ContextMenuStrip Cms_Informazioni;
         private System.Windows.Forms.ToolStripMenuItem guidaSullaDistintaBaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem guidaSulCatalogoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem caricaDaCatalogoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem caricaSemilavoratoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem creaNuovoNodoToolStripMenuItem1;
     }
 }
 
