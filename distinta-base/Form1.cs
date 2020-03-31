@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Windows.Input;
 
 namespace distinta_base
 {
@@ -458,6 +459,35 @@ namespace distinta_base
             treeView_DistintaBase.Nodes.Insert(treeView_DistintaBase.Nodes.Count, distintaBase.NodeToTreeNode(nuovoNodo));
             treeView_DistintaBase.SelectedNode = distintaBase.NodeToTreeNode(nuovoNodo);
             return;
+        }
+
+        private void Btn_Informazioni_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                Cms_Informazioni.Show(Btn_Informazioni, e.Location);
+        }
+
+        private void Btn_Informazioni_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                Btn_Informazioni.Image = Properties.Resources.Premuto;
+        }
+
+        private void Btn_Informazioni_MouseUp(object sender, MouseEventArgs e)
+        {
+            Btn_Informazioni.Image = Properties.Resources.IconaNormale;
+        }
+
+        private void guidaSullaDistintaBaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string text = "Fare click, col tasto destro del mouse, su un nodo per rimuoverlo, modificarlo, ottenere le proprie informazioni oppure aggiungere un sottonodo.";
+            MessageBox.Show(text, "Guida sulla distinta base", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void guidaSulCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string text = "Fare click, col tasto destro del mouse, su un elemento del catalogo per rimuoverlo, modificarlo oppure per ottenere le proprie informazioni.";
+            MessageBox.Show(text, "Guida sulla distinta base", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -187,7 +187,6 @@
             0,
             0});
             this.form_leadTime.Name = "form_leadTime";
-            this.form_leadTime.ReadOnly = true;
             this.form_leadTime.Size = new System.Drawing.Size(50, 20);
             this.form_leadTime.TabIndex = 4;
             this.form_leadTime.Value = new decimal(new int[] {
@@ -195,22 +194,23 @@
             0,
             0,
             0});
+            this.form_leadTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_leadTime_KeyPress);
             // 
             // form_leadTimeSicurezza
             // 
             this.form_leadTimeSicurezza.Location = new System.Drawing.Point(273, 182);
             this.form_leadTimeSicurezza.Name = "form_leadTimeSicurezza";
-            this.form_leadTimeSicurezza.ReadOnly = true;
             this.form_leadTimeSicurezza.Size = new System.Drawing.Size(50, 20);
             this.form_leadTimeSicurezza.TabIndex = 4;
+            this.form_leadTimeSicurezza.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_leadTimeSicurezza_KeyPress);
             // 
             // form__scortaDiSicurezza
             // 
             this.form__scortaDiSicurezza.Location = new System.Drawing.Point(273, 208);
             this.form__scortaDiSicurezza.Name = "form__scortaDiSicurezza";
-            this.form__scortaDiSicurezza.ReadOnly = true;
             this.form__scortaDiSicurezza.Size = new System.Drawing.Size(50, 20);
             this.form__scortaDiSicurezza.TabIndex = 4;
+            this.form__scortaDiSicurezza.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form__scortaDiSicurezza_KeyPress);
             // 
             // form_lotto
             // 
@@ -221,7 +221,6 @@
             0,
             0});
             this.form_lotto.Name = "form_lotto";
-            this.form_lotto.ReadOnly = true;
             this.form_lotto.Size = new System.Drawing.Size(50, 20);
             this.form_lotto.TabIndex = 4;
             this.form_lotto.Value = new decimal(new int[] {
@@ -229,6 +228,7 @@
             0,
             0,
             0});
+            this.form_lotto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_lotto_KeyPress);
             // 
             // form_periodoDiCopertura
             // 
@@ -239,7 +239,6 @@
             0,
             0});
             this.form_periodoDiCopertura.Name = "form_periodoDiCopertura";
-            this.form_periodoDiCopertura.ReadOnly = true;
             this.form_periodoDiCopertura.Size = new System.Drawing.Size(50, 20);
             this.form_periodoDiCopertura.TabIndex = 4;
             this.form_periodoDiCopertura.Value = new decimal(new int[] {
@@ -247,6 +246,7 @@
             0,
             0,
             0});
+            this.form_periodoDiCopertura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_periodoDiCopertura_KeyPress);
             // 
             // Form2_NewNode
             // 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.treeView_DistintaBase = new System.Windows.Forms.TreeView();
             this.Btn_SalvaDistintaBase = new System.Windows.Forms.Button();
             this.Btn_CaricaDistintaBase = new System.Windows.Forms.Button();
@@ -52,13 +53,19 @@
             this.informazioniToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.Btn_Informazioni = new System.Windows.Forms.PictureBox();
+            this.Cms_Informazioni = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.guidaSullaDistintaBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guidaSulCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Cms_TreeView.SuspendLayout();
             this.Cms_ListBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Btn_Informazioni)).BeginInit();
+            this.Cms_Informazioni.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeView_DistintaBase
             // 
-            this.treeView_DistintaBase.Location = new System.Drawing.Point(12, 71);
+            this.treeView_DistintaBase.Location = new System.Drawing.Point(12, 105);
             this.treeView_DistintaBase.Name = "treeView_DistintaBase";
             this.treeView_DistintaBase.Size = new System.Drawing.Size(373, 302);
             this.treeView_DistintaBase.TabIndex = 0;
@@ -68,7 +75,7 @@
             // Btn_SalvaDistintaBase
             // 
             this.Btn_SalvaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_SalvaDistintaBase.Location = new System.Drawing.Point(201, 380);
+            this.Btn_SalvaDistintaBase.Location = new System.Drawing.Point(201, 414);
             this.Btn_SalvaDistintaBase.Name = "Btn_SalvaDistintaBase";
             this.Btn_SalvaDistintaBase.Size = new System.Drawing.Size(183, 45);
             this.Btn_SalvaDistintaBase.TabIndex = 4;
@@ -79,7 +86,7 @@
             // Btn_CaricaDistintaBase
             // 
             this.Btn_CaricaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_CaricaDistintaBase.Location = new System.Drawing.Point(391, 129);
+            this.Btn_CaricaDistintaBase.Location = new System.Drawing.Point(391, 163);
             this.Btn_CaricaDistintaBase.Name = "Btn_CaricaDistintaBase";
             this.Btn_CaricaDistintaBase.Size = new System.Drawing.Size(138, 52);
             this.Btn_CaricaDistintaBase.TabIndex = 5;
@@ -90,7 +97,7 @@
             // Btn_resettaDistintaBase
             // 
             this.Btn_resettaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_resettaDistintaBase.Location = new System.Drawing.Point(12, 380);
+            this.Btn_resettaDistintaBase.Location = new System.Drawing.Point(12, 414);
             this.Btn_resettaDistintaBase.Name = "Btn_resettaDistintaBase";
             this.Btn_resettaDistintaBase.Size = new System.Drawing.Size(183, 45);
             this.Btn_resettaDistintaBase.TabIndex = 7;
@@ -101,7 +108,7 @@
             // Btn_AggiungiMateriaPrima
             // 
             this.Btn_AggiungiMateriaPrima.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_AggiungiMateriaPrima.Location = new System.Drawing.Point(662, 380);
+            this.Btn_AggiungiMateriaPrima.Location = new System.Drawing.Point(662, 414);
             this.Btn_AggiungiMateriaPrima.Name = "Btn_AggiungiMateriaPrima";
             this.Btn_AggiungiMateriaPrima.Size = new System.Drawing.Size(165, 45);
             this.Btn_AggiungiMateriaPrima.TabIndex = 11;
@@ -112,7 +119,7 @@
             // Btn_AggiungiSemilavorato
             // 
             this.Btn_AggiungiSemilavorato.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_AggiungiSemilavorato.Location = new System.Drawing.Point(841, 380);
+            this.Btn_AggiungiSemilavorato.Location = new System.Drawing.Point(841, 414);
             this.Btn_AggiungiSemilavorato.Name = "Btn_AggiungiSemilavorato";
             this.Btn_AggiungiSemilavorato.Size = new System.Drawing.Size(165, 45);
             this.Btn_AggiungiSemilavorato.TabIndex = 12;
@@ -123,7 +130,7 @@
             // Btn_caricaDaCatalogo
             // 
             this.Btn_caricaDaCatalogo.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_caricaDaCatalogo.Location = new System.Drawing.Point(391, 187);
+            this.Btn_caricaDaCatalogo.Location = new System.Drawing.Point(391, 221);
             this.Btn_caricaDaCatalogo.Name = "Btn_caricaDaCatalogo";
             this.Btn_caricaDaCatalogo.Size = new System.Drawing.Size(138, 52);
             this.Btn_caricaDaCatalogo.TabIndex = 17;
@@ -134,7 +141,7 @@
             // listView_catalogo
             // 
             this.listView_catalogo.HideSelection = false;
-            this.listView_catalogo.Location = new System.Drawing.Point(662, 71);
+            this.listView_catalogo.Location = new System.Drawing.Point(662, 105);
             this.listView_catalogo.Name = "listView_catalogo";
             this.listView_catalogo.Size = new System.Drawing.Size(344, 302);
             this.listView_catalogo.TabIndex = 18;
@@ -162,10 +169,6 @@
             // 
             // aggiungiSottonodoToolStripMenuItem
             // 
-            this.aggiungiSottonodoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.daCatalogoToolStripMenuItem,
-            this.daFileToolStripMenuItem,
-            this.creaNuovoNodoToolStripMenuItem});
             this.aggiungiSottonodoToolStripMenuItem.Name = "aggiungiSottonodoToolStripMenuItem";
             this.aggiungiSottonodoToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.aggiungiSottonodoToolStripMenuItem.Text = "Aggiungi Sottonodo";
@@ -173,21 +176,21 @@
             // daCatalogoToolStripMenuItem
             // 
             this.daCatalogoToolStripMenuItem.Name = "daCatalogoToolStripMenuItem";
-            this.daCatalogoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.daCatalogoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.daCatalogoToolStripMenuItem.Text = "Carica da catalogo";
             this.daCatalogoToolStripMenuItem.Click += new System.EventHandler(this.daCatalogoToolStripMenuItem_Click);
             // 
             // daFileToolStripMenuItem
             // 
             this.daFileToolStripMenuItem.Name = "daFileToolStripMenuItem";
-            this.daFileToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.daFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.daFileToolStripMenuItem.Text = "Carica semilavorato";
             this.daFileToolStripMenuItem.Click += new System.EventHandler(this.daFileToolStripMenuItem_Click);
             // 
             // creaNuovoNodoToolStripMenuItem
             // 
             this.creaNuovoNodoToolStripMenuItem.Name = "creaNuovoNodoToolStripMenuItem";
-            this.creaNuovoNodoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.creaNuovoNodoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.creaNuovoNodoToolStripMenuItem.Text = "Crea nuovo nodo";
             this.creaNuovoNodoToolStripMenuItem.Click += new System.EventHandler(this.creaNuovoNodoToolStripMenuItem_Click_1);
             // 
@@ -207,7 +210,7 @@
             // 
             // Btn_creaNuovaDistintaBase
             // 
-            this.Btn_creaNuovaDistintaBase.Location = new System.Drawing.Point(391, 71);
+            this.Btn_creaNuovaDistintaBase.Location = new System.Drawing.Point(391, 105);
             this.Btn_creaNuovaDistintaBase.Name = "Btn_creaNuovaDistintaBase";
             this.Btn_creaNuovaDistintaBase.Size = new System.Drawing.Size(138, 52);
             this.Btn_creaNuovaDistintaBase.TabIndex = 19;
@@ -249,7 +252,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(8, 44);
+            this.label1.Location = new System.Drawing.Point(8, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(162, 24);
             this.label1.TabIndex = 20;
@@ -259,17 +262,53 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(658, 44);
+            this.label2.Location = new System.Drawing.Point(658, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 24);
             this.label2.TabIndex = 20;
             this.label2.Text = "CATALOGO";
+            // 
+            // Btn_Informazioni
+            // 
+            this.Btn_Informazioni.BackColor = System.Drawing.Color.Transparent;
+            this.Btn_Informazioni.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Informazioni.Image")));
+            this.Btn_Informazioni.Location = new System.Drawing.Point(1002, -1);
+            this.Btn_Informazioni.Name = "Btn_Informazioni";
+            this.Btn_Informazioni.Size = new System.Drawing.Size(71, 80);
+            this.Btn_Informazioni.TabIndex = 21;
+            this.Btn_Informazioni.TabStop = false;
+            this.Btn_Informazioni.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseClick);
+            this.Btn_Informazioni.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseDown);
+            this.Btn_Informazioni.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseUp);
+            // 
+            // Cms_Informazioni
+            // 
+            this.Cms_Informazioni.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.guidaSullaDistintaBaseToolStripMenuItem,
+            this.guidaSulCatalogoToolStripMenuItem});
+            this.Cms_Informazioni.Name = "Cms_Informazioni";
+            this.Cms_Informazioni.Size = new System.Drawing.Size(202, 48);
+            // 
+            // guidaSullaDistintaBaseToolStripMenuItem
+            // 
+            this.guidaSullaDistintaBaseToolStripMenuItem.Name = "guidaSullaDistintaBaseToolStripMenuItem";
+            this.guidaSullaDistintaBaseToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.guidaSullaDistintaBaseToolStripMenuItem.Text = "Guida sulla distinta base";
+            this.guidaSullaDistintaBaseToolStripMenuItem.Click += new System.EventHandler(this.guidaSullaDistintaBaseToolStripMenuItem_Click);
+            // 
+            // guidaSulCatalogoToolStripMenuItem
+            // 
+            this.guidaSulCatalogoToolStripMenuItem.Name = "guidaSulCatalogoToolStripMenuItem";
+            this.guidaSulCatalogoToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.guidaSulCatalogoToolStripMenuItem.Text = "Guida sul catalogo";
+            this.guidaSulCatalogoToolStripMenuItem.Click += new System.EventHandler(this.guidaSulCatalogoToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1074, 619);
+            this.Controls.Add(this.Btn_Informazioni);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Btn_creaNuovaDistintaBase);
@@ -281,11 +320,14 @@
             this.Controls.Add(this.Btn_CaricaDistintaBase);
             this.Controls.Add(this.Btn_SalvaDistintaBase);
             this.Controls.Add(this.treeView_DistintaBase);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Distinta base";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Cms_TreeView.ResumeLayout(false);
             this.Cms_ListBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Btn_Informazioni)).EndInit();
+            this.Cms_Informazioni.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,6 +358,10 @@
         private System.Windows.Forms.ToolStripMenuItem modificaToolStripMenuItem1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox Btn_Informazioni;
+        private System.Windows.Forms.ContextMenuStrip Cms_Informazioni;
+        private System.Windows.Forms.ToolStripMenuItem guidaSullaDistintaBaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem guidaSulCatalogoToolStripMenuItem;
     }
 }
 
