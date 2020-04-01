@@ -60,6 +60,12 @@
     <Compile Include="Form2_NewNode.Designer.cs">
       <DependentUpon>Form2_NewNode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form3_Catalogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3_Catalogo.Designer.cs">
+      <DependentUpon>Form3_Catalogo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Node.cs" />
@@ -69,6 +75,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2_NewNode.resx">
       <DependentUpon>Form2_NewNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3_Catalogo.resx">
+      <DependentUpon>Form3_Catalogo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

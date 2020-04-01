@@ -91,6 +91,7 @@ namespace distinta_base
                             return;
                         }
                     }
+                    nuovoNodo.SottoNodi = nodo.SottoNodi;
                     Catalogo.Remove(nodo);
                     Catalogo.Add(nuovoNodo);
                     AggiornaCatalogo();
@@ -169,6 +170,7 @@ namespace distinta_base
                             return;
                         }
                     }
+                    nuovoNodo.SottoNodi = nodo.SottoNodi;
                     Catalogo.Remove(nodo);
                     Catalogo.Add(nuovoNodo);
                     AggiornaCatalogo();
@@ -263,7 +265,7 @@ namespace distinta_base
         private void Btn_caricaDaCatalogo_Click(object sender, EventArgs e)
         {
             //prende il prodotto selezionato nella listbox(catalogo) e lo aggiunge alla treeview che è vuota
-            if (listView_catalogo.SelectedItems.Count == 0) return;
+            /*if (listView_catalogo.SelectedItems.Count == 0) return;
 
             ListViewItem item = listView_catalogo.SelectedItems[0];
             string Nome = item.SubItems[0].Text;
@@ -281,7 +283,26 @@ namespace distinta_base
                 }
             }
             ControlloTreeView();
-            distintaBase.catalogo.Add(nodo);
+            distintaBase.catalogo.Add(nodo);*/
+            if(Catalogo.Count==0)
+            {
+                //messsageBox catalogo vuoto
+                return;
+            }
+            Form3_Catalogo form3 = new Form3_Catalogo(Catalogo);
+            form3.ShowDialog();
+            while (form3.nodo == null)
+            {
+                if(!form3.attendo)
+                {
+                    return;
+                }
+            }
+            Node node = form3.nodo;
+            treeView_DistintaBase.Nodes.Add(distintaBase.NodeToTreeNode(node));
+            ControlloTreeView();
+            distintaBase.catalogo.Add(node);
+            listView_catalogo.SelectedItems.Clear();
         } //BTN carica un nodo dal catalogo
 
         private void Btn_creaNuovaDistintaBase_Click(object sender, EventArgs e)
@@ -318,9 +339,9 @@ namespace distinta_base
                     return;
                 }
             }
+            nuovoNodo.SottoNodi = nodo.SottoNodi;
             distintaBase.catalogo.Remove(nodo);
             distintaBase.catalogo.Add(nuovoNodo);
-
             treeView_DistintaBase.Nodes.Remove(treeView_DistintaBase.SelectedNode);
             treeView_DistintaBase.Nodes.Insert(treeView_DistintaBase.Nodes.Count, distintaBase.NodeToTreeNode(nuovoNodo));
             treeView_DistintaBase.SelectedNode = distintaBase.NodeToTreeNode(nuovoNodo);
@@ -359,8 +380,7 @@ namespace distinta_base
 
         private void daCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //prende il prodotto selezionato nella listbox(catalogo) e lo aggiunge alla treeview che è vuota
-            if (listView_catalogo.SelectedItems.Count == 0) return;
+            /*if (listView_catalogo.SelectedItems.Count == 0) return;
 
             ListViewItem item = listView_catalogo.SelectedItems[0];
             string Nome = item.SubItems[0].Text;
@@ -378,7 +398,26 @@ namespace distinta_base
                 }
             }
             distintaBase.catalogo.Add(nodo);
+            ControlloTreeView();*/
+            if (Catalogo.Count == 0)
+            {
+                //messsageBox catalogo vuoto
+                return;
+            }
+            Form3_Catalogo form3 = new Form3_Catalogo(Catalogo);
+            form3.ShowDialog();
+            while (form3.nodo == null)
+            {
+                if (!form3.attendo)
+                {
+                    return;
+                }
+            }
+            Node node = form3.nodo;
+            treeView_DistintaBase.SelectedNode.Nodes.Add(distintaBase.NodeToTreeNode(node)); ControlloTreeView();
             ControlloTreeView();
+            distintaBase.catalogo.Add(node);
+            listView_catalogo.SelectedItems.Clear();
         }//context menu click destro nodo mostra caricaNodo da Catalogo
 
         private void daFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -452,9 +491,9 @@ namespace distinta_base
                     return;
                 }
             }
+            nuovoNodo.SottoNodi = nodo.SottoNodi;
             distintaBase.catalogo.Remove(nodo);
             distintaBase.catalogo.Add(nuovoNodo);
-
             treeView_DistintaBase.Nodes.Remove(treeView_DistintaBase.SelectedNode);
             treeView_DistintaBase.Nodes.Insert(treeView_DistintaBase.Nodes.Count, distintaBase.NodeToTreeNode(nuovoNodo));
             treeView_DistintaBase.SelectedNode = distintaBase.NodeToTreeNode(nuovoNodo);

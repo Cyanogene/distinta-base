@@ -157,9 +157,9 @@
             // 
             this.Cms_TreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rimuoviToolStripMenuItem,
+            this.modificaToolStripMenuItem1,
             this.aggiungiSottonodoToolStripMenuItem,
-            this.informazioniToolStripMenuItem,
-            this.modificaToolStripMenuItem1});
+            this.informazioniToolStripMenuItem});
             this.Cms_TreeView.Name = "Cms_TreeView";
             this.Cms_TreeView.Size = new System.Drawing.Size(183, 92);
             // 
