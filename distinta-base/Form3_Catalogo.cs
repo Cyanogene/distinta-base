@@ -82,5 +82,23 @@ namespace distinta_base
             e.Cancel = true;
             e.NewWidth = listView1.Columns[e.ColumnIndex].Width;
         }
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem item = listView1.SelectedItems[0];
+            string Nome = item.SubItems[0].Text;
+            string Codice = item.SubItems[1].Text;
+            bool aggiungere = true;
+            Node n = new Node();
+            foreach (Node node in nodiCatalogo)
+            {
+                if (node.Nome == Nome && node.Codice == Codice && aggiungere)
+                {
+                    n = node;
+                }
+            }
+            nodo = n;
+            Close();
+        }
     }
 }

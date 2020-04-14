@@ -11,7 +11,8 @@ namespace distinta_base
     /// <summary>
     /// Classe utilizzata per salvataggio della distinta base.
     /// </summary>
-    
+
+
     class Salvataggio
     {
         public void SalvaDistintaBase(Node nodi,StreamWriter sw)
@@ -29,6 +30,26 @@ namespace distinta_base
                 StreamReader stream = new StreamReader(filePosition);
                 XmlSerializer serializer = new XmlSerializer(typeof(Node));
                 risultato = (Node)serializer.Deserialize(stream);
+                stream.Close();
+            }
+            return risultato;
+        }
+
+        public void SalvaCatalogo(List<Node> nodi, StreamWriter sw)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Node>));
+            serializer.Serialize(sw, nodi);
+            sw.Close();
+        }
+
+        public List<Node> CaricaCatalogo(string filePosition)
+        {
+            List<Node> risultato = new List<Node>();
+            if (File.Exists(filePosition))
+            {
+                StreamReader stream = new StreamReader(filePosition);
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Node>));
+                risultato = (List<Node>)serializer.Deserialize(stream);
                 stream.Close();
             }
             return risultato;

@@ -14,29 +14,7 @@ namespace distinta_base
 {
     public partial class Form2_NewNode : Form
     {
-        public Form2_NewNode(string titolo, string button, Node nodo)
-        {
-            InitializeComponent();
-            ActiveControl = form_nome;
-            if(titolo!="" && button !="")
-            {
-                label1.Text = titolo;
-                Btn_aggiungi.Text = button;
-            }
-            if (nodo.Nome != null)
-            {
-                form_nome.Text = nodo.Nome;
-                form_codice.Text = nodo.Codice;
-                form_descrizione.Text = nodo.Descrizione;
-                form_leadTime.Value = nodo.LeadTime;
-                form_leadTimeSicurezza.Value = nodo.LeadTimeSicurezza;
-                form__scortaDiSicurezza.Value = nodo.ScortaSicurezza;
-                form_lotto.Value = nodo.Lotto;
-                form_periodoDiCopertura.Value = nodo.PeriodoDiCopertura;
-                nodo = null;
-            }
-        }
-        
+        //variabili NODO------------------------
         public string Nome = "";
         public string Codice = "";
         public string Descrizione = "";
@@ -47,19 +25,49 @@ namespace distinta_base
         public int PeriodoDiCopertura = 0;
         public Node nodo;
         public bool attendo = true;
+        public Node nodoInput;
+        //--------------------------------------
+
+
+        public Form2_NewNode(Node nodo)
+        {
+            InitializeComponent();
+            ActiveControl = form_nome;
+            form_codice.Enabled = false;
+            form_codice.Text = "il codice viene assegnato automaticamente";
+            if (nodo.Nome != null)//MODIFICO UN NODO
+            {
+                label1.Text = "MODIFICA NODO";
+                Btn_aggiungi.Text = "CONFERMA";
+                form_nome.Text = nodo.Nome;
+                form_codice.Text = nodo.Codice;
+                form_descrizione.Text = nodo.Descrizione;
+                form_leadTime.Value = nodo.LeadTime;
+                form_leadTimeSicurezza.Value = nodo.LeadTimeSicurezza;
+                form__scortaDiSicurezza.Value = nodo.ScortaSicurezza;
+                form_lotto.Value = nodo.Lotto;
+                form_periodoDiCopertura.Value = nodo.PeriodoDiCopertura;
+            }
+            nodoInput = nodo;
+        }
+
+
 
         private void Btn_aggiungi_Click(object sender, EventArgs e)
         {
+            
             if (form_nome.Text != "" && form_codice.Text != "" && form_descrizione.Text != "" && form_leadTime.Value > 0 && form_lotto.Value > 0 && form_periodoDiCopertura.Value > 0)
             {
                 Nome = form_nome.Text;
-                Codice = form_codice.Text;
                 Descrizione = form_descrizione.Text;
                 LT = Convert.ToInt32(form_leadTime.Value);
                 LTS = Convert.ToInt32(form_leadTimeSicurezza.Value);
                 ScortaDiSicurezza = Convert.ToInt32(form__scortaDiSicurezza.Value);
                 Lotto = Convert.ToInt32(form_lotto.Value);
                 PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
+                int n = 0;
+                if (nodo != null) { n = nodo.SottoNodi.Count(); }
+                Codice = Nome + LT + LTS + ScortaDiSicurezza + Lotto + PeriodoDiCopertura + n + RandomString(3);
                 nodo = new Node
                 {
                     Nome = Nome,
@@ -68,9 +76,17 @@ namespace distinta_base
                     LeadTime = LT,
                     LeadTimeSicurezza = LTS,
                     ScortaSicurezza = ScortaDiSicurezza,
-                    Lotto  = Lotto,
+                    Lotto = Lotto,
                     PeriodoDiCopertura = PeriodoDiCopertura
                 };
+                if (nodoInput != null)
+                {
+                    if (nodo.Nome == nodoInput.Nome && nodo.Descrizione == nodoInput.Descrizione && nodo.LeadTime == nodoInput.LeadTime && nodo.LeadTimeSicurezza == nodoInput.LeadTimeSicurezza && nodo.ScortaSicurezza == nodoInput.ScortaSicurezza && nodo.Lotto == nodoInput.Lotto && nodo.PeriodoDiCopertura == nodoInput.PeriodoDiCopertura)
+                    {
+                        nodo = nodoInput;
+                        Close();
+                    }
+                }
                 Close();
             }
             else
@@ -78,6 +94,14 @@ namespace distinta_base
                 MessageBox.Show("compilare tutti i campi prima di procedere", "ATTENZIONE", MessageBoxButtons.OK);
             }
         }
+
+        private Random random = new Random();
+        public string RandomString(int length)
+        {
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {

@@ -58,14 +58,14 @@
             // 
             this.form_nome.Location = new System.Drawing.Point(273, 78);
             this.form_nome.Name = "form_nome";
-            this.form_nome.Size = new System.Drawing.Size(153, 20);
+            this.form_nome.Size = new System.Drawing.Size(212, 20);
             this.form_nome.TabIndex = 0;
             // 
             // form_codice
             // 
             this.form_codice.Location = new System.Drawing.Point(273, 104);
             this.form_codice.Name = "form_codice";
-            this.form_codice.Size = new System.Drawing.Size(153, 20);
+            this.form_codice.Size = new System.Drawing.Size(212, 20);
             this.form_codice.TabIndex = 0;
             // 
             // form_descrizione

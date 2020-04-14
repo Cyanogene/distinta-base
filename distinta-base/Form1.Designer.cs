@@ -39,13 +39,14 @@
             this.Btn_caricaDaCatalogo = new System.Windows.Forms.Button();
             this.listView_catalogo = new System.Windows.Forms.ListView();
             this.Cms_TreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.rimuoviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aggiungiSottonodoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.caricaDaCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.caricaSemilavoratoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creaNuovoNodoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.informazioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rimuoviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.informazioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aggiungiACatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.daCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.daFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creaNuovoNodoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +61,9 @@
             this.guidaSullaDistintaBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guidaSulCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Btn_Informazioni = new System.Windows.Forms.PictureBox();
+            this.btn_caricaCatalogo = new System.Windows.Forms.Button();
+            this.btn_salvaCatalogo = new System.Windows.Forms.Button();
+            this.btn_resettaCatalogo = new System.Windows.Forms.Button();
             this.Cms_TreeView.SuspendLayout();
             this.Cms_ListBox.SuspendLayout();
             this.Cms_Informazioni.SuspendLayout();
@@ -70,7 +74,7 @@
             // 
             this.treeView_DistintaBase.Location = new System.Drawing.Point(12, 105);
             this.treeView_DistintaBase.Name = "treeView_DistintaBase";
-            this.treeView_DistintaBase.Size = new System.Drawing.Size(373, 302);
+            this.treeView_DistintaBase.Size = new System.Drawing.Size(373, 365);
             this.treeView_DistintaBase.TabIndex = 0;
             this.treeView_DistintaBase.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_DistintaBase_NodeMouseClick_1);
             this.treeView_DistintaBase.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_DistintaBase_NodeMouseDoubleClick);
@@ -78,7 +82,7 @@
             // Btn_SalvaDistintaBase
             // 
             this.Btn_SalvaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_SalvaDistintaBase.Location = new System.Drawing.Point(201, 414);
+            this.Btn_SalvaDistintaBase.Location = new System.Drawing.Point(202, 521);
             this.Btn_SalvaDistintaBase.Name = "Btn_SalvaDistintaBase";
             this.Btn_SalvaDistintaBase.Size = new System.Drawing.Size(183, 45);
             this.Btn_SalvaDistintaBase.TabIndex = 4;
@@ -100,7 +104,7 @@
             // Btn_resettaDistintaBase
             // 
             this.Btn_resettaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_resettaDistintaBase.Location = new System.Drawing.Point(12, 414);
+            this.Btn_resettaDistintaBase.Location = new System.Drawing.Point(12, 521);
             this.Btn_resettaDistintaBase.Name = "Btn_resettaDistintaBase";
             this.Btn_resettaDistintaBase.Size = new System.Drawing.Size(183, 45);
             this.Btn_resettaDistintaBase.TabIndex = 7;
@@ -111,9 +115,9 @@
             // Btn_AggiungiMateriaPrima
             // 
             this.Btn_AggiungiMateriaPrima.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_AggiungiMateriaPrima.Location = new System.Drawing.Point(662, 414);
+            this.Btn_AggiungiMateriaPrima.Location = new System.Drawing.Point(633, 414);
             this.Btn_AggiungiMateriaPrima.Name = "Btn_AggiungiMateriaPrima";
-            this.Btn_AggiungiMateriaPrima.Size = new System.Drawing.Size(165, 45);
+            this.Btn_AggiungiMateriaPrima.Size = new System.Drawing.Size(193, 45);
             this.Btn_AggiungiMateriaPrima.TabIndex = 11;
             this.Btn_AggiungiMateriaPrima.Text = "Aggiungi materia prima";
             this.Btn_AggiungiMateriaPrima.UseVisualStyleBackColor = true;
@@ -122,9 +126,9 @@
             // Btn_AggiungiSemilavorato
             // 
             this.Btn_AggiungiSemilavorato.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_AggiungiSemilavorato.Location = new System.Drawing.Point(841, 414);
+            this.Btn_AggiungiSemilavorato.Location = new System.Drawing.Point(837, 414);
             this.Btn_AggiungiSemilavorato.Name = "Btn_AggiungiSemilavorato";
-            this.Btn_AggiungiSemilavorato.Size = new System.Drawing.Size(165, 45);
+            this.Btn_AggiungiSemilavorato.Size = new System.Drawing.Size(193, 45);
             this.Btn_AggiungiSemilavorato.TabIndex = 12;
             this.Btn_AggiungiSemilavorato.Text = "Aggiungi semilavorato";
             this.Btn_AggiungiSemilavorato.UseVisualStyleBackColor = true;
@@ -144,9 +148,9 @@
             // listView_catalogo
             // 
             this.listView_catalogo.HideSelection = false;
-            this.listView_catalogo.Location = new System.Drawing.Point(662, 105);
+            this.listView_catalogo.Location = new System.Drawing.Point(633, 105);
             this.listView_catalogo.Name = "listView_catalogo";
-            this.listView_catalogo.Size = new System.Drawing.Size(344, 302);
+            this.listView_catalogo.Size = new System.Drawing.Size(397, 303);
             this.listView_catalogo.TabIndex = 18;
             this.listView_catalogo.UseCompatibleStateImageBehavior = false;
             this.listView_catalogo.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.listView_catalogo_ColumnWidthChanging_1);
@@ -156,19 +160,13 @@
             // Cms_TreeView
             // 
             this.Cms_TreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aggiungiSottonodoToolStripMenuItem,
             this.rimuoviToolStripMenuItem,
             this.modificaToolStripMenuItem1,
-            this.aggiungiSottonodoToolStripMenuItem,
-            this.informazioniToolStripMenuItem});
+            this.informazioniToolStripMenuItem,
+            this.aggiungiACatalogoToolStripMenuItem});
             this.Cms_TreeView.Name = "Cms_TreeView";
-            this.Cms_TreeView.Size = new System.Drawing.Size(183, 92);
-            // 
-            // rimuoviToolStripMenuItem
-            // 
-            this.rimuoviToolStripMenuItem.Name = "rimuoviToolStripMenuItem";
-            this.rimuoviToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.rimuoviToolStripMenuItem.Text = "Rimuovi";
-            this.rimuoviToolStripMenuItem.Click += new System.EventHandler(this.rimuoviToolStripMenuItem_Click);
+            this.Cms_TreeView.Size = new System.Drawing.Size(183, 114);
             // 
             // aggiungiSottonodoToolStripMenuItem
             // 
@@ -201,12 +199,12 @@
             this.creaNuovoNodoToolStripMenuItem1.Text = "Crea nuovo nodo";
             this.creaNuovoNodoToolStripMenuItem1.Click += new System.EventHandler(this.creaNuovoNodoToolStripMenuItem_Click_1);
             // 
-            // informazioniToolStripMenuItem
+            // rimuoviToolStripMenuItem
             // 
-            this.informazioniToolStripMenuItem.Name = "informazioniToolStripMenuItem";
-            this.informazioniToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.informazioniToolStripMenuItem.Text = "Informazioni";
-            this.informazioniToolStripMenuItem.Click += new System.EventHandler(this.informazioniToolStripMenuItem_Click);
+            this.rimuoviToolStripMenuItem.Name = "rimuoviToolStripMenuItem";
+            this.rimuoviToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.rimuoviToolStripMenuItem.Text = "Rimuovi";
+            this.rimuoviToolStripMenuItem.Click += new System.EventHandler(this.rimuoviToolStripMenuItem_Click);
             // 
             // modificaToolStripMenuItem1
             // 
@@ -214,6 +212,20 @@
             this.modificaToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
             this.modificaToolStripMenuItem1.Text = "Modifica";
             this.modificaToolStripMenuItem1.Click += new System.EventHandler(this.modificaToolStripMenuItem1_Click);
+            // 
+            // informazioniToolStripMenuItem
+            // 
+            this.informazioniToolStripMenuItem.Name = "informazioniToolStripMenuItem";
+            this.informazioniToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.informazioniToolStripMenuItem.Text = "Informazioni";
+            this.informazioniToolStripMenuItem.Click += new System.EventHandler(this.informazioniToolStripMenuItem_Click);
+            // 
+            // aggiungiACatalogoToolStripMenuItem
+            // 
+            this.aggiungiACatalogoToolStripMenuItem.Name = "aggiungiACatalogoToolStripMenuItem";
+            this.aggiungiACatalogoToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.aggiungiACatalogoToolStripMenuItem.Text = "Aggiungi a catalogo";
+            this.aggiungiACatalogoToolStripMenuItem.Click += new System.EventHandler(this.aggiungiACatalogoToolStripMenuItem_Click);
             // 
             // daCatalogoToolStripMenuItem
             // 
@@ -290,7 +302,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(658, 78);
+            this.label2.Location = new System.Drawing.Point(629, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 24);
             this.label2.TabIndex = 20;
@@ -331,11 +343,44 @@
             this.Btn_Informazioni.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseDown);
             this.Btn_Informazioni.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseUp);
             // 
+            // btn_caricaCatalogo
+            // 
+            this.btn_caricaCatalogo.Location = new System.Drawing.Point(633, 520);
+            this.btn_caricaCatalogo.Name = "btn_caricaCatalogo";
+            this.btn_caricaCatalogo.Size = new System.Drawing.Size(130, 45);
+            this.btn_caricaCatalogo.TabIndex = 22;
+            this.btn_caricaCatalogo.Text = "Carica Catalogo";
+            this.btn_caricaCatalogo.UseVisualStyleBackColor = true;
+            this.btn_caricaCatalogo.Click += new System.EventHandler(this.btn_caricaCatalogo_Click);
+            // 
+            // btn_salvaCatalogo
+            // 
+            this.btn_salvaCatalogo.Location = new System.Drawing.Point(764, 520);
+            this.btn_salvaCatalogo.Name = "btn_salvaCatalogo";
+            this.btn_salvaCatalogo.Size = new System.Drawing.Size(130, 45);
+            this.btn_salvaCatalogo.TabIndex = 22;
+            this.btn_salvaCatalogo.Text = "Salva Catalogo";
+            this.btn_salvaCatalogo.UseVisualStyleBackColor = true;
+            this.btn_salvaCatalogo.Click += new System.EventHandler(this.btn_salvaCatalogo_Click);
+            // 
+            // btn_resettaCatalogo
+            // 
+            this.btn_resettaCatalogo.Location = new System.Drawing.Point(894, 520);
+            this.btn_resettaCatalogo.Name = "btn_resettaCatalogo";
+            this.btn_resettaCatalogo.Size = new System.Drawing.Size(136, 45);
+            this.btn_resettaCatalogo.TabIndex = 22;
+            this.btn_resettaCatalogo.Text = "Resetta Catalogo";
+            this.btn_resettaCatalogo.UseVisualStyleBackColor = true;
+            this.btn_resettaCatalogo.Click += new System.EventHandler(this.btn_resettaCatalogo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1091, 619);
+            this.Controls.Add(this.btn_resettaCatalogo);
+            this.Controls.Add(this.btn_salvaCatalogo);
+            this.Controls.Add(this.btn_caricaCatalogo);
             this.Controls.Add(this.Btn_Informazioni);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -393,6 +438,10 @@
         private System.Windows.Forms.ToolStripMenuItem caricaDaCatalogoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem caricaSemilavoratoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creaNuovoNodoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aggiungiACatalogoToolStripMenuItem;
+        private System.Windows.Forms.Button btn_caricaCatalogo;
+        private System.Windows.Forms.Button btn_salvaCatalogo;
+        private System.Windows.Forms.Button btn_resettaCatalogo;
     }
 }
 

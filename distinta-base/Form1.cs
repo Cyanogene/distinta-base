@@ -31,8 +31,7 @@ namespace distinta_base
         private DistintaBase distintaBase;
         private Salvataggio salvataggio;
         List<Node> Catalogo = new List<Node>();
-        //List<Node> NodiTreeView = new List<Node>();
-
+        
 
         //Catalogo---------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -53,7 +52,7 @@ namespace distinta_base
         private void Btn_AggiungiMateriaPrima_Click(object sender, EventArgs e)
         {
             //apro una nuova finestra dove l'utente deve inserire tutte le info del nuovo materiale (nome,id,descr,LT,LTS,ecc...)
-            form2 = new Form2_NewNode("", "", new Node());
+            form2 = new Form2_NewNode(new Node());
             form2.ShowDialog();
             Node nodo = form2.nodo;
             while (nodo == null)
@@ -67,9 +66,7 @@ namespace distinta_base
             AggiornaCatalogo();
 
         }//crea un nodo con info date in input dall'utente
-
-
-
+        
         private void listView_catalogo_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
@@ -81,7 +78,7 @@ namespace distinta_base
             {
                 if (nodo.Nome == Nome && nodo.Codice == Codice && OK)
                 {
-                    Form2_NewNode form2 = new Form2_NewNode("MODIFICA MATERIALE", "MODIFICA", nodo);
+                    Form2_NewNode form2 = new Form2_NewNode(nodo);
                     form2.ShowDialog();
                     Node nuovoNodo = form2.nodo;
                     while (nuovoNodo == null)
@@ -101,9 +98,7 @@ namespace distinta_base
                 }
             }
         }//doppio click su un elemento del catalogo e modifico
-
-
-
+        
         private void listView_catalogo_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) { return; }
@@ -160,7 +155,7 @@ namespace distinta_base
             {
                 if (nodo.Nome == Nome && nodo.Codice == Codice && OK)
                 {
-                    Form2_NewNode form2 = new Form2_NewNode("MODIFICA MATERIALE", "MODIFICA", nodo);
+                    Form2_NewNode form2 = new Form2_NewNode( nodo);
                     form2.ShowDialog();
                     Node nuovoNodo = form2.nodo;
                     while (nuovoNodo == null)
@@ -180,9 +175,7 @@ namespace distinta_base
                 }
             }
         }//contextMenu listbox modifica elemento selezionato
-
-
-
+        
         private void AggiornaCatalogo()
         {
             listView_catalogo.Items.Clear();
@@ -199,8 +192,8 @@ namespace distinta_base
             listView_catalogo.View = View.Details;
             listView_catalogo.FullRowSelect = true;
             listView_catalogo.Columns.Add("Nome", 90);
-            listView_catalogo.Columns.Add("Codice", 80);
-            listView_catalogo.Columns.Add("Descrizione", 170);
+            listView_catalogo.Columns.Add("Codice", 120);
+            listView_catalogo.Columns.Add("Descrizione", 180);
         }//Crea le colonne della listView  (NOME CODICE DESCRIZIONE) <--- di ogni prodotto
 
         private void listView_catalogo_ColumnWidthChanging_1(object sender, ColumnWidthChangingEventArgs e)
@@ -208,6 +201,59 @@ namespace distinta_base
             e.Cancel = true;
             e.NewWidth = listView_catalogo.Columns[e.ColumnIndex].Width;
         }//blocca l'allargamento delle colonne da parte dell'utente
+
+        private bool esisteComponenteInCatalogo(Node nodo)
+        {
+            foreach(Node n in Catalogo)
+            {
+                if(n.Codice == nodo.Codice)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void btn_caricaCatalogo_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
+            Ofd_Catalogo.InitialDirectory = @"C:\";
+            Ofd_Catalogo.Filter = "XML|*.xml";
+            List<Node> NodiCatalogo = new List<Node>();
+            if (Ofd_Catalogo.ShowDialog() == DialogResult.OK)
+            {
+                string filePosition = Ofd_Catalogo.FileName;
+                NodiCatalogo = salvataggio.CaricaCatalogo(filePosition);
+            }
+            Catalogo.AddRange(NodiCatalogo);
+            AggiornaCatalogo();
+        }
+
+        private void btn_salvaCatalogo_Click(object sender, EventArgs e)
+        {
+            if (Catalogo.Count == 0) return;
+            SaveFileDialog Sfd_Catalogo = new SaveFileDialog();
+            Sfd_Catalogo.InitialDirectory = @"C:\";
+            Sfd_Catalogo.RestoreDirectory = true;
+            Sfd_Catalogo.FileName = "*.xml";
+            Sfd_Catalogo.DefaultExt = "xml";
+            Sfd_Catalogo.Filter = "xml files (*.xml)|*.xml";
+            if (Sfd_Catalogo.ShowDialog() == DialogResult.OK)
+            {
+                Stream filesStream = Sfd_Catalogo.OpenFile();
+                StreamWriter sw = new StreamWriter(filesStream);
+                //distintaBase.catalogo = NodiTreeView;
+                salvataggio.SalvaCatalogo(Catalogo, sw);
+                sw.Close();
+                filesStream.Close();
+            }
+        }
+
+        private void btn_resettaCatalogo_Click(object sender, EventArgs e)
+        {
+            Catalogo.Clear();
+            AggiornaCatalogo();
+        }
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -307,9 +353,7 @@ namespace distinta_base
 
         private void Btn_creaNuovaDistintaBase_Click(object sender, EventArgs e)
         {
-            string titolo = "CREAZIONE NUOVA DISTINTA BASE";
-            string button = "CREA";
-            form2 = new Form2_NewNode(titolo, button, new Node());
+            form2 = new Form2_NewNode(new Node());
             form2.ShowDialog();
             Node nodo = form2.nodo;
             while (nodo == null)
@@ -329,7 +373,7 @@ namespace distinta_base
         private void treeView_DistintaBase_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             Node nodo = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
-            Form2_NewNode form2 = new Form2_NewNode("MODIFICA MATERIALE", "MODIFICA", nodo);
+            Form2_NewNode form2 = new Form2_NewNode(nodo);
             form2.ShowDialog();
             Node nuovoNodo = form2.nodo;
             while (nuovoNodo == null)
@@ -372,7 +416,6 @@ namespace distinta_base
 
         private void informazioniToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //distintaBase.catalogo = NodiTreeView;
             Node nodo = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
             string info = "Nome --> " + nodo.Nome + "\nCodice --> " + nodo.Codice + "\nDescrizione --> " + nodo.Descrizione + "\nLeadTime --> " + nodo.LeadTime + "\nLeadTimeSicurezza --> " + nodo.LeadTimeSicurezza + "\nLotto --> " + nodo.Lotto + "\nScortaDiSicurezza --> " + nodo.ScortaSicurezza + "\nPeriodoDiCopertura --> " + nodo.PeriodoDiCopertura;
             MessageBox.Show(info, "INFORMAZIONI", MessageBoxButtons.OK);
@@ -380,25 +423,6 @@ namespace distinta_base
 
         private void daCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*if (listView_catalogo.SelectedItems.Count == 0) return;
-
-            ListViewItem item = listView_catalogo.SelectedItems[0];
-            string Nome = item.SubItems[0].Text;
-            string Codice = item.SubItems[1].Text;
-            bool aggiungere = true;
-            Node nodo = new Node();
-            foreach (Node node in Catalogo)
-            {
-                if (node.Nome == Nome && node.Codice == Codice && aggiungere)
-                {
-                    treeView_DistintaBase.SelectedNode.Nodes.Add(distintaBase.NodeToTreeNode(node));
-                    nodo = node;
-                    aggiungere = false;
-                    listView_catalogo.SelectedItems.Clear();
-                }
-            }
-            distintaBase.catalogo.Add(nodo);
-            ControlloTreeView();*/
             if (Catalogo.Count == 0)
             {
                 //messsageBox catalogo vuoto
@@ -437,9 +461,7 @@ namespace distinta_base
 
         private void creaNuovoNodoToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            string titolo = "CREAZIONE NUOVO NODO";
-            string button = "CREA";
-            form2 = new Form2_NewNode(titolo, button, new Node());
+            form2 = new Form2_NewNode(new Node());
             form2.ShowDialog();
             Node nodo = form2.nodo;
             while (nodo == null)
@@ -453,12 +475,22 @@ namespace distinta_base
             ControlloTreeView();
             distintaBase.catalogo.Add(nodo);
         }//context menu click destro nodo mostra creaNuovoNodo
-        
+
+        private void aggiungiACatalogoToolStripMenuItem_Click(object sender, EventArgs e)//context menu click destro nodo carica il nodo in catalogo
+        {
+            Node nodo = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
+            if (!esisteComponenteInCatalogo(nodo))
+            {
+                Catalogo.Add(nodo);
+                AggiornaCatalogo();
+            }
+        }
 
 
 
 
-    private void ControlloTreeView()
+
+        private void ControlloTreeView()
     {
         if (treeView_DistintaBase.Nodes.Count == 0)
         {
@@ -481,7 +513,7 @@ namespace distinta_base
         private void modificaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Node nodo = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
-            Form2_NewNode form2 = new Form2_NewNode("MODIFICA MATERIALE", "MODIFICA", nodo);
+            Form2_NewNode form2 = new Form2_NewNode(nodo);
             form2.ShowDialog();
             Node nuovoNodo = form2.nodo;
             while (nuovoNodo == null)
@@ -529,7 +561,7 @@ namespace distinta_base
             MessageBox.Show(text, "Guida sulla distinta base", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
-
     }
 }

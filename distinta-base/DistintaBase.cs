@@ -50,13 +50,6 @@ namespace distinta_base
             return TreeNodeInNode;
         }
         
-        /*public TreeView NodeToTreeView(Node TreeList)
-        {
-            TreeView TreeView = new TreeView();
-            TreeView.Nodes.Add(NodeToTreeNode(TreeList));
-            return TreeView;
-        }*/
-
         public TreeNode NodeToTreeNode(Node Node)
         {
             TreeNode Nodo = new TreeNode(Node.Nome);
