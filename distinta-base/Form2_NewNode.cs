@@ -12,32 +12,35 @@ using System.Windows.Forms;
 
 namespace distinta_base
 {
+    //TUTTE LE PARTI COMMENTATE IN QUESTO NAMESPACE SERVONO ALL'ASSEGNAZIONE AUTOMATICA DEL CODICE, NON CANCELLARE
+
     public partial class Form2_NewNode : Form
     {
         //variabili NODO------------------------
-        public string Nome = "";
-        public string Codice = "";
-        public string Descrizione = "";
-        public int LT = 0;
-        public int LTS = 0;
-        public int ScortaDiSicurezza = 0;
-        public int Lotto = 0;
-        public int PeriodoDiCopertura = 0;
-        public Node nodo;
+        string Nome = "";
+        string Codice = "";
+        string Descrizione = "";
+        int LT = 0;
+        int LTS = 0;
+        int ScortaDiSicurezza = 0;
+        int Lotto = 0;
+        int PeriodoDiCopertura = 0;
+        public Componente nodo;
         public bool attendo = true;
-        public Node nodoInput;
+        List<string> codici = new List<string>();
+        //public Node nodoInput;
         //--------------------------------------
 
 
-        public Form2_NewNode(Node nodo)
+        public Form2_NewNode(Componente nodo, List<Componente> componenti)
         {
             InitializeComponent();
             ActiveControl = form_nome;
-            form_codice.Enabled = false;
-            form_codice.Text = "il codice viene assegnato automaticamente";
+            /*form_codice.Enabled = false;
+            form_codice.Text = "il codice viene assegnato automaticamente";*/
             if (nodo.Nome != null)//MODIFICO UN NODO
             {
-                label1.Text = "MODIFICA NODO";
+                label1.Text = "MODIFICA COMPONENTE";
                 Btn_aggiungi.Text = "CONFERMA";
                 form_nome.Text = nodo.Nome;
                 form_codice.Text = nodo.Codice;
@@ -48,16 +51,29 @@ namespace distinta_base
                 form_lotto.Value = nodo.Lotto;
                 form_periodoDiCopertura.Value = nodo.PeriodoDiCopertura;
             }
-            nodoInput = nodo;
+            foreach(Componente comp in componenti)
+            {
+                codici.Add(comp.Codice);
+            }
+            //nodoInput = nodo;
         }
 
-
+        
 
         private void Btn_aggiungi_Click(object sender, EventArgs e)
         {
-            
             if (form_nome.Text != "" && form_codice.Text != "" && form_descrizione.Text != "" && form_leadTime.Value > 0 && form_lotto.Value > 0 && form_periodoDiCopertura.Value > 0)
             {
+                foreach(string codice in codici)
+                {
+                    if(form_codice.Text == codice)
+                    {
+                        MessageBox.Show("Il codice inserito è già stato utilizzato", "ATTENZIONE", MessageBoxButtons.OK);
+                        form_codice.Focus();
+                        form_codice.Clear();
+                        return;
+                    }
+                }
                 Nome = form_nome.Text;
                 Descrizione = form_descrizione.Text;
                 LT = Convert.ToInt32(form_leadTime.Value);
@@ -65,10 +81,11 @@ namespace distinta_base
                 ScortaDiSicurezza = Convert.ToInt32(form__scortaDiSicurezza.Value);
                 Lotto = Convert.ToInt32(form_lotto.Value);
                 PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
-                int n = 0;
+                Codice = form_codice.Text; 
+                /*int n = 0;
                 if (nodo != null) { n = nodo.SottoNodi.Count(); }
-                Codice = Nome + LT + LTS + ScortaDiSicurezza + Lotto + PeriodoDiCopertura + n + RandomString(3);
-                nodo = new Node
+                Codice = Nome + LT + LTS + ScortaDiSicurezza + Lotto + PeriodoDiCopertura + n + RandomString(3);*/
+                nodo = new Componente
                 {
                     Nome = Nome,
                     Codice = Codice,
@@ -79,14 +96,14 @@ namespace distinta_base
                     Lotto = Lotto,
                     PeriodoDiCopertura = PeriodoDiCopertura
                 };
-                if (nodoInput != null)
+                /*if (nodoInput != null)
                 {
                     if (nodo.Nome == nodoInput.Nome && nodo.Descrizione == nodoInput.Descrizione && nodo.LeadTime == nodoInput.LeadTime && nodo.LeadTimeSicurezza == nodoInput.LeadTimeSicurezza && nodo.ScortaSicurezza == nodoInput.ScortaSicurezza && nodo.Lotto == nodoInput.Lotto && nodo.PeriodoDiCopertura == nodoInput.PeriodoDiCopertura)
                     {
                         nodo = nodoInput;
                         Close();
                     }
-                }
+                }*/
                 Close();
             }
             else
@@ -136,6 +153,11 @@ namespace distinta_base
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.Handled = true;
+        }
+
+        private void Form2_NewNode_Load(object sender, EventArgs e)
+        {
+            CenterToParent();
         }
     }
 }

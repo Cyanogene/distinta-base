@@ -12,14 +12,14 @@ namespace distinta_base
 {
     public partial class Form3_Catalogo : Form
     {
-        public Form3_Catalogo(List<Node> input)
+        public Form3_Catalogo(List<Componente> input)
         {
             nodiCatalogo = input;
             InitializeComponent();
         }
 
-        public List<Node> nodiCatalogo { get; set; }
-        public Node nodo { get; set; }
+        public List<Componente> nodiCatalogo { get; set; }
+        public Componente nodo { get; set; }
         public bool attendo = true;
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,8 +34,8 @@ namespace distinta_base
             string Nome = item.SubItems[0].Text;
             string Codice = item.SubItems[1].Text;
             bool aggiungere = true;
-            Node n = new Node();
-            foreach (Node node in nodiCatalogo)
+            Componente n = new Componente();
+            foreach (Componente node in nodiCatalogo)
             {
                 if (node.Nome == Nome && node.Codice == Codice && aggiungere)
                 {
@@ -49,7 +49,7 @@ namespace distinta_base
         private void AggiornaCatalogo()
         {
             listView1.Items.Clear();
-            foreach (Node n in nodiCatalogo)
+            foreach (Componente n in nodiCatalogo)
             {
                 string[] items = { n.Nome, n.Codice, n.Descrizione };
                 ListViewItem ListViewNodo = new ListViewItem(items);
@@ -75,6 +75,7 @@ namespace distinta_base
         {
             CreaListView();
             AggiornaCatalogo();
+            CenterToParent();
         }
 
         private void listView1_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
@@ -89,8 +90,8 @@ namespace distinta_base
             string Nome = item.SubItems[0].Text;
             string Codice = item.SubItems[1].Text;
             bool aggiungere = true;
-            Node n = new Node();
-            foreach (Node node in nodiCatalogo)
+            Componente n = new Componente();
+            foreach (Componente node in nodiCatalogo)
             {
                 if (node.Nome == Nome && node.Codice == Codice && aggiungere)
                 {

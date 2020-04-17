@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.treeView_DistintaBase = new System.Windows.Forms.TreeView();
             this.Btn_SalvaDistintaBase = new System.Windows.Forms.Button();
-            this.Btn_CaricaDistintaBase = new System.Windows.Forms.Button();
-            this.Btn_resettaDistintaBase = new System.Windows.Forms.Button();
             this.Btn_AggiungiMateriaPrima = new System.Windows.Forms.Button();
             this.Btn_AggiungiSemilavorato = new System.Windows.Forms.Button();
             this.Btn_caricaDaCatalogo = new System.Windows.Forms.Button();
@@ -64,6 +62,9 @@
             this.btn_caricaCatalogo = new System.Windows.Forms.Button();
             this.btn_salvaCatalogo = new System.Windows.Forms.Button();
             this.btn_resettaCatalogo = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.Btn_resettaDistintaBase = new System.Windows.Forms.Button();
+            this.Btn_CaricaDistintaBase = new System.Windows.Forms.Button();
             this.Cms_TreeView.SuspendLayout();
             this.Cms_ListBox.SuspendLayout();
             this.Cms_Informazioni.SuspendLayout();
@@ -72,9 +73,9 @@
             // 
             // treeView_DistintaBase
             // 
-            this.treeView_DistintaBase.Location = new System.Drawing.Point(12, 105);
+            this.treeView_DistintaBase.Location = new System.Drawing.Point(16, 89);
             this.treeView_DistintaBase.Name = "treeView_DistintaBase";
-            this.treeView_DistintaBase.Size = new System.Drawing.Size(373, 365);
+            this.treeView_DistintaBase.Size = new System.Drawing.Size(392, 407);
             this.treeView_DistintaBase.TabIndex = 0;
             this.treeView_DistintaBase.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_DistintaBase_NodeMouseClick_1);
             this.treeView_DistintaBase.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_DistintaBase_NodeMouseDoubleClick);
@@ -82,42 +83,20 @@
             // Btn_SalvaDistintaBase
             // 
             this.Btn_SalvaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_SalvaDistintaBase.Location = new System.Drawing.Point(202, 521);
+            this.Btn_SalvaDistintaBase.Location = new System.Drawing.Point(16, 516);
             this.Btn_SalvaDistintaBase.Name = "Btn_SalvaDistintaBase";
-            this.Btn_SalvaDistintaBase.Size = new System.Drawing.Size(183, 45);
+            this.Btn_SalvaDistintaBase.Size = new System.Drawing.Size(188, 53);
             this.Btn_SalvaDistintaBase.TabIndex = 4;
             this.Btn_SalvaDistintaBase.Text = "Salva Distinta base";
             this.Btn_SalvaDistintaBase.UseVisualStyleBackColor = true;
             this.Btn_SalvaDistintaBase.Click += new System.EventHandler(this.Btn_SalvaDistintaBase_Click);
             // 
-            // Btn_CaricaDistintaBase
-            // 
-            this.Btn_CaricaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_CaricaDistintaBase.Location = new System.Drawing.Point(391, 163);
-            this.Btn_CaricaDistintaBase.Name = "Btn_CaricaDistintaBase";
-            this.Btn_CaricaDistintaBase.Size = new System.Drawing.Size(138, 52);
-            this.Btn_CaricaDistintaBase.TabIndex = 5;
-            this.Btn_CaricaDistintaBase.Text = "Carica DistintaBase";
-            this.Btn_CaricaDistintaBase.UseVisualStyleBackColor = true;
-            this.Btn_CaricaDistintaBase.Click += new System.EventHandler(this.Btn_CaricaDistintaBase_Click);
-            // 
-            // Btn_resettaDistintaBase
-            // 
-            this.Btn_resettaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_resettaDistintaBase.Location = new System.Drawing.Point(12, 521);
-            this.Btn_resettaDistintaBase.Name = "Btn_resettaDistintaBase";
-            this.Btn_resettaDistintaBase.Size = new System.Drawing.Size(183, 45);
-            this.Btn_resettaDistintaBase.TabIndex = 7;
-            this.Btn_resettaDistintaBase.Text = "Resetta distinta base";
-            this.Btn_resettaDistintaBase.UseVisualStyleBackColor = true;
-            this.Btn_resettaDistintaBase.Click += new System.EventHandler(this.Btn_resettaDistintaBase_Click);
-            // 
             // Btn_AggiungiMateriaPrima
             // 
             this.Btn_AggiungiMateriaPrima.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_AggiungiMateriaPrima.Location = new System.Drawing.Point(633, 414);
+            this.Btn_AggiungiMateriaPrima.Location = new System.Drawing.Point(639, 161);
             this.Btn_AggiungiMateriaPrima.Name = "Btn_AggiungiMateriaPrima";
-            this.Btn_AggiungiMateriaPrima.Size = new System.Drawing.Size(193, 45);
+            this.Btn_AggiungiMateriaPrima.Size = new System.Drawing.Size(106, 66);
             this.Btn_AggiungiMateriaPrima.TabIndex = 11;
             this.Btn_AggiungiMateriaPrima.Text = "Aggiungi materia prima";
             this.Btn_AggiungiMateriaPrima.UseVisualStyleBackColor = true;
@@ -126,9 +105,9 @@
             // Btn_AggiungiSemilavorato
             // 
             this.Btn_AggiungiSemilavorato.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_AggiungiSemilavorato.Location = new System.Drawing.Point(837, 414);
+            this.Btn_AggiungiSemilavorato.Location = new System.Drawing.Point(639, 89);
             this.Btn_AggiungiSemilavorato.Name = "Btn_AggiungiSemilavorato";
-            this.Btn_AggiungiSemilavorato.Size = new System.Drawing.Size(193, 45);
+            this.Btn_AggiungiSemilavorato.Size = new System.Drawing.Size(106, 66);
             this.Btn_AggiungiSemilavorato.TabIndex = 12;
             this.Btn_AggiungiSemilavorato.Text = "Aggiungi semilavorato";
             this.Btn_AggiungiSemilavorato.UseVisualStyleBackColor = true;
@@ -137,20 +116,20 @@
             // Btn_caricaDaCatalogo
             // 
             this.Btn_caricaDaCatalogo.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_caricaDaCatalogo.Location = new System.Drawing.Point(391, 221);
+            this.Btn_caricaDaCatalogo.Location = new System.Drawing.Point(414, 161);
             this.Btn_caricaDaCatalogo.Name = "Btn_caricaDaCatalogo";
-            this.Btn_caricaDaCatalogo.Size = new System.Drawing.Size(138, 52);
+            this.Btn_caricaDaCatalogo.Size = new System.Drawing.Size(98, 66);
             this.Btn_caricaDaCatalogo.TabIndex = 17;
-            this.Btn_caricaDaCatalogo.Text = "Carica prodotto da catalogo";
+            this.Btn_caricaDaCatalogo.Text = "Carica componente da catalogo";
             this.Btn_caricaDaCatalogo.UseVisualStyleBackColor = true;
             this.Btn_caricaDaCatalogo.Click += new System.EventHandler(this.Btn_caricaDaCatalogo_Click);
             // 
             // listView_catalogo
             // 
             this.listView_catalogo.HideSelection = false;
-            this.listView_catalogo.Location = new System.Drawing.Point(633, 105);
+            this.listView_catalogo.Location = new System.Drawing.Point(751, 89);
             this.listView_catalogo.Name = "listView_catalogo";
-            this.listView_catalogo.Size = new System.Drawing.Size(397, 303);
+            this.listView_catalogo.Size = new System.Drawing.Size(402, 407);
             this.listView_catalogo.TabIndex = 18;
             this.listView_catalogo.UseCompatibleStateImageBehavior = false;
             this.listView_catalogo.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.listView_catalogo_ColumnWidthChanging_1);
@@ -250,9 +229,10 @@
             // 
             // Btn_creaNuovaDistintaBase
             // 
-            this.Btn_creaNuovaDistintaBase.Location = new System.Drawing.Point(391, 105);
+            this.Btn_creaNuovaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
+            this.Btn_creaNuovaDistintaBase.Location = new System.Drawing.Point(414, 89);
             this.Btn_creaNuovaDistintaBase.Name = "Btn_creaNuovaDistintaBase";
-            this.Btn_creaNuovaDistintaBase.Size = new System.Drawing.Size(138, 52);
+            this.Btn_creaNuovaDistintaBase.Size = new System.Drawing.Size(98, 66);
             this.Btn_creaNuovaDistintaBase.TabIndex = 19;
             this.Btn_creaNuovaDistintaBase.Text = "Crea nuova DistintaBase";
             this.Btn_creaNuovaDistintaBase.UseVisualStyleBackColor = true;
@@ -292,7 +272,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(8, 78);
+            this.label1.Location = new System.Drawing.Point(12, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(162, 24);
             this.label1.TabIndex = 20;
@@ -302,7 +282,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(629, 78);
+            this.label2.Location = new System.Drawing.Point(747, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 24);
             this.label2.TabIndex = 20;
@@ -334,7 +314,7 @@
             // 
             this.Btn_Informazioni.BackColor = System.Drawing.Color.Transparent;
             this.Btn_Informazioni.Image = global::distinta_base.Properties.Resources.IconaNormale;
-            this.Btn_Informazioni.Location = new System.Drawing.Point(1026, 12);
+            this.Btn_Informazioni.Location = new System.Drawing.Point(1110, 7);
             this.Btn_Informazioni.Name = "Btn_Informazioni";
             this.Btn_Informazioni.Size = new System.Drawing.Size(72, 79);
             this.Btn_Informazioni.TabIndex = 21;
@@ -345,9 +325,9 @@
             // 
             // btn_caricaCatalogo
             // 
-            this.btn_caricaCatalogo.Location = new System.Drawing.Point(633, 520);
+            this.btn_caricaCatalogo.Location = new System.Drawing.Point(751, 517);
             this.btn_caricaCatalogo.Name = "btn_caricaCatalogo";
-            this.btn_caricaCatalogo.Size = new System.Drawing.Size(130, 45);
+            this.btn_caricaCatalogo.Size = new System.Drawing.Size(402, 53);
             this.btn_caricaCatalogo.TabIndex = 22;
             this.btn_caricaCatalogo.Text = "Carica Catalogo";
             this.btn_caricaCatalogo.UseVisualStyleBackColor = true;
@@ -355,9 +335,9 @@
             // 
             // btn_salvaCatalogo
             // 
-            this.btn_salvaCatalogo.Location = new System.Drawing.Point(764, 520);
+            this.btn_salvaCatalogo.Location = new System.Drawing.Point(751, 516);
             this.btn_salvaCatalogo.Name = "btn_salvaCatalogo";
-            this.btn_salvaCatalogo.Size = new System.Drawing.Size(130, 45);
+            this.btn_salvaCatalogo.Size = new System.Drawing.Size(188, 53);
             this.btn_salvaCatalogo.TabIndex = 22;
             this.btn_salvaCatalogo.Text = "Salva Catalogo";
             this.btn_salvaCatalogo.UseVisualStyleBackColor = true;
@@ -365,19 +345,41 @@
             // 
             // btn_resettaCatalogo
             // 
-            this.btn_resettaCatalogo.Location = new System.Drawing.Point(894, 520);
+            this.btn_resettaCatalogo.Location = new System.Drawing.Point(955, 516);
             this.btn_resettaCatalogo.Name = "btn_resettaCatalogo";
-            this.btn_resettaCatalogo.Size = new System.Drawing.Size(136, 45);
+            this.btn_resettaCatalogo.Size = new System.Drawing.Size(198, 53);
             this.btn_resettaCatalogo.TabIndex = 22;
             this.btn_resettaCatalogo.Text = "Resetta Catalogo";
             this.btn_resettaCatalogo.UseVisualStyleBackColor = true;
             this.btn_resettaCatalogo.Click += new System.EventHandler(this.btn_resettaCatalogo_Click);
             // 
+            // Btn_resettaDistintaBase
+            // 
+            this.Btn_resettaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
+            this.Btn_resettaDistintaBase.Location = new System.Drawing.Point(210, 516);
+            this.Btn_resettaDistintaBase.Name = "Btn_resettaDistintaBase";
+            this.Btn_resettaDistintaBase.Size = new System.Drawing.Size(198, 53);
+            this.Btn_resettaDistintaBase.TabIndex = 7;
+            this.Btn_resettaDistintaBase.Text = "Resetta distinta base";
+            this.Btn_resettaDistintaBase.UseVisualStyleBackColor = true;
+            this.Btn_resettaDistintaBase.Click += new System.EventHandler(this.Btn_resettaDistintaBase_Click);
+            // 
+            // Btn_CaricaDistintaBase
+            // 
+            this.Btn_CaricaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
+            this.Btn_CaricaDistintaBase.Location = new System.Drawing.Point(16, 517);
+            this.Btn_CaricaDistintaBase.Name = "Btn_CaricaDistintaBase";
+            this.Btn_CaricaDistintaBase.Size = new System.Drawing.Size(392, 53);
+            this.Btn_CaricaDistintaBase.TabIndex = 5;
+            this.Btn_CaricaDistintaBase.Text = "Carica DistintaBase";
+            this.Btn_CaricaDistintaBase.UseVisualStyleBackColor = true;
+            this.Btn_CaricaDistintaBase.Click += new System.EventHandler(this.Btn_CaricaDistintaBase_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1091, 619);
+            this.ClientSize = new System.Drawing.Size(1184, 636);
             this.Controls.Add(this.btn_resettaCatalogo);
             this.Controls.Add(this.btn_salvaCatalogo);
             this.Controls.Add(this.btn_caricaCatalogo);
@@ -410,8 +412,6 @@
 
         private System.Windows.Forms.TreeView treeView_DistintaBase;
         private System.Windows.Forms.Button Btn_SalvaDistintaBase;
-        private System.Windows.Forms.Button Btn_CaricaDistintaBase;
-        private System.Windows.Forms.Button Btn_resettaDistintaBase;
         private System.Windows.Forms.Button Btn_AggiungiMateriaPrima;
         private System.Windows.Forms.Button Btn_AggiungiSemilavorato;
         private System.Windows.Forms.Button Btn_caricaDaCatalogo;
@@ -442,6 +442,9 @@
         private System.Windows.Forms.Button btn_caricaCatalogo;
         private System.Windows.Forms.Button btn_salvaCatalogo;
         private System.Windows.Forms.Button btn_resettaCatalogo;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button Btn_resettaDistintaBase;
+        private System.Windows.Forms.Button Btn_CaricaDistintaBase;
     }
 }
 

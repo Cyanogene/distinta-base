@@ -14,27 +14,49 @@ namespace distinta_base
 {
     public partial class Form1 : Form
     {
-        Form2_NewNode form2;
+
+        private DistintaBase distintaBase = new DistintaBase();
+        private Catalogo catalogo = new Catalogo();
+        List<Componente> Componenti = new List<Componente>();
+
         public Form1()
         {
             InitializeComponent();
-            distintaBase = new DistintaBase();
-            salvataggio = new Salvataggio();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             CreaListView();
             ControlloTreeView();
+            AggiornaCatalogo();
+            MenuBar();
         }
 
-        private DistintaBase distintaBase;
-        private Salvataggio salvataggio;
-        List<Node> Catalogo = new List<Node>();
+        void MenuBar()
+        {
+            Menu = new MainMenu();
+
+            MenuItem DistintaBase = new MenuItem("Distinta base");
+            MenuItem Catalogo = new MenuItem("Catalogo");
+
+            Menu.MenuItems.Add(DistintaBase);
+            Menu.MenuItems.Add(Catalogo);
+
+            DistintaBase.MenuItems.Add("Salva", new EventHandler(Btn_SalvaDistintaBase_Click));
+            DistintaBase.MenuItems.Add("Carica", new EventHandler(Btn_CaricaDistintaBase_Click));
+            DistintaBase.MenuItems.Add("Resetta", new EventHandler(Btn_resettaDistintaBase_Click));
+
+            Catalogo.MenuItems.Add("Salva", new EventHandler(btn_salvaCatalogo_Click));
+            Catalogo.MenuItems.Add("Carica", new EventHandler(btn_caricaCatalogo_Click));
+            Catalogo.MenuItems.Add("Resetta", new EventHandler(btn_resettaCatalogo_Click));
+        }
         
+
+
 
         //Catalogo---------------------------------------------------------------------------------------------------------------------------------------------------
 
+        
         private void Btn_AggiungiSemilavorato_Click(object sender, EventArgs e)
         {
             OpenFileDialog Ofd_semilavorato = new OpenFileDialog();
@@ -43,8 +65,8 @@ namespace distinta_base
             if (Ofd_semilavorato.ShowDialog() == DialogResult.OK)
             {
                 string filePosition = Ofd_semilavorato.FileName;
-                Node semilavorato = salvataggio.CaricaDistintaBase(filePosition);
-                Catalogo.Add(semilavorato);
+                Componente semilavorato = distintaBase.Carica(filePosition);
+                catalogo.Nodi.Add(semilavorato);
                 AggiornaCatalogo();
             }
         }//carica la distinta base selezionata dall'utente nel catalogo
@@ -52,9 +74,11 @@ namespace distinta_base
         private void Btn_AggiungiMateriaPrima_Click(object sender, EventArgs e)
         {
             //apro una nuova finestra dove l'utente deve inserire tutte le info del nuovo materiale (nome,id,descr,LT,LTS,ecc...)
-            form2 = new Form2_NewNode(new Node());
+            Componenti.AddRange(catalogo.Nodi);
+            Componenti.AddRange(distintaBase.Nodi);
+            Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti);
             form2.ShowDialog();
-            Node nodo = form2.nodo;
+            Componente nodo = form2.nodo;
             while (nodo == null)
             {
                 if (!form2.attendo)
@@ -62,43 +86,13 @@ namespace distinta_base
                     return;
                 }
             }
-            Catalogo.Add(nodo);
+            catalogo.Nodi.Add(nodo);
             AggiornaCatalogo();
 
         }//crea un nodo con info date in input dall'utente
+
         
-        private void listView_catalogo_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (listView_catalogo.SelectedItems.Count == 0) { return; }
-            ListViewItem item = listView_catalogo.SelectedItems[0];
-            string Nome = item.SubItems[0].Text;
-            string Codice = item.SubItems[1].Text;
-            bool OK = true;
-            foreach (Node nodo in Catalogo)
-            {
-                if (nodo.Nome == Nome && nodo.Codice == Codice && OK)
-                {
-                    Form2_NewNode form2 = new Form2_NewNode(nodo);
-                    form2.ShowDialog();
-                    Node nuovoNodo = form2.nodo;
-                    while (nuovoNodo == null)
-                    {
-                        if (!form2.attendo)
-                        {
-                            return;
-                        }
-                    }
-                    nuovoNodo.SottoNodi = nodo.SottoNodi;
-                    Catalogo.Remove(nodo);
-                    Catalogo.Add(nuovoNodo);
-                    AggiornaCatalogo();
-                    OK = false;
-                    listView_catalogo.SelectedItems.Clear();
-                    return;
-                }
-            }
-        }//doppio click su un elemento del catalogo e modifico
-        
+
         private void listView_catalogo_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) { return; }
@@ -109,14 +103,13 @@ namespace distinta_base
         {
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
             ListViewItem item = listView_catalogo.SelectedItems[0];
-            string Nome = item.SubItems[0].Text;
             string Codice = item.SubItems[1].Text;
             bool OK = true;
-            foreach (Node nodo in Catalogo)
+            foreach (Componente nodo in catalogo.Nodi)
             {
-                if (nodo.Nome == Nome && nodo.Codice == Codice && OK)
+                if (nodo.Codice == Codice && OK)
                 {
-                    Catalogo.Remove(nodo);
+                    catalogo.Nodi.Remove(nodo);
                     OK = false;
                     AggiornaCatalogo();
                     listView_catalogo.SelectedItems.Clear();
@@ -129,12 +122,11 @@ namespace distinta_base
         {
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
             ListViewItem item = listView_catalogo.SelectedItems[0];
-            string Nome = item.SubItems[0].Text;
             string Codice = item.SubItems[1].Text;
             bool OK = true;
-            foreach (Node nodo in Catalogo)
+            foreach (Componente nodo in catalogo.Nodi)
             {
-                if (nodo.Nome == Nome && nodo.Codice == Codice && OK)
+                if (nodo.Codice == Codice && OK)
                 {
                     string info = "Nome --> " + nodo.Nome + "\nCodice --> " + nodo.Codice + "\nDescrizione --> " + nodo.Descrizione + "\nLeadTime --> " + nodo.LeadTime + "\nLeadTimeSicurezza --> " + nodo.LeadTimeSicurezza + "\nLotto --> " + nodo.Lotto + "\nScortaDiSicurezza --> " + nodo.ScortaSicurezza + "\nPeriodoDiCopertura --> " + nodo.PeriodoDiCopertura;
                     OK = false;
@@ -148,16 +140,17 @@ namespace distinta_base
         {
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
             ListViewItem item = listView_catalogo.SelectedItems[0];
-            string Nome = item.SubItems[0].Text;
             string Codice = item.SubItems[1].Text;
             bool OK = true;
-            foreach (Node nodo in Catalogo)
+            foreach (Componente nodo in catalogo.Nodi)
             {
-                if (nodo.Nome == Nome && nodo.Codice == Codice && OK)
+                if (nodo.Codice == Codice && OK)
                 {
-                    Form2_NewNode form2 = new Form2_NewNode( nodo);
+                    Componenti.AddRange(catalogo.Nodi);
+                    Componenti.AddRange(distintaBase.Nodi);
+                    Form2_NewNode form2 = new Form2_NewNode(nodo, Componenti);
                     form2.ShowDialog();
-                    Node nuovoNodo = form2.nodo;
+                    Componente nuovoNodo = form2.nodo;
                     while (nuovoNodo == null)
                     {
                         if (!form2.attendo)
@@ -166,8 +159,8 @@ namespace distinta_base
                         }
                     }
                     nuovoNodo.SottoNodi = nodo.SottoNodi;
-                    Catalogo.Remove(nodo);
-                    Catalogo.Add(nuovoNodo);
+                    catalogo.Nodi.Remove(nodo);
+                    catalogo.Nodi.Add(nuovoNodo);
                     AggiornaCatalogo();
                     OK = false;
                     listView_catalogo.SelectedItems.Clear();
@@ -175,17 +168,84 @@ namespace distinta_base
                 }
             }
         }//contextMenu listbox modifica elemento selezionato
-        
-        private void AggiornaCatalogo()
+
+        private void listView_catalogo_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            listView_catalogo.Items.Clear();
-            foreach (Node n in Catalogo)
+            if (listView_catalogo.SelectedItems.Count == 0) { return; }
+            ListViewItem item = listView_catalogo.SelectedItems[0];
+            string Codice = item.SubItems[1].Text;
+            bool OK = true;
+            foreach (Componente nodo in catalogo.Nodi)
             {
-                string[] items = { n.Nome, n.Codice, n.Descrizione };
-                ListViewItem ListViewNodo = new ListViewItem(items);
-                listView_catalogo.Items.Add(ListViewNodo);
+                if (nodo.Codice == Codice && OK)
+                {
+                    Componenti.AddRange(catalogo.Nodi);
+                    Componenti.AddRange(distintaBase.Nodi);
+                    Form2_NewNode form2 = new Form2_NewNode(nodo, Componenti);
+                    form2.ShowDialog();
+                    Componente nuovoNodo = form2.nodo;
+                    while (nuovoNodo == null)
+                    {
+                        if (!form2.attendo)
+                        {
+                            return;
+                        }
+                    }
+                    nuovoNodo.SottoNodi = nodo.SottoNodi;
+                    catalogo.Nodi.Remove(nodo);
+                    catalogo.Nodi.Add(nuovoNodo);
+                    AggiornaCatalogo();
+                    OK = false;
+                    listView_catalogo.SelectedItems.Clear();
+                    return;
+                }
             }
-        }//aggiorna il catalogo listbox guardando la list<node> catalogo;
+        }//doppio click su un elemento del catalogo e modifico
+        
+
+
+        private void btn_caricaCatalogo_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
+            Ofd_Catalogo.InitialDirectory = @"C:\";
+            Ofd_Catalogo.Filter = "XML|*.xml";
+            List<Componente> NodiCatalogo = new List<Componente>();
+            if (Ofd_Catalogo.ShowDialog() == DialogResult.OK)
+            {
+                string filePosition = Ofd_Catalogo.FileName;
+                NodiCatalogo = catalogo.Carica(filePosition);
+            }
+            catalogo.Nodi.AddRange(NodiCatalogo);
+            AggiornaCatalogo();
+        }
+
+        private void btn_salvaCatalogo_Click(object sender, EventArgs e)
+        {
+            if (catalogo.Nodi.Count == 0) return;
+            SaveFileDialog Sfd_Catalogo = new SaveFileDialog();
+            Sfd_Catalogo.InitialDirectory = @"C:\";
+            Sfd_Catalogo.RestoreDirectory = true;
+            Sfd_Catalogo.FileName = "*.xml";
+            Sfd_Catalogo.DefaultExt = "xml";
+            Sfd_Catalogo.Filter = "xml files (*.xml)|*.xml";
+            if (Sfd_Catalogo.ShowDialog() == DialogResult.OK)
+            {
+                Stream filesStream = Sfd_Catalogo.OpenFile();
+                StreamWriter sw = new StreamWriter(filesStream);
+                //distintaBase.catalogo = NodiTreeView;
+                catalogo.Salva(catalogo.Nodi, sw);
+                sw.Close();
+                filesStream.Close();
+            }
+        }
+
+        private void btn_resettaCatalogo_Click(object sender, EventArgs e)
+        {
+            catalogo.Nodi.Clear();
+            AggiornaCatalogo();
+        }
+
+
 
         private void CreaListView()
         {
@@ -202,57 +262,28 @@ namespace distinta_base
             e.NewWidth = listView_catalogo.Columns[e.ColumnIndex].Width;
         }//blocca l'allargamento delle colonne da parte dell'utente
 
-        private bool esisteComponenteInCatalogo(Node nodo)
+        private void AggiornaCatalogo()
         {
-            foreach(Node n in Catalogo)
+            listView_catalogo.Items.Clear();
+            foreach (Componente comp in catalogo.Nodi)
             {
-                if(n.Codice == nodo.Codice)
-                {
-                    return true;
-                }
+                string[] items = { comp.Nome, comp.Codice, comp.Descrizione };
+                ListViewItem ListViewNodo = new ListViewItem(items);
+                listView_catalogo.Items.Add(ListViewNodo);
             }
-            return false;
-        }
-
-        private void btn_caricaCatalogo_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
-            Ofd_Catalogo.InitialDirectory = @"C:\";
-            Ofd_Catalogo.Filter = "XML|*.xml";
-            List<Node> NodiCatalogo = new List<Node>();
-            if (Ofd_Catalogo.ShowDialog() == DialogResult.OK)
+            if(catalogo.Nodi.Count==0)
             {
-                string filePosition = Ofd_Catalogo.FileName;
-                NodiCatalogo = salvataggio.CaricaCatalogo(filePosition);
+                btn_resettaCatalogo.Visible = false;
+                btn_salvaCatalogo.Visible = false;
+                btn_caricaCatalogo.Visible = true;
             }
-            Catalogo.AddRange(NodiCatalogo);
-            AggiornaCatalogo();
-        }
-
-        private void btn_salvaCatalogo_Click(object sender, EventArgs e)
-        {
-            if (Catalogo.Count == 0) return;
-            SaveFileDialog Sfd_Catalogo = new SaveFileDialog();
-            Sfd_Catalogo.InitialDirectory = @"C:\";
-            Sfd_Catalogo.RestoreDirectory = true;
-            Sfd_Catalogo.FileName = "*.xml";
-            Sfd_Catalogo.DefaultExt = "xml";
-            Sfd_Catalogo.Filter = "xml files (*.xml)|*.xml";
-            if (Sfd_Catalogo.ShowDialog() == DialogResult.OK)
+            else
             {
-                Stream filesStream = Sfd_Catalogo.OpenFile();
-                StreamWriter sw = new StreamWriter(filesStream);
-                //distintaBase.catalogo = NodiTreeView;
-                salvataggio.SalvaCatalogo(Catalogo, sw);
-                sw.Close();
-                filesStream.Close();
+                btn_resettaCatalogo.Visible = true;
+                btn_salvaCatalogo.Visible = true;
+                btn_caricaCatalogo.Visible = false;
             }
-        }
-
-        private void btn_resettaCatalogo_Click(object sender, EventArgs e)
-        {
-            Catalogo.Clear();
-            AggiornaCatalogo();
+            ControlloTreeView();
         }
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -263,6 +294,7 @@ namespace distinta_base
 
         private void Btn_SalvaDistintaBase_Click(object sender, EventArgs e)
         {
+            if (distintaBase.Nodi.Count == 0) return;
             SaveFileDialog Sfd_DistintaBase = new SaveFileDialog();
             Sfd_DistintaBase.InitialDirectory = @"C:\";
             Sfd_DistintaBase.RestoreDirectory = true;
@@ -274,7 +306,7 @@ namespace distinta_base
                 Stream filesStream = Sfd_DistintaBase.OpenFile();
                 StreamWriter sw = new StreamWriter(filesStream);
                 //distintaBase.catalogo = NodiTreeView;
-                salvataggio.SalvaDistintaBase(distintaBase.TreeViewToNode(treeView_DistintaBase), sw);
+                distintaBase.Salva(distintaBase.TreeViewToNode(treeView_DistintaBase), sw);
                 sw.Close();
                 filesStream.Close();
                 treeView_DistintaBase.Nodes.Clear();
@@ -285,28 +317,28 @@ namespace distinta_base
         private void Btn_resettaDistintaBase_Click(object sender, EventArgs e)
         {
             treeView_DistintaBase.Nodes.Clear();
-            distintaBase.catalogo.Clear();
+            distintaBase.Nodi.Clear();
             ControlloTreeView();
         } //BTN resetta la distinta base
-
-
 
         private void Btn_CaricaDistintaBase_Click(object sender, EventArgs e)
         {
             OpenFileDialog Ofd_DistintaBase = new OpenFileDialog();
             Ofd_DistintaBase.InitialDirectory = @"C:\";
             Ofd_DistintaBase.Filter = "XML|*.xml";
-            Node nodo = new Node();
+            Componente nodo = new Componente();
             if (Ofd_DistintaBase.ShowDialog() == DialogResult.OK)
             {
                 string filePosition = Ofd_DistintaBase.FileName;
                 treeView_DistintaBase.Nodes.Clear();
-                nodo = salvataggio.CaricaDistintaBase(filePosition);
+                nodo = distintaBase.Carica(filePosition);
                 treeView_DistintaBase.Nodes.Add(distintaBase.NodeToTreeNode(nodo));
             }
             ControlloTreeView();
-            distintaBase.catalogo.Add(nodo);
+            distintaBase.Nodi.Add(nodo);
         } //BTN carica la distinta base selezionata
+
+
 
         private void Btn_caricaDaCatalogo_Click(object sender, EventArgs e)
         {
@@ -330,32 +362,34 @@ namespace distinta_base
             }
             ControlloTreeView();
             distintaBase.catalogo.Add(nodo);*/
-            if(Catalogo.Count==0)
+            if (catalogo.Nodi.Count == 0)
             {
                 //messsageBox catalogo vuoto
                 return;
             }
-            Form3_Catalogo form3 = new Form3_Catalogo(Catalogo);
+            Form3_Catalogo form3 = new Form3_Catalogo(catalogo.Nodi);
             form3.ShowDialog();
             while (form3.nodo == null)
             {
-                if(!form3.attendo)
+                if (!form3.attendo)
                 {
                     return;
                 }
             }
-            Node node = form3.nodo;
+            Componente node = form3.nodo;
             treeView_DistintaBase.Nodes.Add(distintaBase.NodeToTreeNode(node));
             ControlloTreeView();
-            distintaBase.catalogo.Add(node);
+            distintaBase.Nodi.Add(node);
             listView_catalogo.SelectedItems.Clear();
         } //BTN carica un nodo dal catalogo
 
         private void Btn_creaNuovaDistintaBase_Click(object sender, EventArgs e)
         {
-            form2 = new Form2_NewNode(new Node());
+            Componenti.AddRange(catalogo.Nodi);
+            Componenti.AddRange(distintaBase.Nodi);
+            Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti);
             form2.ShowDialog();
-            Node nodo = form2.nodo;
+            Componente nodo = form2.nodo;
             while (nodo == null)
             {
                 if (!form2.attendo)
@@ -365,33 +399,9 @@ namespace distinta_base
             }
             treeView_DistintaBase.Nodes.Add(distintaBase.NodeToTreeNode(nodo));
             ControlloTreeView();
-            distintaBase.catalogo.Add(nodo);
+            distintaBase.Nodi.Add(nodo);
         } //BTN crea una nuova distinta base
-
-
-
-        private void treeView_DistintaBase_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            Node nodo = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
-            Form2_NewNode form2 = new Form2_NewNode(nodo);
-            form2.ShowDialog();
-            Node nuovoNodo = form2.nodo;
-            while (nuovoNodo == null)
-            {
-                if (!form2.attendo)
-                {
-                    return;
-                }
-            }
-            nuovoNodo.SottoNodi = nodo.SottoNodi;
-            distintaBase.catalogo.Remove(nodo);
-            distintaBase.catalogo.Add(nuovoNodo);
-            treeView_DistintaBase.Nodes.Remove(treeView_DistintaBase.SelectedNode);
-            treeView_DistintaBase.Nodes.Insert(treeView_DistintaBase.Nodes.Count, distintaBase.NodeToTreeNode(nuovoNodo));
-            treeView_DistintaBase.SelectedNode = distintaBase.NodeToTreeNode(nuovoNodo);
-            return;
-        }//doppio click su nodo mi permette di modificarlo
-
+        
 
 
         private void treeView_DistintaBase_NodeMouseClick_1(object sender, TreeNodeMouseClickEventArgs e)
@@ -416,19 +426,19 @@ namespace distinta_base
 
         private void informazioniToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Node nodo = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
+            Componente nodo = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
             string info = "Nome --> " + nodo.Nome + "\nCodice --> " + nodo.Codice + "\nDescrizione --> " + nodo.Descrizione + "\nLeadTime --> " + nodo.LeadTime + "\nLeadTimeSicurezza --> " + nodo.LeadTimeSicurezza + "\nLotto --> " + nodo.Lotto + "\nScortaDiSicurezza --> " + nodo.ScortaSicurezza + "\nPeriodoDiCopertura --> " + nodo.PeriodoDiCopertura;
             MessageBox.Show(info, "INFORMAZIONI", MessageBoxButtons.OK);
         }//context menu click destro nodo mostra info
 
         private void daCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Catalogo.Count == 0)
+            if (catalogo.Nodi.Count == 0)
             {
                 //messsageBox catalogo vuoto
                 return;
             }
-            Form3_Catalogo form3 = new Form3_Catalogo(Catalogo);
+            Form3_Catalogo form3 = new Form3_Catalogo(catalogo.Nodi);
             form3.ShowDialog();
             while (form3.nodo == null)
             {
@@ -437,10 +447,10 @@ namespace distinta_base
                     return;
                 }
             }
-            Node node = form3.nodo;
+            Componente node = form3.nodo;
             treeView_DistintaBase.SelectedNode.Nodes.Add(distintaBase.NodeToTreeNode(node)); ControlloTreeView();
             ControlloTreeView();
-            distintaBase.catalogo.Add(node);
+            distintaBase.Nodi.Add(node);
             listView_catalogo.SelectedItems.Clear();
         }//context menu click destro nodo mostra caricaNodo da Catalogo
 
@@ -448,22 +458,24 @@ namespace distinta_base
         {
             OpenFileDialog Ofd_DistintaBase = new OpenFileDialog();
             Ofd_DistintaBase.Filter = "XML|*.xml";
-            Node nodo = new Node();
+            Componente nodo = new Componente();
             if (Ofd_DistintaBase.ShowDialog() == DialogResult.OK)
             {
                 string filePosition = Ofd_DistintaBase.FileName;
-                nodo = salvataggio.CaricaDistintaBase(filePosition);
+                nodo = distintaBase.Carica(filePosition);
                 treeView_DistintaBase.SelectedNode.Nodes.Add(distintaBase.NodeToTreeNode(nodo));
             }
-            distintaBase.catalogo.Add(nodo);
+            distintaBase.Nodi.Add(nodo);
             ControlloTreeView();
         }//context menu click destro nodo mostra caricaNodo da File
 
         private void creaNuovoNodoToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            form2 = new Form2_NewNode(new Node());
+            Componenti.AddRange(catalogo.Nodi);
+            Componenti.AddRange(distintaBase.Nodi);
+            Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti);
             form2.ShowDialog();
-            Node nodo = form2.nodo;
+            Componente nodo = form2.nodo;
             while (nodo == null)
             {
                 if (!form2.attendo)
@@ -473,49 +485,31 @@ namespace distinta_base
             }
             treeView_DistintaBase.SelectedNode.Nodes.Add(distintaBase.NodeToTreeNode(nodo));
             ControlloTreeView();
-            distintaBase.catalogo.Add(nodo);
+            distintaBase.Nodi.Add(nodo);
         }//context menu click destro nodo mostra creaNuovoNodo
-
-        private void aggiungiACatalogoToolStripMenuItem_Click(object sender, EventArgs e)//context menu click destro nodo carica il nodo in catalogo
+        
+        private void aggiungiACatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Node nodo = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
-            if (!esisteComponenteInCatalogo(nodo))
+            Componente componente = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
+            if (!catalogo.esisteComponente(componente))
             {
-                Catalogo.Add(nodo);
+                catalogo.Nodi.Add(componente);
                 AggiornaCatalogo();
             }
-        }
-
-
-
-
-
-        private void ControlloTreeView()
-    {
-        if (treeView_DistintaBase.Nodes.Count == 0)
-        {
-            Btn_caricaDaCatalogo.Visible = true;
-            Btn_CaricaDistintaBase.Visible = true;
-            Btn_creaNuovaDistintaBase.Visible = true;
-            Btn_resettaDistintaBase.Visible = false;
-            Btn_SalvaDistintaBase.Visible = false;
-        }
-        else
-        {
-            Btn_caricaDaCatalogo.Visible = false;
-            Btn_CaricaDistintaBase.Visible = false;
-            Btn_creaNuovaDistintaBase.Visible = false;
-            Btn_resettaDistintaBase.Visible = true;
-            Btn_SalvaDistintaBase.Visible = true;
-        }
-    }//controlla se treeview è vuota, se vuota abilita i bottoni "crea nuova distinta base"
+            else
+            {
+                //messageBox che dice che il componente è già presente in catalogo
+            }
+        }//context menu click destro nodo carica il nodo in catalogo
 
         private void modificaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Node nodo = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
-            Form2_NewNode form2 = new Form2_NewNode(nodo);
+            Componenti.AddRange(catalogo.Nodi);
+            Componenti.AddRange(distintaBase.Nodi);
+            Componente nodo = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
+            Form2_NewNode form2 = new Form2_NewNode(nodo, Componenti);
             form2.ShowDialog();
-            Node nuovoNodo = form2.nodo;
+            Componente nuovoNodo = form2.nodo;
             while (nuovoNodo == null)
             {
                 if (!form2.attendo)
@@ -524,13 +518,69 @@ namespace distinta_base
                 }
             }
             nuovoNodo.SottoNodi = nodo.SottoNodi;
-            distintaBase.catalogo.Remove(nodo);
-            distintaBase.catalogo.Add(nuovoNodo);
+            distintaBase.Nodi.Remove(nodo);
+            distintaBase.Nodi.Add(nuovoNodo);
             treeView_DistintaBase.Nodes.Remove(treeView_DistintaBase.SelectedNode);
             treeView_DistintaBase.Nodes.Insert(treeView_DistintaBase.Nodes.Count, distintaBase.NodeToTreeNode(nuovoNodo));
             treeView_DistintaBase.SelectedNode = distintaBase.NodeToTreeNode(nuovoNodo);
             return;
-        }
+        }//context menu click destro nodo mi permette di modificarlo
+
+        private void treeView_DistintaBase_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            Componenti.AddRange(catalogo.Nodi);
+            Componenti.AddRange(distintaBase.Nodi);
+            Componente nodo = distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode);
+            Form2_NewNode form2 = new Form2_NewNode(nodo, Componenti);
+            form2.ShowDialog();
+            Componente nuovoNodo = form2.nodo;
+            while (nuovoNodo == null)
+            {
+                if (!form2.attendo)
+                {
+                    return;
+                }
+            }
+            nuovoNodo.SottoNodi = nodo.SottoNodi;
+            distintaBase.Nodi.Remove(nodo);
+            distintaBase.Nodi.Add(nuovoNodo);
+            treeView_DistintaBase.Nodes.Remove(treeView_DistintaBase.SelectedNode);
+            treeView_DistintaBase.Nodes.Insert(treeView_DistintaBase.Nodes.Count, distintaBase.NodeToTreeNode(nuovoNodo));
+            treeView_DistintaBase.SelectedNode = distintaBase.NodeToTreeNode(nuovoNodo);
+            return;
+        }//doppio click su nodo mi permette di modificarlo
+
+
+
+        private void ControlloTreeView()
+        {
+            if (treeView_DistintaBase.Nodes.Count == 0)
+            {
+                Btn_CaricaDistintaBase.Visible = true;
+                Btn_caricaDaCatalogo.Visible = true;
+                Btn_creaNuovaDistintaBase.Visible = true;
+                Btn_resettaDistintaBase.Visible = false;
+                Btn_SalvaDistintaBase.Visible = false;
+                if(catalogo.Nodi.Count() == 0)
+                {
+                    Btn_caricaDaCatalogo.Visible = false;
+                }
+            }
+            else
+            {
+                Btn_caricaDaCatalogo.Visible = false;
+                Btn_CaricaDistintaBase.Visible = false;
+                Btn_creaNuovaDistintaBase.Visible = false;
+                Btn_resettaDistintaBase.Visible = true;
+                Btn_SalvaDistintaBase.Visible = true;
+            }
+        }//controlla se treeview è vuota, se vuota abilita i bottoni "crea nuova distinta base"
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+        //Informazioni-----------------------------------------------------------------------------------------------------------------------------------------------
 
         private void Btn_Informazioni_MouseClick(object sender, MouseEventArgs e)
         {
@@ -561,7 +611,7 @@ namespace distinta_base
             MessageBox.Show(text, "Guida sulla distinta base", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
     }
 }

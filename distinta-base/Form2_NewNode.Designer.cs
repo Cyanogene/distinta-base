@@ -56,21 +56,21 @@
             // 
             // form_nome
             // 
-            this.form_nome.Location = new System.Drawing.Point(273, 78);
+            this.form_nome.Location = new System.Drawing.Point(193, 94);
             this.form_nome.Name = "form_nome";
             this.form_nome.Size = new System.Drawing.Size(212, 20);
             this.form_nome.TabIndex = 0;
             // 
             // form_codice
             // 
-            this.form_codice.Location = new System.Drawing.Point(273, 104);
+            this.form_codice.Location = new System.Drawing.Point(193, 120);
             this.form_codice.Name = "form_codice";
             this.form_codice.Size = new System.Drawing.Size(212, 20);
             this.form_codice.TabIndex = 0;
             // 
             // form_descrizione
             // 
-            this.form_descrizione.Location = new System.Drawing.Point(273, 130);
+            this.form_descrizione.Location = new System.Drawing.Point(193, 146);
             this.form_descrizione.Name = "form_descrizione";
             this.form_descrizione.Size = new System.Drawing.Size(281, 20);
             this.form_descrizione.TabIndex = 0;
@@ -79,17 +79,17 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(127, 9);
+            this.label1.Location = new System.Drawing.Point(47, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(374, 24);
+            this.label1.Size = new System.Drawing.Size(363, 24);
             this.label1.TabIndex = 1;
-            this.label1.Text = "CREAZIONE NUOVA MATERIA PRIMA";
+            this.label1.Text = "CREAZIONE NUOVO COMPONENTE";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(128, 50);
+            this.label2.Location = new System.Drawing.Point(48, 66);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(299, 16);
             this.label2.TabIndex = 1;
@@ -98,18 +98,18 @@
             // Btn_aggiungi
             // 
             this.Btn_aggiungi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_aggiungi.Location = new System.Drawing.Point(427, 318);
+            this.Btn_aggiungi.Location = new System.Drawing.Point(347, 334);
             this.Btn_aggiungi.Name = "Btn_aggiungi";
             this.Btn_aggiungi.Size = new System.Drawing.Size(127, 37);
             this.Btn_aggiungi.TabIndex = 2;
-            this.Btn_aggiungi.Text = "AGGIUNGI";
+            this.Btn_aggiungi.Text = "CREA";
             this.Btn_aggiungi.UseVisualStyleBackColor = true;
             this.Btn_aggiungi.Click += new System.EventHandler(this.Btn_aggiungi_Click);
             // 
             // lbl_descrizione
             // 
             this.lbl_descrizione.AutoSize = true;
-            this.lbl_descrizione.Location = new System.Drawing.Point(128, 137);
+            this.lbl_descrizione.Location = new System.Drawing.Point(48, 153);
             this.lbl_descrizione.Name = "lbl_descrizione";
             this.lbl_descrizione.Size = new System.Drawing.Size(80, 13);
             this.lbl_descrizione.TabIndex = 3;
@@ -118,7 +118,7 @@
             // lbl_leadTime
             // 
             this.lbl_leadTime.AutoSize = true;
-            this.lbl_leadTime.Location = new System.Drawing.Point(128, 163);
+            this.lbl_leadTime.Location = new System.Drawing.Point(48, 179);
             this.lbl_leadTime.Name = "lbl_leadTime";
             this.lbl_leadTime.Size = new System.Drawing.Size(61, 13);
             this.lbl_leadTime.TabIndex = 3;
@@ -127,7 +127,7 @@
             // lbl_nome
             // 
             this.lbl_nome.AutoSize = true;
-            this.lbl_nome.Location = new System.Drawing.Point(128, 85);
+            this.lbl_nome.Location = new System.Drawing.Point(48, 101);
             this.lbl_nome.Name = "lbl_nome";
             this.lbl_nome.Size = new System.Drawing.Size(39, 13);
             this.lbl_nome.TabIndex = 3;
@@ -136,7 +136,7 @@
             // lbl_codice
             // 
             this.lbl_codice.AutoSize = true;
-            this.lbl_codice.Location = new System.Drawing.Point(128, 111);
+            this.lbl_codice.Location = new System.Drawing.Point(48, 127);
             this.lbl_codice.Name = "lbl_codice";
             this.lbl_codice.Size = new System.Drawing.Size(47, 13);
             this.lbl_codice.TabIndex = 3;
@@ -145,7 +145,7 @@
             // lbl_lotto
             // 
             this.lbl_lotto.AutoSize = true;
-            this.lbl_lotto.Location = new System.Drawing.Point(128, 241);
+            this.lbl_lotto.Location = new System.Drawing.Point(48, 257);
             this.lbl_lotto.Name = "lbl_lotto";
             this.lbl_lotto.Size = new System.Drawing.Size(43, 13);
             this.lbl_lotto.TabIndex = 3;
@@ -154,7 +154,7 @@
             // lbl_leadTimeSicurezza
             // 
             this.lbl_leadTimeSicurezza.AutoSize = true;
-            this.lbl_leadTimeSicurezza.Location = new System.Drawing.Point(128, 189);
+            this.lbl_leadTimeSicurezza.Location = new System.Drawing.Point(48, 205);
             this.lbl_leadTimeSicurezza.Name = "lbl_leadTimeSicurezza";
             this.lbl_leadTimeSicurezza.Size = new System.Drawing.Size(125, 13);
             this.lbl_leadTimeSicurezza.TabIndex = 3;
@@ -163,7 +163,7 @@
             // lbl_periodoDiCopertura
             // 
             this.lbl_periodoDiCopertura.AutoSize = true;
-            this.lbl_periodoDiCopertura.Location = new System.Drawing.Point(128, 267);
+            this.lbl_periodoDiCopertura.Location = new System.Drawing.Point(48, 283);
             this.lbl_periodoDiCopertura.Name = "lbl_periodoDiCopertura";
             this.lbl_periodoDiCopertura.Size = new System.Drawing.Size(140, 13);
             this.lbl_periodoDiCopertura.TabIndex = 3;
@@ -172,7 +172,7 @@
             // lbl_scortaDiSicurezza
             // 
             this.lbl_scortaDiSicurezza.AutoSize = true;
-            this.lbl_scortaDiSicurezza.Location = new System.Drawing.Point(128, 215);
+            this.lbl_scortaDiSicurezza.Location = new System.Drawing.Point(48, 231);
             this.lbl_scortaDiSicurezza.Name = "lbl_scortaDiSicurezza";
             this.lbl_scortaDiSicurezza.Size = new System.Drawing.Size(129, 13);
             this.lbl_scortaDiSicurezza.TabIndex = 3;
@@ -180,7 +180,7 @@
             // 
             // form_leadTime
             // 
-            this.form_leadTime.Location = new System.Drawing.Point(273, 156);
+            this.form_leadTime.Location = new System.Drawing.Point(193, 172);
             this.form_leadTime.Minimum = new decimal(new int[] {
             1,
             0,
@@ -198,7 +198,7 @@
             // 
             // form_leadTimeSicurezza
             // 
-            this.form_leadTimeSicurezza.Location = new System.Drawing.Point(273, 182);
+            this.form_leadTimeSicurezza.Location = new System.Drawing.Point(193, 198);
             this.form_leadTimeSicurezza.Name = "form_leadTimeSicurezza";
             this.form_leadTimeSicurezza.Size = new System.Drawing.Size(50, 20);
             this.form_leadTimeSicurezza.TabIndex = 4;
@@ -206,7 +206,7 @@
             // 
             // form__scortaDiSicurezza
             // 
-            this.form__scortaDiSicurezza.Location = new System.Drawing.Point(273, 208);
+            this.form__scortaDiSicurezza.Location = new System.Drawing.Point(193, 224);
             this.form__scortaDiSicurezza.Name = "form__scortaDiSicurezza";
             this.form__scortaDiSicurezza.Size = new System.Drawing.Size(50, 20);
             this.form__scortaDiSicurezza.TabIndex = 4;
@@ -214,7 +214,7 @@
             // 
             // form_lotto
             // 
-            this.form_lotto.Location = new System.Drawing.Point(273, 234);
+            this.form_lotto.Location = new System.Drawing.Point(193, 250);
             this.form_lotto.Minimum = new decimal(new int[] {
             1,
             0,
@@ -232,7 +232,7 @@
             // 
             // form_periodoDiCopertura
             // 
-            this.form_periodoDiCopertura.Location = new System.Drawing.Point(273, 260);
+            this.form_periodoDiCopertura.Location = new System.Drawing.Point(193, 276);
             this.form_periodoDiCopertura.Minimum = new decimal(new int[] {
             1,
             0,
@@ -252,7 +252,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 514);
+            this.ClientSize = new System.Drawing.Size(513, 405);
             this.Controls.Add(this.form_periodoDiCopertura);
             this.Controls.Add(this.form_lotto);
             this.Controls.Add(this.form__scortaDiSicurezza);
@@ -275,6 +275,7 @@
             this.Name = "Form2_NewNode";
             this.Text = "Form2";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
+            this.Load += new System.EventHandler(this.Form2_NewNode_Load);
             ((System.ComponentModel.ISupportInitialize)(this.form_leadTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form_leadTimeSicurezza)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form__scortaDiSicurezza)).EndInit();

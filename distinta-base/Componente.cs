@@ -12,7 +12,7 @@ namespace distinta_base
     /// </summary>
     
     [Serializable]
-    public class Node
+    public class Componente
     {
         public string Nome { get; set; }
         public string Descrizione { get; set; }
@@ -22,12 +22,7 @@ namespace distinta_base
         public int ScortaSicurezza { get; set; }
         public int Lotto { get; set; }
         public int PeriodoDiCopertura { get; set; }
-        public List<Node> SottoNodi = new List<Node>();
-
-        /*public override string ToString()
-        {
-            return Codice;
-        }*/
+        public List<Componente> SottoNodi = new List<Componente>();
     }
 
     
