@@ -94,7 +94,7 @@
             // Btn_AggiungiMateriaPrima
             // 
             this.Btn_AggiungiMateriaPrima.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_AggiungiMateriaPrima.Location = new System.Drawing.Point(639, 161);
+            this.Btn_AggiungiMateriaPrima.Location = new System.Drawing.Point(639, 89);
             this.Btn_AggiungiMateriaPrima.Name = "Btn_AggiungiMateriaPrima";
             this.Btn_AggiungiMateriaPrima.Size = new System.Drawing.Size(106, 66);
             this.Btn_AggiungiMateriaPrima.TabIndex = 11;
@@ -105,7 +105,7 @@
             // Btn_AggiungiSemilavorato
             // 
             this.Btn_AggiungiSemilavorato.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_AggiungiSemilavorato.Location = new System.Drawing.Point(639, 89);
+            this.Btn_AggiungiSemilavorato.Location = new System.Drawing.Point(639, 161);
             this.Btn_AggiungiSemilavorato.Name = "Btn_AggiungiSemilavorato";
             this.Btn_AggiungiSemilavorato.Size = new System.Drawing.Size(106, 66);
             this.Btn_AggiungiSemilavorato.TabIndex = 12;

@@ -10,7 +10,7 @@ namespace distinta_base
     /// <summary>
     /// Classe utilizzata per creare un nodo (radice inclusa)
     /// </summary>
-    
+
     [Serializable]
     public class Componente
     {
@@ -25,5 +25,5 @@ namespace distinta_base
         public List<Componente> SottoNodi = new List<Componente>();
     }
 
-    
+
 }
