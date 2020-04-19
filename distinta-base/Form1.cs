@@ -187,7 +187,7 @@ namespace distinta_base
 
         private void Btn_SalvaDistintaBase_Click(object sender, EventArgs e)
         {
-            distintaBase.Salva();
+            distintaBase.Salva(distintaBase.TreeViewToNode(treeView_DistintaBase));
         } //BTN salva la distinta base
 
         private void Btn_resettaDistintaBase_Click(object sender, EventArgs e)
