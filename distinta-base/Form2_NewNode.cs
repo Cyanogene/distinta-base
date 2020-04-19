@@ -28,7 +28,7 @@ namespace distinta_base
         public Componente nodo;
         public bool attendo = true;
         List<string> codici = new List<string>();
-        //public Node nodoInput;
+        Componente nodoInput;
         //--------------------------------------
 
 
@@ -51,29 +51,20 @@ namespace distinta_base
                 form_lotto.Value = nodo.Lotto;
                 form_periodoDiCopertura.Value = nodo.PeriodoDiCopertura;
             }
-            foreach(Componente comp in componenti)
+            foreach (Componente comp in componenti)
             {
                 codici.Add(comp.Codice);
             }
-            //nodoInput = nodo;
+            nodoInput = nodo;
         }
 
-        
+
 
         private void Btn_aggiungi_Click(object sender, EventArgs e)
         {
+
             if (form_nome.Text != "" && form_codice.Text != "" && form_descrizione.Text != "" && form_leadTime.Value > 0 && form_lotto.Value > 0 && form_periodoDiCopertura.Value > 0)
             {
-                foreach(string codice in codici)
-                {
-                    if(form_codice.Text == codice)
-                    {
-                        MessageBox.Show("Il codice inserito è già stato utilizzato", "ATTENZIONE", MessageBoxButtons.OK);
-                        form_codice.Focus();
-                        form_codice.Clear();
-                        return;
-                    }
-                }
                 Nome = form_nome.Text;
                 Descrizione = form_descrizione.Text;
                 LT = Convert.ToInt32(form_leadTime.Value);
@@ -81,7 +72,7 @@ namespace distinta_base
                 ScortaDiSicurezza = Convert.ToInt32(form__scortaDiSicurezza.Value);
                 Lotto = Convert.ToInt32(form_lotto.Value);
                 PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
-                Codice = form_codice.Text; 
+                Codice = form_codice.Text;
                 /*int n = 0;
                 if (nodo != null) { n = nodo.SottoNodi.Count(); }
                 Codice = Nome + LT + LTS + ScortaDiSicurezza + Lotto + PeriodoDiCopertura + n + RandomString(3);*/
@@ -96,14 +87,36 @@ namespace distinta_base
                     Lotto = Lotto,
                     PeriodoDiCopertura = PeriodoDiCopertura
                 };
-                /*if (nodoInput != null)
+                if (nodo.Nome == nodoInput.Nome && nodo.Descrizione == nodoInput.Descrizione && nodo.LeadTime == nodoInput.LeadTime && nodo.LeadTimeSicurezza == nodoInput.LeadTimeSicurezza && nodo.ScortaSicurezza == nodoInput.ScortaSicurezza && nodo.Lotto == nodoInput.Lotto && nodo.PeriodoDiCopertura == nodoInput.PeriodoDiCopertura)
                 {
-                    if (nodo.Nome == nodoInput.Nome && nodo.Descrizione == nodoInput.Descrizione && nodo.LeadTime == nodoInput.LeadTime && nodo.LeadTimeSicurezza == nodoInput.LeadTimeSicurezza && nodo.ScortaSicurezza == nodoInput.ScortaSicurezza && nodo.Lotto == nodoInput.Lotto && nodo.PeriodoDiCopertura == nodoInput.PeriodoDiCopertura)
+                    nodo = nodoInput;
+                    nodo.Codice = form_codice.Text;
+                    Close();
+                    return;
+                }
+                else if(nodoInput.Nome!=null)//mi assicuro che sia una modifica di un nodo
+                {
+                    foreach (string codice in codici)
                     {
-                        nodo = nodoInput;
-                        Close();
+                        if (form_codice.Text == codice)
+                        {
+                            MessageBox.Show("Il codice inserito è già stato utilizzato", "ATTENZIONE", MessageBoxButtons.OK);
+                            form_codice.Focus();
+                            form_codice.Clear();
+                            return;
+                        }
                     }
-                }*/
+                }
+                foreach (string codice in codici)
+                {
+                    if (form_codice.Text == codice)
+                    {
+                        MessageBox.Show("Il codice inserito è già stato utilizzato", "ATTENZIONE", MessageBoxButtons.OK);
+                        form_codice.Focus();
+                        form_codice.Clear();
+                        return;
+                    }
+                }
                 Close();
             }
             else
@@ -113,6 +126,7 @@ namespace distinta_base
         }
 
         private Random random = new Random();
+
         public string RandomString(int length)
         {
             string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
