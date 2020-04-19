@@ -70,7 +70,7 @@ namespace distinta_base
 
 
 
-        public void Salva()
+        public void Salva(Componente nodo)
         {
             if (Nodi.Count == 0) return;
             SaveFileDialog Sfd_DistintaBase = new SaveFileDialog();
@@ -84,7 +84,7 @@ namespace distinta_base
                 Stream filesStream = Sfd_DistintaBase.OpenFile();
                 StreamWriter sw = new StreamWriter(filesStream);
                 XmlSerializer serializer = new XmlSerializer(typeof(Componente));
-                serializer.Serialize(sw, Nodi);
+                serializer.Serialize(sw, nodo);
                 sw.Close();
                 filesStream.Close();
             }
