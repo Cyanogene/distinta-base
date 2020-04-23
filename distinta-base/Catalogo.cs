@@ -194,5 +194,19 @@ namespace distinta_base
                 Nodi.Remove(comp);
             }
         }
+
+        public void SostitusciComponente(Componente componente)
+        {
+            Componente compDaRimuovere = new Componente();
+            foreach(Componente comp in Nodi)
+            {
+                if(comp.Codice == componente.Codice)
+                {
+                    compDaRimuovere = comp;
+                }
+            }
+            Nodi.Remove(compDaRimuovere);
+            Nodi.Add(componente);
+        }
     }
 }

@@ -330,12 +330,16 @@ namespace distinta_base
             if (!catalogo.EsisteComponenteInCatalogo(componente))
             {
                 catalogo.Nodi.Add(componente);
-                AggiornaCatalogo();
             }
             else
             {
-
+                DialogResult dialogResult =  MessageBox.Show("Il componente è già presente nel catalogo, vuoi sostituirlo?", "Distinta base", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
+                if(dialogResult == DialogResult.Yes)
+                {
+                    catalogo.SostitusciComponente(componente);
+                }
             }
+            AggiornaCatalogo();
         }//context menu click destro nodo carica il nodo in catalogo
 
         private void modificaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -354,8 +358,9 @@ namespace distinta_base
             nuovoNodo.SottoNodi = nodo.SottoNodi;
             distintaBase.Nodi.Remove(nodo);
             distintaBase.Nodi.Add(nuovoNodo);
-            treeView_DistintaBase.Nodes.Remove(treeView_DistintaBase.SelectedNode);
-            treeView_DistintaBase.SelectedNode.Nodes.Insert(treeView_DistintaBase.Nodes.Count, distintaBase.NodeToTreeNode(nuovoNodo));
+            int index = treeView_DistintaBase.Nodes.IndexOf(treeView_DistintaBase.SelectedNode);
+            treeView_DistintaBase.Nodes.RemoveAt(index);
+            treeView_DistintaBase.Nodes.Insert(index, distintaBase.NodeToTreeNode(nuovoNodo));
             return;
         }//context menu click destro nodo mi permette di modificarlo
 
@@ -375,8 +380,9 @@ namespace distinta_base
             nuovoNodo.SottoNodi = nodo.SottoNodi;
             distintaBase.Nodi.Remove(nodo);
             distintaBase.Nodi.Add(nuovoNodo);
-            treeView_DistintaBase.Nodes.Remove(treeView_DistintaBase.SelectedNode);
-            treeView_DistintaBase.SelectedNode.Nodes.Insert(treeView_DistintaBase.Nodes.Count, distintaBase.NodeToTreeNode(nuovoNodo));
+            int index = treeView_DistintaBase.Nodes.IndexOf(treeView_DistintaBase.SelectedNode);
+            treeView_DistintaBase.Nodes.RemoveAt(index);
+            treeView_DistintaBase.Nodes.Insert(index, distintaBase.NodeToTreeNode(nuovoNodo));
             return;
         }//doppio click su nodo mi permette di modificarlo
 
