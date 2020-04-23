@@ -137,7 +137,6 @@ namespace distinta_base
             }
             if (!EsisteComponente(nodo))
             {
-
                 Nodi.Add(nodo);
             }
         }

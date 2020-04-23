@@ -100,9 +100,10 @@ namespace distinta_base
                     {
                         if (form_codice.Text == codice)
                         {
-                            MessageBox.Show("Il codice inserito è già stato utilizzato", "ATTENZIONE", MessageBoxButtons.OK);
+                            MessageBox.Show("Hai applicato delle modifiche al componente, modifica il codice", "ATTENZIONE", MessageBoxButtons.OK);
                             form_codice.Focus();
                             form_codice.Clear();
+                            nodo = null;
                             return;
                         }
                     }
@@ -114,6 +115,7 @@ namespace distinta_base
                         MessageBox.Show("Il codice inserito è già stato utilizzato", "ATTENZIONE", MessageBoxButtons.OK);
                         form_codice.Focus();
                         form_codice.Clear();
+                        nodo = null;
                         return;
                     }
                 }
@@ -122,6 +124,7 @@ namespace distinta_base
             else
             {
                 MessageBox.Show("compilare tutti i campi prima di procedere", "ATTENZIONE", MessageBoxButtons.OK);
+                nodo = null;
             }
         }
 
