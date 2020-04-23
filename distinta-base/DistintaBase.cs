@@ -20,15 +20,8 @@ namespace distinta_base
 
         public Componente TreeViewToNode(TreeView TreeView)
         {
-            List<Componente> TreeViewInNodeList = new List<Componente>();
-            TreeNodeCollection TreeNodes = TreeView.Nodes;
-
-            // Crea le radici
-            foreach (TreeNode n in TreeNodes)
-            {
-                TreeViewInNodeList.Add(TreeNodeToNode(n));
-            }
-            return TreeViewInNodeList[0];
+            Componente Node = TreeNodeToNode(TreeView.Nodes[0]);
+            return Node;
         }
 
         public Componente TreeNodeToNode(TreeNode TreeNode)
@@ -39,12 +32,12 @@ namespace distinta_base
             };
             foreach (Componente Nodo in Nodi)
             {
-                if (Nodo.Nome == TreeNode.Text && Nodo.Codice == TreeNode.Tag.ToString())
+                if (Nodo.Codice == TreeNode.Tag.ToString())
                 {
                     TreeNodeInNode = Nodo;
                 }
             }
-
+            TreeNodeInNode.SottoNodi.Clear();
             // Crea un nodo per ogni figlio 
             foreach (TreeNode tn in TreeNode.Nodes)
             {
