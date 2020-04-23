@@ -113,7 +113,7 @@ namespace distinta_base
             catalogo.Modifica(Componenti, Codice);
             AggiornaCatalogo();
         }//doppio click su un elemento del catalogo e modifico
-        
+
 
 
         private void btn_caricaCatalogo_Click(object sender, EventArgs e)
@@ -200,6 +200,7 @@ namespace distinta_base
         private void Btn_CaricaDistintaBase_Click(object sender, EventArgs e)
         {
             treeView_DistintaBase.Nodes.Clear();
+            distintaBase.Nodi.Clear();
             treeView_DistintaBase.Nodes.Add(distintaBase.NodeToTreeNode(distintaBase.Carica(Componenti)));
             ControlloTreeView();
         } //BTN carica la distinta base selezionata
@@ -258,6 +259,14 @@ namespace distinta_base
 
         private void rimuoviToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (treeView_DistintaBase.Nodes.Count == 1)
+            {
+                distintaBase.Nodi.Remove(distintaBase.TreeViewToNode(treeView_DistintaBase));
+            }
+            else
+            {
+                distintaBase.Nodi.Remove(distintaBase.TreeNodeToNode(treeView_DistintaBase.SelectedNode));
+            }
             treeView_DistintaBase.SelectedNode.Remove();
             ControlloTreeView();
         }//context menu click destro nodo rimuove nodo

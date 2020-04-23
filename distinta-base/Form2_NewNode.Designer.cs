@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2_NewNode));
             this.form_nome = new System.Windows.Forms.TextBox();
             this.form_codice = new System.Windows.Forms.TextBox();
             this.form_descrizione = new System.Windows.Forms.TextBox();
@@ -272,8 +273,9 @@
             this.Controls.Add(this.form_descrizione);
             this.Controls.Add(this.form_codice);
             this.Controls.Add(this.form_nome);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2_NewNode";
-            this.Text = "Form2";
+            this.Text = "Distinta base";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
             this.Load += new System.EventHandler(this.Form2_NewNode_Load);
             ((System.ComponentModel.ISupportInitialize)(this.form_leadTime)).EndInit();
