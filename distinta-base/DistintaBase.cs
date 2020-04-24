@@ -17,46 +17,55 @@ namespace distinta_base
     {
         public List<Componente> Nodi = new List<Componente>();//
 
+        public Componente Albero = new Componente();
+
+
+
+
         public Componente TreeViewToNode(TreeView TreeView)
         {
-            Componente Node = TreeNodeToNode(TreeView.Nodes[0]);
-            return Node;
+            return Albero;
         }//
 
         public Componente TreeNodeToNode(TreeNode TreeNode)
         {
-            Componente Componente = new Componente
-            {
-                SottoNodi = new List<Componente>()
-            };
+            Componente Componente = new Componente();
+            AggiornaNodi(Albero);
             foreach (Componente Nodo in Nodi)
             {
-                if (Nodo.Code == TreeNode.Tag.ToString())
+                if (Nodo.Codice == TreeNode.Tag.ToString())
                 {
                     Componente = Nodo;
                 }
             }
-            Componente.SottoNodi.Clear();
-            // Crea un nodo per ogni figlio 
-            foreach (TreeNode tn in TreeNode.Nodes)
-            {
-                Componente.SottoNodi.Add(TreeNodeToNode(tn));
-            }
             return Componente;
         }//
 
+        public void AggiornaNodi(Componente comp)
+        {
+            Nodi.Clear();
+            if(comp.SottoNodi!=null)
+            {
+                foreach (Componente sottoComp in comp.SottoNodi)
+                {
+                    AggiornaNodi(sottoComp);
+                }
+            }
+            Nodi.Add(comp);
+        }
+
         public TreeNode NodeToTreeNode(Componente Node)
         {
-            TreeNode Nodo = new TreeNode(Node.Nome);
-            Nodo.Tag = Node.Code;
+            TreeNode treeNode = new TreeNode(Node.Nome);
+            treeNode.Tag = Node.Codice;
             if (Node.SottoNodi != null)
             {
                 foreach (Componente node in Node.SottoNodi)
                 {
-                    Nodo.Nodes.Add(NodeToTreeNode(node));
+                    treeNode.Nodes.Add(NodeToTreeNode(node));
                 }
             }
-            return Nodo;
+            return treeNode;
         }//
 
 
@@ -111,6 +120,9 @@ namespace distinta_base
             return risultato;
         }//
 
+
+
+
         public Componente AggiungiMateriaPrima(List<Componente> Componenti)
         {
             Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti);
@@ -139,12 +151,7 @@ namespace distinta_base
             }
             return form3.nodo;
         }//
-
-
-
-
-
-
+        
         public Componente CaricaNodoDaFile()
         {
             OpenFileDialog Ofd_Catalogo = new OpenFileDialog();

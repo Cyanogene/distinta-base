@@ -28,6 +28,7 @@ namespace distinta_base
         public Componente nodo;
         public bool attendo = true;
         List<Componente> Componenti = new List<Componente>();
+        List<string> codici = new List<string>();
         Componente nodoInput = null;
         //--------------------------------------
 
@@ -71,7 +72,6 @@ namespace distinta_base
                     Lotto = Convert.ToInt32(form_lotto.Value);
                     PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
                     Codice = form_codice.Text;
-                    string ThaRandomPart = nodoInput.Code.Substring(nodoInput.Code.Length - 10);
                     nodo = new Componente
                     {
                         Nome = Nome,
@@ -82,26 +82,47 @@ namespace distinta_base
                         ScortaSicurezza = ScortaDiSicurezza,
                         Lotto = Lotto,
                         PeriodoDiCopertura = PeriodoDiCopertura,
-                        Code = Nome + LT + LTS + ScortaDiSicurezza + Lotto + PeriodoDiCopertura + ThaRandomPart,
+
                     };
-                    if (nodo == nodoInput)
+                    if ( nodo.Nome == nodoInput.Nome && nodo.Codice == nodoInput.Codice && nodo.Descrizione == nodoInput.Descrizione && nodo.LeadTime == nodoInput.LeadTime && nodo.LeadTimeSicurezza == nodoInput.LeadTimeSicurezza && nodo.ScortaSicurezza == nodoInput.ScortaSicurezza && nodo.Lotto == nodoInput.Lotto && nodo.PeriodoDiCopertura == nodoInput.PeriodoDiCopertura)
                     {
                         Close();
                         return;
                     }
-                    if (nodo.Codice != nodoInput.Codice && !CodiceOK(nodo))
+                    if (nodo.Nome == nodoInput.Nome && nodo.Descrizione == nodoInput.Descrizione && nodo.LeadTime == nodoInput.LeadTime && nodo.LeadTimeSicurezza == nodoInput.LeadTimeSicurezza && nodo.ScortaSicurezza == nodoInput.ScortaSicurezza && nodo.Lotto == nodoInput.Lotto && nodo.PeriodoDiCopertura == nodoInput.PeriodoDiCopertura)
                     {
-                        nodo.Code = Nome + LT + LTS + ScortaDiSicurezza + Lotto + PeriodoDiCopertura + RandomString(10);
                         Close();
                         return;
                     }
                     else
                     {
-                        MessageBox.Show("Il codice è già utilizzato per un altro componente, modificarlo", "ATTENZIONE");
-                        form_codice.Focus();
-                        form_codice.Clear();
-                        nodo = null;
-                        return;
+                        if (nodo.Codice != nodoInput.Codice && codiceOK(nodo))
+                        {
+                            Close();
+                            return;
+                        }
+                        else
+                        {
+                            if (MessageBox.Show("Hai modificato il componente quindi ora devi modificare il codice, mantenere le modifiche?", "ATTENZIONE", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            {
+                                form_codice.Focus();
+                                form_codice.Clear();
+                                nodo = null;
+                                return;
+                            }
+                            else
+                            {
+                                form_nome.Text = nodoInput.Nome;
+                                form_codice.Text = nodoInput.Codice;
+                                form_descrizione.Text = nodoInput.Descrizione;
+                                form_leadTime.Value = nodoInput.LeadTime;
+                                form_leadTimeSicurezza.Value = nodoInput.LeadTimeSicurezza;
+                                form__scortaDiSicurezza.Value = nodoInput.ScortaSicurezza;
+                                form_lotto.Value = nodoInput.Lotto;
+                                form_periodoDiCopertura.Value = nodoInput.PeriodoDiCopertura;
+                                return;
+                            }
+                        }
                     }
                 }
                 else
@@ -123,7 +144,6 @@ namespace distinta_base
                     Lotto = Convert.ToInt32(form_lotto.Value);
                     PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
                     Codice = form_codice.Text;
-                    string ThaRandomPart = "";
                     nodo = new Componente
                     {
                         Nome = Nome,
@@ -134,9 +154,8 @@ namespace distinta_base
                         ScortaSicurezza = ScortaDiSicurezza,
                         Lotto = Lotto,
                         PeriodoDiCopertura = PeriodoDiCopertura,
-                        Code = Nome + LT + LTS + ScortaDiSicurezza + Lotto + PeriodoDiCopertura + RandomString(10),
                     };
-                    if (!CodiceOK(nodo))
+                    if (codiceOK(nodo))
                     {
                         Close();
                         return;
@@ -158,121 +177,52 @@ namespace distinta_base
             }
         }
 
-        private bool CodiceOK(Componente comp)
+        private bool ControlloCodice(Componente componenteDaControllare, Componente componente)
         {
-            foreach(Componente componente in Componenti)
+            if (componente.SottoNodi != null)
             {
-                if(comp.Codice == componente.Codice)
+                foreach (Componente sottoComp in componenteDaControllare.SottoNodi)
+                {
+                    if(!ControlloCodice(componenteDaControllare, sottoComp))
+                    {
+                        return false;
+                    }
+                }
+            }
+            if (componenteDaControllare.Codice == componente.Codice)
+            {
+                if(NodiUguali(componenteDaControllare, componente))
                 {
                     return true;
                 }
-                foreach(Componente sottoComponente in componente.SottoNodi)
+                else
                 {
-                    return CodiceOK(sottoComponente);
+                    return false;
                 }
+            }
+            return true;
+        }
+
+        private bool codiceOK(Componente comp)
+        {
+            foreach (Componente componente in Componenti)
+            {
+                if(!ControlloCodice(comp, componente))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool NodiUguali(Componente nodo1, Componente nodo2)
+        {
+            if (nodo1.SottoNodi.Count == nodo2.SottoNodi.Count && nodo1.Nome == nodo2.Nome && nodo1.Descrizione == nodo2.Descrizione && nodo1.LeadTime == nodo2.LeadTime && nodo1.LeadTimeSicurezza == nodo2.LeadTimeSicurezza && nodo1.ScortaSicurezza == nodo2.ScortaSicurezza && nodo1.Lotto == nodo2.Lotto && nodo1.PeriodoDiCopertura == nodo2.PeriodoDiCopertura)
+            {
+                return true;
             }
             return false;
         }
-
-
-                        /*foreach (string codice in Componenti)
-                        {
-                            if (form_codice.Text == codice)
-                            {
-                                MessageBox.Show("Hai applicato delle modifiche al componente, modifica il codice", "ATTENZIONE", MessageBoxButtons.OK);
-                                form_codice.Focus();
-                                form_codice.Clear();
-                                nodo = null;
-                                return;
-                            }
-                        }
-                    }
-                    foreach (string codice in Componenti)
-                    {
-                        if (form_codice.Text == codice)
-                        {
-                            MessageBox.Show("Il codice inserito è già stato utilizzato", "ATTENZIONE", MessageBoxButtons.OK);
-                            form_codice.Focus();
-                            form_codice.Clear();
-                            nodo = null;
-                            return;
-                        }
-                    }
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("compilare tutti i campi prima di procedere", "ATTENZIONE", MessageBoxButtons.OK);
-                    nodo = null;
-                }
-            }
-            if (form_nome.Text != "" && form_codice.Text != "" && form_descrizione.Text != "" && form_leadTime.Value > 0 && form_lotto.Value > 0 && form_periodoDiCopertura.Value > 0)
-            {
-                Nome = form_nome.Text;
-                Descrizione = form_descrizione.Text;
-                LT = Convert.ToInt32(form_leadTime.Value);
-                LTS = Convert.ToInt32(form_leadTimeSicurezza.Value);
-                ScortaDiSicurezza = Convert.ToInt32(form__scortaDiSicurezza.Value);
-                Lotto = Convert.ToInt32(form_lotto.Value);
-                PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
-                Codice = form_codice.Text;
-                string ThaRandomPart = RandomString(10);
-                if(nodoInput!=null)
-                {
-                    ThaRandomPart = nodoInput.Code.Substring(nodoInput.Code.Length-10);
-                }
-                nodo = new Componente
-                {
-                    Nome = Nome,
-                    Codice = Codice,
-                    Descrizione = Descrizione,
-                    LeadTime = LT,
-                    LeadTimeSicurezza = LTS,
-                    ScortaSicurezza = ScortaDiSicurezza,
-                    Lotto = Lotto,
-                    PeriodoDiCopertura = PeriodoDiCopertura,
-                    Code = Nome + LT + LTS + ScortaDiSicurezza + Lotto + PeriodoDiCopertura + ThaRandomPart,
-                };
-                if (nodo.Nome == nodoInput.Nome && nodo.Descrizione == nodoInput.Descrizione && nodo.LeadTime == nodoInput.LeadTime && nodo.LeadTimeSicurezza == nodoInput.LeadTimeSicurezza && nodo.ScortaSicurezza == nodoInput.ScortaSicurezza && nodo.Lotto == nodoInput.Lotto && nodo.PeriodoDiCopertura == nodoInput.PeriodoDiCopertura)
-                {
-                    nodo = nodoInput;
-                    nodo.Codice = form_codice.Text;
-                    Close();
-                    return;
-                }
-                else if(nodoInput.Nome!=null)//mi assicuro che sia una modifica di un nodo
-                {
-                    foreach (string codice in Componenti)
-                    {
-                        if (form_codice.Text == codice)
-                        {
-                            MessageBox.Show("Hai applicato delle modifiche al componente, modifica il codice", "ATTENZIONE", MessageBoxButtons.OK);
-                            form_codice.Focus();
-                            form_codice.Clear();
-                            nodo = null;
-                            return;
-                        }
-                    }
-                }
-                foreach (string codice in Componenti)
-                {
-                    if (form_codice.Text == codice)
-                    {
-                        MessageBox.Show("Il codice inserito è già stato utilizzato", "ATTENZIONE", MessageBoxButtons.OK);
-                        form_codice.Focus();
-                        form_codice.Clear();
-                        nodo = null;
-                        return;
-                    }
-                }
-                Close();
-            }
-            else
-            {
-                MessageBox.Show("compilare tutti i campi prima di procedere", "ATTENZIONE", MessageBoxButtons.OK);
-                nodo = null;
-            }*/
-        
 
 
 
@@ -283,7 +233,7 @@ namespace distinta_base
             string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        
+
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {

@@ -173,6 +173,7 @@ namespace distinta_base
         {
             treeView_DistintaBase.Nodes.Clear();
             generale.distintaBase.Nodi.Clear();
+            generale.distintaBase.Albero = new Componente();
             ControlloTreeView();
         }//BTN resetta la distinta base
 
@@ -254,7 +255,7 @@ namespace distinta_base
 
         private void daFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TreeNode treeNode = generale.CaricaTreeNodeDaFile();
+            TreeNode treeNode = generale.CaricaTreeNodeDaFile(treeView_DistintaBase);
             if (treeNode == null) return;
             treeView_DistintaBase.SelectedNode.Nodes.Add(treeNode);
             ControlloTreeView();
@@ -262,7 +263,7 @@ namespace distinta_base
 
         private void creaNuovoNodoToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            TreeNode treeNode = generale.CaricaTreeNodeMateriaPrima();
+            TreeNode treeNode = generale.CaricaTreeNodeMateriaPrima(treeView_DistintaBase);
             if (treeNode == null) return;
             treeView_DistintaBase.SelectedNode.Nodes.Add(treeNode);
             ControlloTreeView();
