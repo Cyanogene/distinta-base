@@ -17,6 +17,7 @@ namespace distinta_base
 
 
 
+        //catalogo---------------------------------------------------------------
         public void AggiungiSemilavoratoACatalogo()
         {
             Componente comp = catalogo.AggiungiSemilavorato(Componenti());
@@ -73,35 +74,12 @@ namespace distinta_base
             Componente componente = ComponenteDaCodice(codice);
             return "Nome --> " + componente.Nome + "\nCodice --> " + componente.Codice + "\nDescrizione --> " + componente.Descrizione + "\nLeadTime --> " + componente.LeadTime + "\nLeadTimeSicurezza --> " + componente.LeadTimeSicurezza + "\nLotto --> " + componente.Lotto + "\nScortaDiSicurezza --> " + componente.ScortaSicurezza + "\nPeriodoDiCopertura --> " + componente.PeriodoDiCopertura;
         }
-
-        public void AggiungiComponenteACatalogo(TreeView treeView)
-        {
-            Componente comp = distintaBase.TreeNodeToNode(treeView.SelectedNode);
-            if (!EsisteComponente(comp))
-            {
-                foreach (Componente componente in catalogo.Nodi)
-                {
-                    if (NodiUguali(componente, comp))
-                    {
-                        MessageBox.Show("In catalogo è già presente questo componente", "ATTENZIONE");
-                        return;
-                    }
-                }
-                catalogo.Nodi.Add(comp);
-            }
-            else
-            {
-                DialogResult dialogResult = MessageBox.Show("Un componente con codice uguale è già presente nel catalogo, vuoi sostituirlo?", "Distinta base", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    catalogo.SostituisciComponente(comp);
-                }
-            }
-        }
+        //-----------------------------------------------------------------------
 
 
 
 
+        //distintaBase-----------------------------------------------------------
         public void salvaDistintaBase(TreeView treeView)
         {
             Componente comp = distintaBase.Albero;
@@ -138,15 +116,6 @@ namespace distinta_base
             return distintaBase.NodeToTreeNode(comp);
         }
 
-        public TreeNode CaricaDaCatalogo()
-        {
-            if (catalogo.Nodi.Count() == 0) { MessageBox.Show("Il catalogo è vuoto", "ATTENZIONE"); return null; }
-            Componente comp = distintaBase.CaricaDaCatalogo(catalogo.Nodi);
-            if (comp == null) return null;
-            distintaBase.Albero = comp;
-            return distintaBase.NodeToTreeNode(comp);
-        }
-
         public TreeNode NuovoNodoDistintaBase()
         {
             Componente comp = distintaBase.AggiungiMateriaPrima(Componenti());
@@ -155,33 +124,15 @@ namespace distinta_base
             return distintaBase.NodeToTreeNode(comp);
         }
 
-        public void RimuoviNodoTreeView(TreeView treeView)
+        public TreeNode CaricaDaCatalogo()
         {
-            TreeNode daEliminare = treeView.SelectedNode;
-            TreeNode padre = daEliminare.Parent;
-            if (treeView.Nodes.Count == 1)
-            {
-                distintaBase.Nodi.Clear();
-            }
-            else
-            {
-                Componente comp = distintaBase.TreeNodeToNode(daEliminare);
-                Componente compPadre = distintaBase.TreeNodeToNode(padre);
-                EliminaComponente(comp, compPadre, distintaBase.Albero);
-            }
+            if (catalogo.Nodi.Count() == 0) { MessageBox.Show("Il catalogo è vuoto", "ATTENZIONE"); return null; }
+            Componente comp = distintaBase.CaricaDaCatalogo(catalogo.Nodi);
+            if (comp == null) return null;
+            distintaBase.Albero = comp;
+            return distintaBase.NodeToTreeNode(comp);
         }
-
-        private void EliminaComponente(Componente comp, Componente compPadre, Componente Albero)
-        {
-            foreach(Componente sottoComponente in Albero.SottoNodi)
-            {
-                EliminaComponente(comp, compPadre, sottoComponente);
-            }
-            if (NodiUguali(Albero, compPadre))
-            {
-                Albero.SottoNodi.Remove(comp);
-            }
-        }
+        
 
         public TreeNode CaricaTreeNodeDaFile(TreeView treeView)
         {
@@ -213,6 +164,22 @@ namespace distinta_base
 
         }
 
+        public void RimuoviNodoTreeView(TreeView treeView)
+        {
+            TreeNode daEliminare = treeView.SelectedNode;
+            TreeNode padre = daEliminare.Parent;
+            if (treeView.Nodes.Count == 1)
+            {
+                distintaBase.Nodi.Clear();
+            }
+            else
+            {
+                Componente comp = distintaBase.TreeNodeToNode(daEliminare);
+                Componente compPadre = distintaBase.TreeNodeToNode(padre);
+                EliminaComponente(comp, compPadre, distintaBase.Albero);
+            }
+        }
+        
         public TreeNode CaricaTreeNodeMateriaPrima(TreeView treeView)
         {
             Componente comp = distintaBase.AggiungiMateriaPrima(Componenti());
@@ -248,6 +215,35 @@ namespace distinta_base
             return distintaBase.NodeToTreeNode(comp);
         }
 
+        public void AggiungiComponenteACatalogo(TreeView treeView)
+        {
+            Componente comp = distintaBase.TreeNodeToNode(treeView.SelectedNode);
+            if (!EsisteComponente(comp))
+            {
+                foreach (Componente componente in catalogo.Nodi)
+                {
+                    if (NodiUguali(componente, comp))
+                    {
+                        MessageBox.Show("In catalogo è già presente questo componente", "ATTENZIONE");
+                        return;
+                    }
+                }
+                catalogo.Nodi.Add(comp);
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Un componente con codice uguale è già presente nel catalogo, vuoi sostituirlo?", "Distinta base", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    catalogo.SostituisciComponente(comp);
+                }
+            }
+        }
+        //-----------------------------------------------------------------------
+
+
+
+
         private void ModificaComponente(Componente comp, Componente compVecchio, Componente compPadre, Componente Albero)
         {
             foreach (Componente sottoComponente in Albero.SottoNodi)
@@ -261,8 +257,17 @@ namespace distinta_base
             }
         }
 
-
-
+        private void EliminaComponente(Componente comp, Componente compPadre, Componente Albero)
+        {
+            foreach(Componente sottoComponente in Albero.SottoNodi)
+            {
+                EliminaComponente(comp, compPadre, sottoComponente);
+            }
+            if (NodiUguali(Albero, compPadre))
+            {
+                Albero.SottoNodi.Remove(comp);
+            }
+        }
 
         private bool NodiUguali(Componente nodo1, Componente nodo2)
         {
@@ -272,8 +277,7 @@ namespace distinta_base
             }
             return false;
         }
-
-
+        
         public List<Componente> Componenti()
         {
             List<Componente> componenti = new List<Componente>();
