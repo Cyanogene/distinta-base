@@ -55,7 +55,14 @@ namespace distinta_base
                 {
                     StreamReader stream = new StreamReader(Ofd_Catalogo.FileName);
                     XmlSerializer serializer = new XmlSerializer(typeof(List<Componente>));
-                    risultato = (List<Componente>)serializer.Deserialize(stream);
+                    try
+                    {
+                        risultato = (List<Componente>)serializer.Deserialize(stream);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Il file caricato non è un file di tipo catalogo, si prega di caricare un file di tipo catalogo", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     stream.Close();
                 }
                 Nodi.AddRange(risultato);
@@ -83,7 +90,14 @@ namespace distinta_base
             {
                 StreamReader stream = new StreamReader(filePosition);
                 XmlSerializer serializer = new XmlSerializer(typeof(Componente));
-                componente = (Componente)serializer.Deserialize(stream);
+                try
+                {
+                    componente = (Componente)serializer.Deserialize(stream);
+                }
+                catch
+                {
+                    MessageBox.Show("Il file caricato non è un file di tipo catalogo, si prega di caricare un file di tipo catalogo", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 stream.Close();
             }
             return componente;
@@ -118,6 +132,21 @@ namespace distinta_base
             }
             nuovoNodo.SottoNodi = componente.SottoNodi;
             return nuovoNodo;
+        }//
+
+        public void SostituisciComponente(Componente comp)
+        {
+            List<Componente> sottonodi = new List<Componente>();
+            Componente componenteDaRimuovere = new Componente();
+            foreach(Componente componente in Nodi)
+            {
+                if(componente.Codice == comp.Codice)
+                {
+                    componenteDaRimuovere = componente;
+                }
+            }
+            Nodi.Remove(componenteDaRimuovere);
+            Nodi.Add(comp);
         }
     }
 }

@@ -96,7 +96,14 @@ namespace distinta_base
                 {
                     StreamReader stream = new StreamReader(Ofd_Catalogo.FileName);
                     XmlSerializer serializer = new XmlSerializer(typeof(Componente));
-                    risultato = (Componente)serializer.Deserialize(stream);
+                    try
+                    {
+                        risultato = (Componente)serializer.Deserialize(stream);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Il file caricato non è un file di tipo distinta base, si prega di caricare un file di tipo distinta base", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     stream.Close();
                 }
             }

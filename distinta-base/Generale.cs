@@ -61,6 +61,26 @@ namespace distinta_base
             return "Nome --> " + componente.Nome + "\nCodice --> " + componente.Codice + "\nDescrizione --> " + componente.Descrizione + "\nLeadTime --> " + componente.LeadTime + "\nLeadTimeSicurezza --> " + componente.LeadTimeSicurezza + "\nLotto --> " + componente.Lotto + "\nScortaDiSicurezza --> " + componente.ScortaSicurezza + "\nPeriodoDiCopertura --> " + componente.PeriodoDiCopertura;
         }
 
+        public void AggiungiComponenteACatalogo(TreeView treeView)
+        {
+            Componente componente = distintaBase.TreeNodeToNode(treeView.SelectedNode);
+            if (!EsisteComponente(componente))
+            {
+                if(!catalogo.Nodi.Contains(componente))
+                catalogo.Nodi.Add(componente);
+                else
+                MessageBox.Show("Il componente è già presente in catalogo", "Distinta base");
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Un componente con codice uguale è già presente nel catalogo, vuoi sostituirlo?", "Distinta base", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    catalogo.SostituisciComponente(componente);
+                }
+            }
+        }
+
 
 
 
@@ -76,25 +96,28 @@ namespace distinta_base
             if (comp == null) return null;
             if (EsisteComponente(comp))
             {
-                if (MessageBox.Show("Nel catalogo è presente un componente con lo stesso codice della distinta base che si sta caricando,\nproseguire il caricamento e quindi rimuovere il componente dal catalogo?", "ATTENZIONE", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Nel catalogo è presente un componente con lo stesso codice della distinta base che si sta caricando,proseguire il caricamento e quindi rimuovere il componente dal catalogo?", "ATTENZIONE", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     RimuoviComponenteDaCatalogo(comp.Codice);
                 }
-                return null;
+                else
+                {
+                    return null;
+                }
             }
             else if (EsisteComponenteESottocomponenti(comp))
             {
-                if (MessageBox.Show("Nel catalogo vi è uno o più componenti uguali a sotto prodotti della distinta base che si sta caricando,\nproseguire il caricamento e quindi rimuovere tutti i componenti doppi dal catalogo ?", "ATTENZIONE", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Nel catalogo vi è uno o più componenti uguali a sotto prodotti della distinta base che si sta caricando,proseguire il caricamento e quindi rimuovere tutti i componenti doppi dal catalogo ?", "ATTENZIONE", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     RimuoviComponentiDaCatalogoSeHannoCodiceUgualeASottonodiComponente(comp);
                 }
-                return null;
+                else
+                {
+                    return null;
+                }
             }
-            else
-            {
-                AggiungiANodiDistintaBase(comp);
-                return distintaBase.NodeToTreeNode(comp);
-            }
+            AggiungiANodiDistintaBase(comp);
+            return distintaBase.NodeToTreeNode(comp);
         }
 
         public TreeNode CaricaDaCatalogo()
@@ -181,7 +204,7 @@ namespace distinta_base
             List<Componente> componenti = Componenti();
             foreach (Componente comp in componenti)
             {
-                if (comp.Codice == componente.Codice && comp != componente)
+                if (comp.Codice == componente.Codice && comp.Code != componente.Code)
                 {
                     return true;
                 }
@@ -198,7 +221,7 @@ namespace distinta_base
             List<Componente> componenti = Componenti();
             foreach (Componente comp in componenti)
             {
-                if (comp.Codice == componente.Codice && componente != comp)
+                if (comp.Codice == componente.Codice && componente.Code != comp.Code)
                 {
                     return true;
                 }
@@ -237,18 +260,18 @@ namespace distinta_base
 
         private void AggiungiANodiDistintaBase(Componente comp)
         {
-            foreach (Componente sottoComp in comp.SottoNodi)
+            if(comp.SottoNodi!=null)
             {
-                AggiungiANodiDistintaBase(sottoComp);
+                foreach (Componente sottoComp in comp.SottoNodi)
+                {
+                    AggiungiANodiDistintaBase(sottoComp);
+                }
             }
-
             if (!distintaBase.Nodi.Contains(comp))
             {
                 distintaBase.Nodi.Add(comp);
             }
         }
-
-
-
+        
     }
 }

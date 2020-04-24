@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.treeView_DistintaBase = new System.Windows.Forms.TreeView();
-            this.Btn_SalvaDistintaBase = new System.Windows.Forms.Button();
             this.Btn_AggiungiMateriaPrima = new System.Windows.Forms.Button();
             this.Btn_AggiungiSemilavorato = new System.Windows.Forms.Button();
             this.Btn_caricaDaCatalogo = new System.Windows.Forms.Button();
@@ -59,12 +58,7 @@
             this.guidaSullaDistintaBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guidaSulCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Btn_Informazioni = new System.Windows.Forms.PictureBox();
-            this.btn_caricaCatalogo = new System.Windows.Forms.Button();
-            this.btn_salvaCatalogo = new System.Windows.Forms.Button();
-            this.btn_resettaCatalogo = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.Btn_resettaDistintaBase = new System.Windows.Forms.Button();
-            this.Btn_CaricaDistintaBase = new System.Windows.Forms.Button();
             this.Cms_TreeView.SuspendLayout();
             this.Cms_ListBox.SuspendLayout();
             this.Cms_Informazioni.SuspendLayout();
@@ -79,17 +73,6 @@
             this.treeView_DistintaBase.TabIndex = 0;
             this.treeView_DistintaBase.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_DistintaBase_NodeMouseClick_1);
             this.treeView_DistintaBase.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_DistintaBase_NodeMouseDoubleClick);
-            // 
-            // Btn_SalvaDistintaBase
-            // 
-            this.Btn_SalvaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_SalvaDistintaBase.Location = new System.Drawing.Point(16, 516);
-            this.Btn_SalvaDistintaBase.Name = "Btn_SalvaDistintaBase";
-            this.Btn_SalvaDistintaBase.Size = new System.Drawing.Size(188, 53);
-            this.Btn_SalvaDistintaBase.TabIndex = 4;
-            this.Btn_SalvaDistintaBase.Text = "Salva Distinta base";
-            this.Btn_SalvaDistintaBase.UseVisualStyleBackColor = true;
-            this.Btn_SalvaDistintaBase.Click += new System.EventHandler(this.Btn_SalvaDistintaBase_Click);
             // 
             // Btn_AggiungiMateriaPrima
             // 
@@ -323,66 +306,11 @@
             this.Btn_Informazioni.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseDown);
             this.Btn_Informazioni.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseUp);
             // 
-            // btn_caricaCatalogo
-            // 
-            this.btn_caricaCatalogo.Location = new System.Drawing.Point(751, 517);
-            this.btn_caricaCatalogo.Name = "btn_caricaCatalogo";
-            this.btn_caricaCatalogo.Size = new System.Drawing.Size(402, 53);
-            this.btn_caricaCatalogo.TabIndex = 22;
-            this.btn_caricaCatalogo.Text = "Carica Catalogo";
-            this.btn_caricaCatalogo.UseVisualStyleBackColor = true;
-            this.btn_caricaCatalogo.Click += new System.EventHandler(this.btn_caricaCatalogo_Click);
-            // 
-            // btn_salvaCatalogo
-            // 
-            this.btn_salvaCatalogo.Location = new System.Drawing.Point(751, 516);
-            this.btn_salvaCatalogo.Name = "btn_salvaCatalogo";
-            this.btn_salvaCatalogo.Size = new System.Drawing.Size(188, 53);
-            this.btn_salvaCatalogo.TabIndex = 22;
-            this.btn_salvaCatalogo.Text = "Salva Catalogo";
-            this.btn_salvaCatalogo.UseVisualStyleBackColor = true;
-            this.btn_salvaCatalogo.Click += new System.EventHandler(this.btn_salvaCatalogo_Click);
-            // 
-            // btn_resettaCatalogo
-            // 
-            this.btn_resettaCatalogo.Location = new System.Drawing.Point(955, 516);
-            this.btn_resettaCatalogo.Name = "btn_resettaCatalogo";
-            this.btn_resettaCatalogo.Size = new System.Drawing.Size(198, 53);
-            this.btn_resettaCatalogo.TabIndex = 22;
-            this.btn_resettaCatalogo.Text = "Resetta Catalogo";
-            this.btn_resettaCatalogo.UseVisualStyleBackColor = true;
-            this.btn_resettaCatalogo.Click += new System.EventHandler(this.btn_resettaCatalogo_Click);
-            // 
-            // Btn_resettaDistintaBase
-            // 
-            this.Btn_resettaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_resettaDistintaBase.Location = new System.Drawing.Point(210, 516);
-            this.Btn_resettaDistintaBase.Name = "Btn_resettaDistintaBase";
-            this.Btn_resettaDistintaBase.Size = new System.Drawing.Size(198, 53);
-            this.Btn_resettaDistintaBase.TabIndex = 7;
-            this.Btn_resettaDistintaBase.Text = "Resetta distinta base";
-            this.Btn_resettaDistintaBase.UseVisualStyleBackColor = true;
-            this.Btn_resettaDistintaBase.Click += new System.EventHandler(this.Btn_resettaDistintaBase_Click);
-            // 
-            // Btn_CaricaDistintaBase
-            // 
-            this.Btn_CaricaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.Btn_CaricaDistintaBase.Location = new System.Drawing.Point(16, 517);
-            this.Btn_CaricaDistintaBase.Name = "Btn_CaricaDistintaBase";
-            this.Btn_CaricaDistintaBase.Size = new System.Drawing.Size(392, 53);
-            this.Btn_CaricaDistintaBase.TabIndex = 5;
-            this.Btn_CaricaDistintaBase.Text = "Carica DistintaBase";
-            this.Btn_CaricaDistintaBase.UseVisualStyleBackColor = true;
-            this.Btn_CaricaDistintaBase.Click += new System.EventHandler(this.Btn_CaricaDistintaBase_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 636);
-            this.Controls.Add(this.btn_resettaCatalogo);
-            this.Controls.Add(this.btn_salvaCatalogo);
-            this.Controls.Add(this.btn_caricaCatalogo);
             this.Controls.Add(this.Btn_Informazioni);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -391,9 +319,6 @@
             this.Controls.Add(this.Btn_caricaDaCatalogo);
             this.Controls.Add(this.Btn_AggiungiSemilavorato);
             this.Controls.Add(this.Btn_AggiungiMateriaPrima);
-            this.Controls.Add(this.Btn_resettaDistintaBase);
-            this.Controls.Add(this.Btn_CaricaDistintaBase);
-            this.Controls.Add(this.Btn_SalvaDistintaBase);
             this.Controls.Add(this.treeView_DistintaBase);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -411,7 +336,6 @@
         #endregion
 
         private System.Windows.Forms.TreeView treeView_DistintaBase;
-        private System.Windows.Forms.Button Btn_SalvaDistintaBase;
         private System.Windows.Forms.Button Btn_AggiungiMateriaPrima;
         private System.Windows.Forms.Button Btn_AggiungiSemilavorato;
         private System.Windows.Forms.Button Btn_caricaDaCatalogo;
@@ -439,12 +363,7 @@
         private System.Windows.Forms.ToolStripMenuItem caricaSemilavoratoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creaNuovoNodoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aggiungiACatalogoToolStripMenuItem;
-        private System.Windows.Forms.Button btn_caricaCatalogo;
-        private System.Windows.Forms.Button btn_salvaCatalogo;
-        private System.Windows.Forms.Button btn_resettaCatalogo;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button Btn_resettaDistintaBase;
-        private System.Windows.Forms.Button Btn_CaricaDistintaBase;
     }
 }
 
