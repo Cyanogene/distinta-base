@@ -331,7 +331,17 @@ namespace distinta_base
 
         //Informazioni-----------------------------------------------------------------------------------------------------------------------------------------------
 
-        private void Btn_Informazioni_MouseClick(object sender, MouseEventArgs e)
+        private void distintaBaseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Si può creare una nuova distinta base o caricarla da catalogo con gli appositi pulsanti.\nSi può salvare, caricare o resettare la distinta base selezionado l'apposita voce nella barra-menu.\nCon un click destro su un componente della distinta base si può eliminare, modificare, aggiungere sottocomponente, ottenere le info, aggiungere al catalogo il componente selezionato.\nCon un doppio click su un qualsiasi componente si può modificare quest'ultimo.", "TUTORIAL",MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void catalogoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Si può caricare, salvare o resettare il catalogo tramite l'apposita voce nella barra-menu.\nSi può caricare un componente o crearne uno nuovo con gli appositi pulsanti.", "TUTORIAL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /*private void Btn_Informazioni_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
                 Cms_Informazioni.Show(Btn_Informazioni, e.Location);
@@ -358,7 +368,7 @@ namespace distinta_base
         {
             string text = "Fare click, col tasto destro del mouse, su un elemento del catalogo per rimuoverlo, modificarlo oppure per ottenere le proprie informazioni.";
             MessageBox.Show(text, "Guida sulla distinta base", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        }*/
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     }
