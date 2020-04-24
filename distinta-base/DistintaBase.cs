@@ -15,41 +15,40 @@ namespace distinta_base
 
     class DistintaBase
     {
-        public List<Componente> Nodi = new List<Componente>();
-        private List<Componente> Componenti = new List<Componente>();
+        public List<Componente> Nodi = new List<Componente>();//
 
         public Componente TreeViewToNode(TreeView TreeView)
         {
             Componente Node = TreeNodeToNode(TreeView.Nodes[0]);
             return Node;
-        }
+        }//
 
         public Componente TreeNodeToNode(TreeNode TreeNode)
         {
-            Componente TreeNodeInNode = new Componente
+            Componente Componente = new Componente
             {
                 SottoNodi = new List<Componente>()
             };
             foreach (Componente Nodo in Nodi)
             {
-                if (Nodo.Codice == TreeNode.Tag.ToString())
+                if (Nodo.Code == TreeNode.Tag.ToString())
                 {
-                    TreeNodeInNode = Nodo;
+                    Componente = Nodo;
                 }
             }
-            TreeNodeInNode.SottoNodi.Clear();
+            Componente.SottoNodi.Clear();
             // Crea un nodo per ogni figlio 
             foreach (TreeNode tn in TreeNode.Nodes)
             {
-                TreeNodeInNode.SottoNodi.Add(TreeNodeToNode(tn));
+                Componente.SottoNodi.Add(TreeNodeToNode(tn));
             }
-            return TreeNodeInNode;
-        }
+            return Componente;
+        }//
 
         public TreeNode NodeToTreeNode(Componente Node)
         {
             TreeNode Nodo = new TreeNode(Node.Nome);
-            Nodo.Tag = Node.Codice;
+            Nodo.Tag = Node.Code;
             if (Node.SottoNodi != null)
             {
                 foreach (Componente node in Node.SottoNodi)
@@ -58,7 +57,7 @@ namespace distinta_base
                 }
             }
             return Nodo;
-        }
+        }//
 
 
 
@@ -81,12 +80,11 @@ namespace distinta_base
                 sw.Close();
                 filesStream.Close();
             }
-        }
+        }//
 
-        public Componente Carica(List<Componente> componenti)
+        public Componente Carica()
         {
             Nodi.Clear();
-            Componenti = componenti;
             OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
             Ofd_Catalogo.InitialDirectory = @"C:\";
             Ofd_Catalogo.Filter = "XML|*.xml";
@@ -101,66 +99,65 @@ namespace distinta_base
                     risultato = (Componente)serializer.Deserialize(stream);
                     stream.Close();
                 }
-                Nodi.Add(risultato);
+            }
+
+            return risultato;
+        }//
+
+        public Componente AggiungiMateriaPrima(List<Componente> Componenti)
+        {
+            Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti);
+            form2.ShowDialog();
+            Componente nodo = form2.nodo;
+            while (nodo == null)
+            {
+                if (!form2.attendo)
+                {
+                    return null;
+                }
+            }
+            return nodo;
+        }//
+
+        public Componente CaricaDaCatalogo(List<Componente> Nodi)
+        {
+            Form3_Catalogo form3 = new Form3_Catalogo(Nodi);
+            form3.ShowDialog();
+            while (form3.nodo == null)
+            {
+                if (!form3.attendo)
+                {
+                    return null;
+                }
+            }
+            return form3.nodo;
+        }//
+
+
+
+
+
+
+        public Componente CaricaNodoDaFile()
+        {
+            OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
+            Ofd_Catalogo.InitialDirectory = @"C:\";
+            Ofd_Catalogo.Filter = "XML|*.xml";
+            Componente risultato = null;
+
+            if (Ofd_Catalogo.ShowDialog() == DialogResult.OK)
+            {
+                if (File.Exists(Ofd_Catalogo.FileName))
+                {
+                    StreamReader stream = new StreamReader(Ofd_Catalogo.FileName);
+                    XmlSerializer serializer = new XmlSerializer(typeof(Componente));
+                    risultato = (Componente)serializer.Deserialize(stream);
+                    stream.Close();
+                }
             }
             return risultato;
+
         }
 
-
-
-        public bool EsisteComponente(Componente componente)
-        {
-            foreach (Componente comp in Componenti)
-            {
-                if (comp.Codice == componente.Codice)
-                {
-                    return true;
-                }
-                foreach (Componente comp2 in comp.SottoNodi)
-                {
-                    return EsisteComponente(comp2);
-                }
-            }
-            return false;
-        }
-
-        private Componente CaricaComponenteDaFile(string filePosition)
-        {
-            Componente componente = new Componente();
-            if (File.Exists(filePosition))
-            {
-
-                StreamReader stream = new StreamReader(filePosition);
-                XmlSerializer serializer = new XmlSerializer(typeof(Componente));
-                componente = (Componente)serializer.Deserialize(stream);
-                stream.Close();
-            }
-            return componente;
-        }
-        
-        public void CaricaNodoDaFile(List<Componente> componenti)
-        {
-            Componenti = componenti;
-            OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
-            Ofd_Catalogo.InitialDirectory = @"C:\";
-            Ofd_Catalogo.Filter = "XML|*.xml";
-            Componente risultato = new Componente();
-
-            if (Ofd_Catalogo.ShowDialog() == DialogResult.OK)
-            {
-                if (File.Exists(Ofd_Catalogo.FileName))
-                {
-                    StreamReader stream = new StreamReader(Ofd_Catalogo.FileName);
-                    XmlSerializer serializer = new XmlSerializer(typeof(Componente));
-                    risultato = (Componente)serializer.Deserialize(stream);
-                    stream.Close();
-                }
-                if (!EsisteComponente(risultato))
-                {
-                    Nodi.Add(risultato);
-                }
-            }
-        }
-        
     }
 }

@@ -12,7 +12,6 @@ namespace distinta_base
     class Catalogo
     {
         public List<Componente> Nodi = new List<Componente>();
-        private List<Componente> Componenti = new List<Componente>();
 
 
 
@@ -20,7 +19,7 @@ namespace distinta_base
         {
             if (Nodi.Count == 0)
             {
-                //messaggio che dice che non puo salvare perchè non c'è nulla da salvare
+                MessageBox.Show("Il catalogo è vuoto", "ATTENZIONE");
                 return;
             }
             SaveFileDialog Sfd_Catalogo = new SaveFileDialog();
@@ -38,7 +37,7 @@ namespace distinta_base
                 sw.Close();
                 filesStream.Close();
             }
-        }
+        }//
 
         public void Carica()
         {
@@ -61,54 +60,21 @@ namespace distinta_base
                 }
                 Nodi.AddRange(risultato);
             }
-        }
+        }//
 
+        
 
-
-        public bool EsisteComponente(Componente componente)
+        public Componente AggiungiSemilavorato(List<Componente> componenti)
         {
-            foreach (Componente comp in Componenti)
-            {
-                if (comp.Codice == componente.Codice)
-                {
-                    return true;
-                }
-                foreach(Componente comp2 in comp.SottoNodi)
-                {
-                    return EsisteComponente(comp2);
-                }
-            }
-            return false;
-        }
-
-        public bool EsisteComponenteInCatalogo(Componente comp)
-        {
-            foreach(Componente componente in Nodi)
-            {
-                if(comp.Codice == componente.Codice)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-
-        public void AggiungiSemilavorato(List<Componente> componenti)
-        {
-            Componenti = componenti;
             OpenFileDialog Ofd_semilavorato = new OpenFileDialog();
             Ofd_semilavorato.InitialDirectory = @"C:\";
             Ofd_semilavorato.Filter = "XML|*.xml";
             if (Ofd_semilavorato.ShowDialog() == DialogResult.OK)
             {
-                Componente semilavorato = CaricaComponenteDaFile(Ofd_semilavorato.FileName);
-                if (!EsisteComponente(semilavorato))
-                {
-                    Nodi.Add(semilavorato);
-                }
+                return CaricaComponenteDaFile(Ofd_semilavorato.FileName);
             }
-        }
+            return null;
+        }//
 
         private Componente CaricaComponenteDaFile(string filePosition)
         {
@@ -121,9 +87,9 @@ namespace distinta_base
                 stream.Close();
             }
             return componente;
-        }
+        }//
 
-        public void AggiungiMateriaPrima(List<Componente> Componenti)
+        public Componente AggiungiMateriaPrima(List<Componente> Componenti)
         {
             Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti);
             form2.ShowDialog();
@@ -132,80 +98,26 @@ namespace distinta_base
             {
                 if (!form2.attendo)
                 {
-                    return;
+                    return  null;
                 }
             }
-            if (!EsisteComponente(nodo))
-            {
-                Nodi.Add(nodo);
-            }
-        }
-
-        public string Info(string codice)
-        {
-            foreach (Componente nodo in Nodi)
-            {
-                if (nodo.Codice == codice)
-                {
-                    return "Nome --> " + nodo.Nome + "\nCodice --> " + nodo.Codice + "\nDescrizione --> " + nodo.Descrizione + "\nLeadTime --> " + nodo.LeadTime + "\nLeadTimeSicurezza --> " + nodo.LeadTimeSicurezza + "\nLotto --> " + nodo.Lotto + "\nScortaDiSicurezza --> " + nodo.ScortaSicurezza + "\nPeriodoDiCopertura --> " + nodo.PeriodoDiCopertura;
-                }
-            }
-            return "";
-        }
-
-        public void Modifica(List<Componente> componenti, string Codice)
-        {
-            Componenti = componenti;
-            foreach (Componente nodo in Nodi)
-            {
-                if (nodo.Codice == Codice)
-                {
-                    Form2_NewNode form2 = new Form2_NewNode(nodo, Componenti);
-                    form2.ShowDialog();
-                    Componente nuovoNodo = form2.nodo;
-                    while (nuovoNodo == null)
-                    {
-                        if (!form2.attendo)
-                        {
-                            return;
-                        }
-                    }
-                    nuovoNodo.SottoNodi = nodo.SottoNodi;
-                    Nodi.Remove(nodo);
-                    Nodi.Add(nuovoNodo);
-                    return;
-                }
-            }
-        }
+            return nodo;
+        }//
         
-        public void RimuoviComponente(string Codice)
+        public Componente Modifica(Componente componente, List<Componente> Componenti)
         {
-            List<Componente> daRimuovere = new List<Componente>();
-            foreach (Componente nodo in Nodi)
+            Form2_NewNode form2 = new Form2_NewNode(componente, Componenti);
+            form2.ShowDialog();
+            Componente nuovoNodo = form2.nodo;
+            while (nuovoNodo == null)
             {
-                if (nodo.Codice == Codice)
+                if (!form2.attendo)
                 {
-                    daRimuovere.Add(nodo);
+                    return null;
                 }
             }
-            foreach(Componente comp in daRimuovere)
-            {
-                Nodi.Remove(comp);
-            }
-        }
-
-        public void SostitusciComponente(Componente componente)
-        {
-            Componente compDaRimuovere = new Componente();
-            foreach(Componente comp in Nodi)
-            {
-                if(comp.Codice == componente.Codice)
-                {
-                    compDaRimuovere = comp;
-                }
-            }
-            Nodi.Remove(compDaRimuovere);
-            Nodi.Add(componente);
+            nuovoNodo.SottoNodi = componente.SottoNodi;
+            return nuovoNodo;
         }
     }
 }

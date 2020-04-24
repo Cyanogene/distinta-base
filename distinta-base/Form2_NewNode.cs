@@ -73,9 +73,8 @@ namespace distinta_base
                 Lotto = Convert.ToInt32(form_lotto.Value);
                 PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
                 Codice = form_codice.Text;
-                /*int n = 0;
+                int n = 0;
                 if (nodo != null) { n = nodo.SottoNodi.Count(); }
-                Codice = Nome + LT + LTS + ScortaDiSicurezza + Lotto + PeriodoDiCopertura + n + RandomString(3);*/
                 nodo = new Componente
                 {
                     Nome = Nome,
@@ -85,7 +84,8 @@ namespace distinta_base
                     LeadTimeSicurezza = LTS,
                     ScortaSicurezza = ScortaDiSicurezza,
                     Lotto = Lotto,
-                    PeriodoDiCopertura = PeriodoDiCopertura
+                    PeriodoDiCopertura = PeriodoDiCopertura,
+                    Code = Nome + LT + LTS + ScortaDiSicurezza + Lotto + PeriodoDiCopertura + n + RandomString(3),
                 };
                 if (nodo.Nome == nodoInput.Nome && nodo.Descrizione == nodoInput.Descrizione && nodo.LeadTime == nodoInput.LeadTime && nodo.LeadTimeSicurezza == nodoInput.LeadTimeSicurezza && nodo.ScortaSicurezza == nodoInput.ScortaSicurezza && nodo.Lotto == nodoInput.Lotto && nodo.PeriodoDiCopertura == nodoInput.PeriodoDiCopertura)
                 {
