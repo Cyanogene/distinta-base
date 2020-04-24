@@ -81,7 +81,7 @@
             this.treeView_DistintaBase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.treeView_DistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView_DistintaBase.Location = new System.Drawing.Point(78, 107);
-            this.treeView_DistintaBase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeView_DistintaBase.Margin = new System.Windows.Forms.Padding(4);
             this.treeView_DistintaBase.Name = "treeView_DistintaBase";
             this.treeView_DistintaBase.Size = new System.Drawing.Size(484, 498);
             this.treeView_DistintaBase.TabIndex = 0;
@@ -92,7 +92,7 @@
             // 
             this.Btn_AggiungiMateriaPrima.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_AggiungiMateriaPrima.Location = new System.Drawing.Point(941, 613);
-            this.Btn_AggiungiMateriaPrima.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_AggiungiMateriaPrima.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_AggiungiMateriaPrima.Name = "Btn_AggiungiMateriaPrima";
             this.Btn_AggiungiMateriaPrima.Size = new System.Drawing.Size(241, 62);
             this.Btn_AggiungiMateriaPrima.TabIndex = 11;
@@ -105,7 +105,7 @@
             this.Btn_AggiungiSemilavorato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Btn_AggiungiSemilavorato.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_AggiungiSemilavorato.Location = new System.Drawing.Point(698, 613);
-            this.Btn_AggiungiSemilavorato.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_AggiungiSemilavorato.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_AggiungiSemilavorato.Name = "Btn_AggiungiSemilavorato";
             this.Btn_AggiungiSemilavorato.Size = new System.Drawing.Size(241, 62);
             this.Btn_AggiungiSemilavorato.TabIndex = 12;
@@ -117,7 +117,7 @@
             // 
             this.Btn_caricaDaCatalogo.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_caricaDaCatalogo.Location = new System.Drawing.Point(321, 613);
-            this.Btn_caricaDaCatalogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_caricaDaCatalogo.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_caricaDaCatalogo.Name = "Btn_caricaDaCatalogo";
             this.Btn_caricaDaCatalogo.Size = new System.Drawing.Size(241, 62);
             this.Btn_caricaDaCatalogo.TabIndex = 17;
@@ -131,7 +131,7 @@
             this.listView_catalogo.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView_catalogo.HideSelection = false;
             this.listView_catalogo.Location = new System.Drawing.Point(698, 107);
-            this.listView_catalogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView_catalogo.Margin = new System.Windows.Forms.Padding(4);
             this.listView_catalogo.Name = "listView_catalogo";
             this.listView_catalogo.Size = new System.Drawing.Size(484, 498);
             this.listView_catalogo.TabIndex = 18;
@@ -144,9 +144,9 @@
             // 
             this.Cms_TreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aggiungiSottonodoToolStripMenuItem,
-            this.rimuoviToolStripMenuItem,
             this.modificaToolStripMenuItem1,
             this.informazioniToolStripMenuItem,
+            this.rimuoviToolStripMenuItem,
             this.aggiungiACatalogoToolStripMenuItem});
             this.Cms_TreeView.Name = "Cms_TreeView";
             this.Cms_TreeView.Size = new System.Drawing.Size(183, 114);
@@ -235,7 +235,7 @@
             // 
             this.Btn_creaNuovaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_creaNuovaDistintaBase.Location = new System.Drawing.Point(78, 613);
-            this.Btn_creaNuovaDistintaBase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_creaNuovaDistintaBase.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_creaNuovaDistintaBase.Name = "Btn_creaNuovaDistintaBase";
             this.Btn_creaNuovaDistintaBase.Size = new System.Drawing.Size(241, 62);
             this.Btn_creaNuovaDistintaBase.TabIndex = 19;
@@ -344,21 +344,21 @@
             // caricaToolStripMenuItem
             // 
             this.caricaToolStripMenuItem.Name = "caricaToolStripMenuItem";
-            this.caricaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.caricaToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.caricaToolStripMenuItem.Text = "Carica";
             this.caricaToolStripMenuItem.Click += new System.EventHandler(this.caricaToolStripMenuItem_Click);
             // 
             // salvaToolStripMenuItem
             // 
             this.salvaToolStripMenuItem.Name = "salvaToolStripMenuItem";
-            this.salvaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salvaToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.salvaToolStripMenuItem.Text = "Salva";
             this.salvaToolStripMenuItem.Click += new System.EventHandler(this.salvaToolStripMenuItem_Click);
             // 
             // resettaToolStripMenuItem
             // 
             this.resettaToolStripMenuItem.Name = "resettaToolStripMenuItem";
-            this.resettaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resettaToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.resettaToolStripMenuItem.Text = "Resetta";
             this.resettaToolStripMenuItem.Click += new System.EventHandler(this.resettaToolStripMenuItem_Click);
             // 
@@ -376,21 +376,21 @@
             // caricaToolStripMenuItem1
             // 
             this.caricaToolStripMenuItem1.Name = "caricaToolStripMenuItem1";
-            this.caricaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.caricaToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
             this.caricaToolStripMenuItem1.Text = "Carica";
             this.caricaToolStripMenuItem1.Click += new System.EventHandler(this.caricaToolStripMenuItem1_Click);
             // 
             // salvaToolStripMenuItem1
             // 
             this.salvaToolStripMenuItem1.Name = "salvaToolStripMenuItem1";
-            this.salvaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.salvaToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
             this.salvaToolStripMenuItem1.Text = "Salva";
             this.salvaToolStripMenuItem1.Click += new System.EventHandler(this.salvaToolStripMenuItem1_Click);
             // 
             // resettaToolStripMenuItem1
             // 
             this.resettaToolStripMenuItem1.Name = "resettaToolStripMenuItem1";
-            this.resettaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.resettaToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
             this.resettaToolStripMenuItem1.Text = "Resetta";
             this.resettaToolStripMenuItem1.Click += new System.EventHandler(this.resettaToolStripMenuItem1_Click);
             // 
@@ -407,14 +407,14 @@
             // distintaBaseToolStripMenuItem1
             // 
             this.distintaBaseToolStripMenuItem1.Name = "distintaBaseToolStripMenuItem1";
-            this.distintaBaseToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.distintaBaseToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
             this.distintaBaseToolStripMenuItem1.Text = "Distinta base";
             this.distintaBaseToolStripMenuItem1.Click += new System.EventHandler(this.distintaBaseToolStripMenuItem1_Click);
             // 
             // catalogoToolStripMenuItem1
             // 
             this.catalogoToolStripMenuItem1.Name = "catalogoToolStripMenuItem1";
-            this.catalogoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.catalogoToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
             this.catalogoToolStripMenuItem1.Text = "Catalogo";
             this.catalogoToolStripMenuItem1.Click += new System.EventHandler(this.catalogoToolStripMenuItem1_Click);
             // 
@@ -436,7 +436,7 @@
             this.Font = new System.Drawing.Font("Microsoft Tai Le", 12F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Distinta base";
             this.Load += new System.EventHandler(this.Form1_Load);

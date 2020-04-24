@@ -91,10 +91,13 @@ namespace distinta_base
         private void rimuoviToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
-            string Codice = listView_catalogo.SelectedItems[0].SubItems[1].Text;
-            listView_catalogo.SelectedItems[0].Remove();
-            generale.RimuoviComponenteDaCatalogo(Codice);
-            AggiornaCatalogo();
+            if (MessageBox.Show("Vuoi rimuovere il componente definitivamente?", "ATTENZIONE", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+            {
+                string Codice = listView_catalogo.SelectedItems[0].SubItems[1].Text;
+                listView_catalogo.SelectedItems[0].Remove();
+                generale.RimuoviComponenteDaCatalogo(Codice);
+                AggiornaCatalogo();
+            }
         }//contextMenu listbox rimuove elemento selezionato
 
         private void informazioniToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -127,9 +130,9 @@ namespace distinta_base
         {
             listView_catalogo.View = View.Details;
             listView_catalogo.FullRowSelect = true;
-            listView_catalogo.Columns.Add("Nome", 90);
+            listView_catalogo.Columns.Add("Nome", 120);
             listView_catalogo.Columns.Add("Codice", 120);
-            listView_catalogo.Columns.Add("Descrizione", 180);
+            listView_catalogo.Columns.Add("Descrizione", 235);
         }//Crea le colonne della listView  (NOME CODICE DESCRIZIONE) <--- di ogni prodotto
 
         private void listView_catalogo_ColumnWidthChanging_1(object sender, ColumnWidthChangingEventArgs e)
@@ -242,9 +245,12 @@ namespace distinta_base
 
         private void rimuoviToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            generale.RimuoviNodoTreeView(treeView_DistintaBase);
-            treeView_DistintaBase.SelectedNode.Remove();
-            ControlloTreeView();
+            if(MessageBox.Show("Vuoi rimuovere il componente definitivamente?","ATTENZIONE",MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+            {
+                generale.RimuoviNodoTreeView(treeView_DistintaBase);
+                treeView_DistintaBase.SelectedNode.Remove();
+                ControlloTreeView();
+            }
         }//context menu click destro nodo rimuove nodo
 
         private void informazioniToolStripMenuItem_Click(object sender, EventArgs e)
