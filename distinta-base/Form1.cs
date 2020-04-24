@@ -27,26 +27,6 @@ namespace distinta_base
             CreaListView();
             ControlloTreeView();
             AggiornaCatalogo();
-            MenuBar();
-        }
-
-        void MenuBar()
-        {
-            Menu = new MainMenu();
-
-            MenuItem DistintaBase = new MenuItem("Distinta base");
-            MenuItem Catalogo = new MenuItem("Catalogo");
-
-            Menu.MenuItems.Add(DistintaBase);
-            Menu.MenuItems.Add(Catalogo);
-
-            DistintaBase.MenuItems.Add("Salva", new EventHandler(SalvaDistintaBase));
-            DistintaBase.MenuItems.Add("Carica", new EventHandler(CaricaDistintaBase));
-            DistintaBase.MenuItems.Add("Resetta", new EventHandler(ResettaDistintaBase));
-
-            Catalogo.MenuItems.Add("Salva", new EventHandler(SalvaCatalogo));
-            Catalogo.MenuItems.Add("Carica", new EventHandler(CaricaCatalogo));
-            Catalogo.MenuItems.Add("Resetta", new EventHandler(ResettaCatalogo));
         }
 
 
@@ -54,19 +34,34 @@ namespace distinta_base
 
         //Catalogo---------------------------------------------------------------------------------------------------------------------------------------------------
 
-        private void SalvaCatalogo(object sender, EventArgs e)
+        private void caricaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            CaricaCatalogo();
+        }
+
+        private void salvaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SalvaCatalogo();
+        }
+
+        private void resettaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ResettaCatalogo();
+        }
+
+        private void SalvaCatalogo()
         {
             generale.catalogo.Salva();
             AggiornaCatalogo();
         }
 
-        private void CaricaCatalogo(object sender, EventArgs e)
+        private void CaricaCatalogo()
         {
             generale.catalogo.Carica();
             AggiornaCatalogo();
         }
 
-        private void ResettaCatalogo(object sender, EventArgs e)
+        private void ResettaCatalogo()
         {
             generale.catalogo.Nodi.Clear();
             AggiornaCatalogo();
@@ -161,15 +156,30 @@ namespace distinta_base
 
 
         //DistintaBase-----------------------------------------------------------------------------------------------------------------------------------------------
-        
-        private void SalvaDistintaBase(object sender, EventArgs e)
+
+        private void caricaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CaricaDistintaBase();
+        }
+
+        private void salvaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SalvaDistintaBase();
+        }
+
+        private void resettaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResettaDistintaBase();
+        }
+
+        private void SalvaDistintaBase()
         {
             if (treeView_DistintaBase.Nodes.Count == 0) return;
             generale.salvaDistintaBase(treeView_DistintaBase);
             ControlloTreeView();
         }//BTN salva la distinta base
 
-        private void ResettaDistintaBase(object sender, EventArgs e)
+        private void ResettaDistintaBase()
         {
             treeView_DistintaBase.Nodes.Clear();
             generale.distintaBase.Nodi.Clear();
@@ -177,7 +187,7 @@ namespace distinta_base
             ControlloTreeView();
         }//BTN resetta la distinta base
 
-        private void CaricaDistintaBase(object sender, EventArgs e)
+        private void CaricaDistintaBase()
         {
             treeView_DistintaBase.Nodes.Clear();
             TreeNode treeNode = generale.caricaDistintaBase();
@@ -349,7 +359,6 @@ namespace distinta_base
             string text = "Fare click, col tasto destro del mouse, su un elemento del catalogo per rimuoverlo, modificarlo oppure per ottenere le proprie informazioni.";
             MessageBox.Show(text, "Guida sulla distinta base", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     }

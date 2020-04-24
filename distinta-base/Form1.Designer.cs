@@ -59,10 +59,20 @@
             this.guidaSulCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Btn_Informazioni = new System.Windows.Forms.PictureBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.distintaBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.caricaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salvaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resettaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.catalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.caricaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.salvaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.resettaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.Cms_TreeView.SuspendLayout();
             this.Cms_ListBox.SuspendLayout();
             this.Cms_Informazioni.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Btn_Informazioni)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeView_DistintaBase
@@ -306,11 +316,85 @@
             this.Btn_Informazioni.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseDown);
             this.Btn_Informazioni.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Informazioni_MouseUp);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.distintaBaseToolStripMenuItem,
+            this.catalogoToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1184, 24);
+            this.menuStrip1.TabIndex = 22;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // distintaBaseToolStripMenuItem
+            // 
+            this.distintaBaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.caricaToolStripMenuItem,
+            this.salvaToolStripMenuItem,
+            this.resettaToolStripMenuItem});
+            this.distintaBaseToolStripMenuItem.Name = "distintaBaseToolStripMenuItem";
+            this.distintaBaseToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
+            this.distintaBaseToolStripMenuItem.Text = "Distinta base";
+            // 
+            // caricaToolStripMenuItem
+            // 
+            this.caricaToolStripMenuItem.Name = "caricaToolStripMenuItem";
+            this.caricaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.caricaToolStripMenuItem.Text = "Carica";
+            this.caricaToolStripMenuItem.Click += new System.EventHandler(this.caricaToolStripMenuItem_Click);
+            // 
+            // salvaToolStripMenuItem
+            // 
+            this.salvaToolStripMenuItem.Name = "salvaToolStripMenuItem";
+            this.salvaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salvaToolStripMenuItem.Text = "Salva";
+            this.salvaToolStripMenuItem.Click += new System.EventHandler(this.salvaToolStripMenuItem_Click);
+            // 
+            // resettaToolStripMenuItem
+            // 
+            this.resettaToolStripMenuItem.Name = "resettaToolStripMenuItem";
+            this.resettaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resettaToolStripMenuItem.Text = "Resetta";
+            this.resettaToolStripMenuItem.Click += new System.EventHandler(this.resettaToolStripMenuItem_Click);
+            // 
+            // catalogoToolStripMenuItem
+            // 
+            this.catalogoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.caricaToolStripMenuItem1,
+            this.salvaToolStripMenuItem1,
+            this.resettaToolStripMenuItem1});
+            this.catalogoToolStripMenuItem.Name = "catalogoToolStripMenuItem";
+            this.catalogoToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.catalogoToolStripMenuItem.Text = "Catalogo";
+            // 
+            // caricaToolStripMenuItem1
+            // 
+            this.caricaToolStripMenuItem1.Name = "caricaToolStripMenuItem1";
+            this.caricaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.caricaToolStripMenuItem1.Text = "Carica";
+            this.caricaToolStripMenuItem1.Click += new System.EventHandler(this.caricaToolStripMenuItem1_Click);
+            // 
+            // salvaToolStripMenuItem1
+            // 
+            this.salvaToolStripMenuItem1.Name = "salvaToolStripMenuItem1";
+            this.salvaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.salvaToolStripMenuItem1.Text = "Salva";
+            this.salvaToolStripMenuItem1.Click += new System.EventHandler(this.salvaToolStripMenuItem1_Click);
+            // 
+            // resettaToolStripMenuItem1
+            // 
+            this.resettaToolStripMenuItem1.Name = "resettaToolStripMenuItem1";
+            this.resettaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.resettaToolStripMenuItem1.Text = "Resetta";
+            this.resettaToolStripMenuItem1.Click += new System.EventHandler(this.resettaToolStripMenuItem1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 636);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.Btn_Informazioni);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -321,6 +405,7 @@
             this.Controls.Add(this.Btn_AggiungiMateriaPrima);
             this.Controls.Add(this.treeView_DistintaBase);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Distinta base";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -328,6 +413,8 @@
             this.Cms_ListBox.ResumeLayout(false);
             this.Cms_Informazioni.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Btn_Informazioni)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,6 +451,15 @@
         private System.Windows.Forms.ToolStripMenuItem creaNuovoNodoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aggiungiACatalogoToolStripMenuItem;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem distintaBaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem caricaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salvaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resettaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem catalogoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem caricaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem salvaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem resettaToolStripMenuItem1;
     }
 }
 
