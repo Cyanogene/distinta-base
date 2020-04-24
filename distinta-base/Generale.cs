@@ -33,6 +33,11 @@ namespace distinta_base
             }
             else
             {
+                if(catalogo.Nodi.Contains(comp))
+                {
+                    MessageBox.Show("Il componente è già presente in catalogo", "ATTENZIONE");
+                    return;
+                }
                 catalogo.Nodi.Add(comp);
             }
         }
@@ -41,6 +46,14 @@ namespace distinta_base
         {
             Componente comp = catalogo.AggiungiMateriaPrima(Componenti());
             if (comp == null) return;
+            foreach(Componente componente in catalogo.Nodi)
+            {
+                if(NodiUguali(componente,comp))
+                {
+                    MessageBox.Show("In catalogo è già presente questo componente", "ATTENZIONE");
+                    return;
+                }
+            }
             catalogo.Nodi.Add(comp);
         }
 
@@ -63,20 +76,25 @@ namespace distinta_base
 
         public void AggiungiComponenteACatalogo(TreeView treeView)
         {
-            Componente componente = distintaBase.TreeNodeToNode(treeView.SelectedNode);
-            if (!EsisteComponente(componente))
+            Componente comp = distintaBase.TreeNodeToNode(treeView.SelectedNode);
+            if (!EsisteComponente(comp))
             {
-                if(!catalogo.Nodi.Contains(componente))
-                catalogo.Nodi.Add(componente);
-                else
-                MessageBox.Show("Il componente è già presente in catalogo", "Distinta base");
+                foreach (Componente componente in catalogo.Nodi)
+                {
+                    if (NodiUguali(componente, comp))
+                    {
+                        MessageBox.Show("In catalogo è già presente questo componente", "ATTENZIONE");
+                        return;
+                    }
+                }
+                catalogo.Nodi.Add(comp);
             }
             else
             {
                 DialogResult dialogResult = MessageBox.Show("Un componente con codice uguale è già presente nel catalogo, vuoi sostituirlo?", "Distinta base", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    catalogo.SostituisciComponente(componente);
+                    catalogo.SostituisciComponente(comp);
                 }
             }
         }
@@ -218,8 +236,15 @@ namespace distinta_base
                 }
             }
             comp.SottoNodi = compVecchio.SottoNodi;
-            Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
-            ModificaComponente(comp, compVecchio, compPadre, distintaBase.Albero);
+            if(treeView.Nodes.Count==1)
+            {
+                distintaBase.Albero = comp;
+            }
+            else
+            {
+                Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode.Parent);
+                ModificaComponente(comp, compVecchio, compPadre, distintaBase.Albero);
+            }
             return distintaBase.NodeToTreeNode(comp);
         }
 
