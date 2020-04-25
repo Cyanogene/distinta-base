@@ -132,64 +132,56 @@ namespace distinta_base
             distintaBase.Albero = comp;
             return distintaBase.NodeToTreeNode(comp);
         }
-        
 
-        public TreeNode CaricaTreeNodeDaFile(TreeView treeView)
+
+
+        public TreeNode RimuoviNodo(TreeView treeView)
+        {
+            if (treeView.SelectedNode == treeView.Nodes[0])
+            {
+                distintaBase.Albero = new Componente();
+                return null;
+            }
+            else
+            {
+                TreeNode daEliminare = treeView.SelectedNode;
+                TreeNode padre = daEliminare.Parent;
+                Componente comp = distintaBase.TreeNodeToNode(daEliminare);
+                Componente compPadre = distintaBase.TreeNodeToNode(padre);
+                EliminaComponente(comp, compPadre, distintaBase.Albero);
+            }
+            return distintaBase.NodeToTreeNode(distintaBase.Albero);
+        }
+
+        public TreeNode CaricaNodoDaFile(TreeView treeView)
         {
             Componente comp = distintaBase.CaricaNodoDaFile();
             if (comp == null) return null;
             Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
             AggiungiComponente(comp, compPadre, distintaBase.Albero);
-            return distintaBase.NodeToTreeNode(comp);
+            return distintaBase.NodeToTreeNode(distintaBase.Albero);
         }
 
-        private void AggiungiComponente(Componente comp, Componente compPadre, Componente Albero)
+        public TreeNode CaricaNodoDaCatalogo(TreeView treeView)
         {
-            if(Albero.SottoNodi != null)
-            {
-                foreach (Componente sottoComponente in Albero.SottoNodi)
-                {
-                    AggiungiComponente(comp, compPadre, sottoComponente);
-                }
-                if (Albero == compPadre)
-                {
-                    Albero.SottoNodi.Add(comp);
-                }
-            }
-            if (NodiUguali(Albero, compPadre))
-            {
-                Albero.SottoNodi = new List<Componente>();
-                Albero.SottoNodi.Add(comp);
-            }
-
+            if (catalogo.Nodi.Count() == 0) { MessageBox.Show("Il catalogo è vuoto", "ATTENZIONE"); return null; }
+            Componente comp = distintaBase.CaricaDaCatalogo(catalogo.Nodi);
+            if (comp == null) return null;
+            Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
+            AggiungiComponente(comp, compPadre, distintaBase.Albero);
+            return distintaBase.NodeToTreeNode(distintaBase.Albero);
         }
 
-        public void RimuoviNodoTreeView(TreeView treeView)
-        {
-            TreeNode daEliminare = treeView.SelectedNode;
-            TreeNode padre = daEliminare.Parent;
-            if (treeView.Nodes.Count == 1)
-            {
-                distintaBase.Nodi.Clear();
-            }
-            else
-            {
-                Componente comp = distintaBase.TreeNodeToNode(daEliminare);
-                Componente compPadre = distintaBase.TreeNodeToNode(padre);
-                EliminaComponente(comp, compPadre, distintaBase.Albero);
-            }
-        }
-        
         public TreeNode CaricaTreeNodeMateriaPrima(TreeView treeView)
         {
             Componente comp = distintaBase.AggiungiMateriaPrima(Componenti());
             if (comp == null) return null;
             Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
             AggiungiComponente(comp, compPadre, distintaBase.Albero);
-            return distintaBase.NodeToTreeNode(comp);
+            return distintaBase.NodeToTreeNode(distintaBase.Albero);
         }
 
-        public TreeNode Modifica(TreeView treeView)
+        public TreeNode ModificaNodo(TreeView treeView)
         {
             Componente compVecchio = distintaBase.TreeNodeToNode(treeView.SelectedNode);
             Form2_NewNode form2 = new Form2_NewNode(compVecchio, Componenti());
@@ -212,7 +204,7 @@ namespace distinta_base
                 Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode.Parent);
                 ModificaComponente(comp, compVecchio, compPadre, distintaBase.Albero);
             }
-            return distintaBase.NodeToTreeNode(comp);
+            return distintaBase.NodeToTreeNode(distintaBase.Albero);
         }
 
         public void AggiungiComponenteACatalogo(TreeView treeView)
@@ -239,10 +231,47 @@ namespace distinta_base
                 }
             }
         }
+
+
         //-----------------------------------------------------------------------
 
 
 
+        private void AggiungiComponente(Componente comp, Componente compPadre, Componente Albero)
+        {
+            if (NodiUguali(Albero, compPadre))
+            {
+                if (Albero.SottoNodi == null)
+                {
+                    Albero.SottoNodi = new List<Componente>();
+                }
+                Albero.SottoNodi.Add(comp);
+                return;
+            }
+            if (Albero.SottoNodi != null && Albero.SottoNodi.Count > 0)
+            {
+                foreach (Componente sottoComponente in Albero.SottoNodi)
+                {
+                    AggiungiComponente(comp, compPadre, sottoComponente);
+                    return;
+                }
+            }
+        }
+
+        private void EliminaComponente(Componente comp, Componente compPadre, Componente Albero)
+        {
+            if(Albero.SottoNodi!=null && Albero.SottoNodi.Count>0)
+            {
+                foreach (Componente sottoComponente in Albero.SottoNodi)
+                {
+                    EliminaComponente(comp, compPadre, sottoComponente);
+                }
+            }
+            if (NodiUguali(Albero, compPadre))
+            {
+                Albero.SottoNodi.Remove(comp);
+            }
+        }
 
         private void ModificaComponente(Componente comp, Componente compVecchio, Componente compPadre, Componente Albero)
         {
@@ -254,18 +283,6 @@ namespace distinta_base
             {
                 Albero.SottoNodi.Remove(compVecchio);
                 Albero.SottoNodi.Add(comp);
-            }
-        }
-
-        private void EliminaComponente(Componente comp, Componente compPadre, Componente Albero)
-        {
-            foreach(Componente sottoComponente in Albero.SottoNodi)
-            {
-                EliminaComponente(comp, compPadre, sottoComponente);
-            }
-            if (NodiUguali(Albero, compPadre))
-            {
-                Albero.SottoNodi.Remove(comp);
             }
         }
 

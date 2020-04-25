@@ -131,8 +131,8 @@ namespace distinta_base
             listView_catalogo.View = View.Details;
             listView_catalogo.FullRowSelect = true;
             listView_catalogo.Columns.Add("Nome", 120);
-            listView_catalogo.Columns.Add("Codice", 120);
-            listView_catalogo.Columns.Add("Descrizione", 235);
+            listView_catalogo.Columns.Add("Codice", 100);
+            listView_catalogo.Columns.Add("Descrizione", 220);
         }//Crea le colonne della listView  (NOME CODICE DESCRIZIONE) <--- di ogni prodotto
 
         private void listView_catalogo_ColumnWidthChanging_1(object sender, ColumnWidthChangingEventArgs e)
@@ -247,8 +247,7 @@ namespace distinta_base
         {
             if(MessageBox.Show("Vuoi rimuovere il componente definitivamente?","ATTENZIONE",MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
-                generale.RimuoviNodoTreeView(treeView_DistintaBase);
-                treeView_DistintaBase.SelectedNode.Remove();
+                AggiornaTreeView(generale.RimuoviNodo(treeView_DistintaBase));
                 ControlloTreeView();
             }
         }//context menu click destro nodo rimuove nodo
@@ -263,25 +262,19 @@ namespace distinta_base
 
         private void daCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TreeNode treeNode = generale.CaricaDaCatalogo();
-            if (treeNode == null) return;
-            treeView_DistintaBase.SelectedNode.Nodes.Add(treeNode);
+            AggiornaTreeView(generale.CaricaNodoDaCatalogo(treeView_DistintaBase));
             ControlloTreeView();
         }//context menu click destro nodo mostra caricaNodo da Catalogo
 
         private void daFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TreeNode treeNode = generale.CaricaTreeNodeDaFile(treeView_DistintaBase);
-            if (treeNode == null) return;
-            treeView_DistintaBase.SelectedNode.Nodes.Add(treeNode);
+            AggiornaTreeView(generale.CaricaNodoDaFile(treeView_DistintaBase));
             ControlloTreeView();
         }//context menu click destro nodo mostra caricaNodo da File
 
         private void creaNuovoNodoToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            TreeNode treeNode = generale.CaricaTreeNodeMateriaPrima(treeView_DistintaBase);
-            if (treeNode == null) return;
-            treeView_DistintaBase.SelectedNode.Nodes.Add(treeNode);
+            AggiornaTreeView(generale.CaricaTreeNodeMateriaPrima(treeView_DistintaBase));
             ControlloTreeView();
         }//context menu click destro nodo mostra creaNuovoNodo
 
@@ -293,21 +286,13 @@ namespace distinta_base
 
         private void modificaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            TreeNode treeNode = generale.Modifica(treeView_DistintaBase);
-            if (treeNode == null) return;
-            int index = treeView_DistintaBase.Nodes.IndexOf(treeView_DistintaBase.SelectedNode);
-            treeView_DistintaBase.Nodes.RemoveAt(index);
-            treeView_DistintaBase.Nodes.Insert(index, treeNode);
+            AggiornaTreeView(generale.ModificaNodo(treeView_DistintaBase));
             ControlloTreeView();
         }//context menu click destro nodo mi permette di modificarlo
 
         private void treeView_DistintaBase_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            int index = treeView_DistintaBase.Nodes.IndexOf(treeView_DistintaBase.SelectedNode);
-            TreeNode treeNode = generale.Modifica(treeView_DistintaBase);
-            if (treeNode == null) return;
-            treeView_DistintaBase.Nodes.RemoveAt(index);
-            treeView_DistintaBase.Nodes.Insert(index, treeNode);
+            AggiornaTreeView(generale.ModificaNodo(treeView_DistintaBase));
             ControlloTreeView();
         }//doppio click su nodo mi permette di modificarlo
 
@@ -330,6 +315,16 @@ namespace distinta_base
                 Btn_creaNuovaDistintaBase.Visible = false;
             }
         }//controlla se treeview è vuota, se vuota abilita i bottoni "crea nuova distinta base"
+
+        private void AggiornaTreeView(TreeNode treeNode)
+        {
+            if (treeNode == null)
+            {
+                return;
+            }
+            treeView_DistintaBase.Nodes.Clear();
+            treeView_DistintaBase.Nodes.Add(treeNode);
+        }
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 

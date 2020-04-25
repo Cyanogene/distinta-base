@@ -67,14 +67,14 @@
             this.form_codice.Location = new System.Drawing.Point(193, 120);
             this.form_codice.Name = "form_codice";
             this.form_codice.Size = new System.Drawing.Size(212, 20);
-            this.form_codice.TabIndex = 0;
+            this.form_codice.TabIndex = 1;
             // 
             // form_descrizione
             // 
             this.form_descrizione.Location = new System.Drawing.Point(193, 146);
             this.form_descrizione.Name = "form_descrizione";
             this.form_descrizione.Size = new System.Drawing.Size(281, 20);
-            this.form_descrizione.TabIndex = 0;
+            this.form_descrizione.TabIndex = 2;
             // 
             // label1
             // 
@@ -102,7 +102,7 @@
             this.Btn_aggiungi.Location = new System.Drawing.Point(347, 334);
             this.Btn_aggiungi.Name = "Btn_aggiungi";
             this.Btn_aggiungi.Size = new System.Drawing.Size(127, 37);
-            this.Btn_aggiungi.TabIndex = 2;
+            this.Btn_aggiungi.TabIndex = 8;
             this.Btn_aggiungi.Text = "CREA";
             this.Btn_aggiungi.UseVisualStyleBackColor = true;
             this.Btn_aggiungi.Click += new System.EventHandler(this.Btn_aggiungi_Click);
@@ -189,7 +189,7 @@
             0});
             this.form_leadTime.Name = "form_leadTime";
             this.form_leadTime.Size = new System.Drawing.Size(50, 20);
-            this.form_leadTime.TabIndex = 4;
+            this.form_leadTime.TabIndex = 3;
             this.form_leadTime.Value = new decimal(new int[] {
             1,
             0,
@@ -210,7 +210,7 @@
             this.form__scortaDiSicurezza.Location = new System.Drawing.Point(193, 224);
             this.form__scortaDiSicurezza.Name = "form__scortaDiSicurezza";
             this.form__scortaDiSicurezza.Size = new System.Drawing.Size(50, 20);
-            this.form__scortaDiSicurezza.TabIndex = 4;
+            this.form__scortaDiSicurezza.TabIndex = 5;
             this.form__scortaDiSicurezza.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form__scortaDiSicurezza_KeyPress);
             // 
             // form_lotto
@@ -223,7 +223,7 @@
             0});
             this.form_lotto.Name = "form_lotto";
             this.form_lotto.Size = new System.Drawing.Size(50, 20);
-            this.form_lotto.TabIndex = 4;
+            this.form_lotto.TabIndex = 6;
             this.form_lotto.Value = new decimal(new int[] {
             1,
             0,
@@ -241,7 +241,7 @@
             0});
             this.form_periodoDiCopertura.Name = "form_periodoDiCopertura";
             this.form_periodoDiCopertura.Size = new System.Drawing.Size(50, 20);
-            this.form_periodoDiCopertura.TabIndex = 4;
+            this.form_periodoDiCopertura.TabIndex = 7;
             this.form_periodoDiCopertura.Value = new decimal(new int[] {
             1,
             0,

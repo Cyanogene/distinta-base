@@ -33,7 +33,7 @@ namespace distinta_base
             AggiornaNodi(Albero);
             foreach (Componente Nodo in Nodi)
             {
-                if (Nodo.Codice == TreeNode.Tag.ToString())
+                if (Nodo.Codice == TreeNode.Tag.ToString() && Nodo.SottoNodi.Count == TreeNode.Nodes.Count)
                 {
                     Componente = Nodo;
                 }
@@ -58,7 +58,7 @@ namespace distinta_base
         {
             TreeNode treeNode = new TreeNode(Node.Nome);
             treeNode.Tag = Node.Codice;
-            if (Node.SottoNodi != null)
+            if (Node.SottoNodi != null && Node.SottoNodi.Count>0)
             {
                 foreach (Componente node in Node.SottoNodi)
                 {
