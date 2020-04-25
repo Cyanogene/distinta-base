@@ -68,6 +68,7 @@
             this.form_codice.Name = "form_codice";
             this.form_codice.Size = new System.Drawing.Size(212, 20);
             this.form_codice.TabIndex = 1;
+            this.form_codice.Validating += new System.ComponentModel.CancelEventHandler(this.form_codice_Validating);
             // 
             // form_descrizione
             // 

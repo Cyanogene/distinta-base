@@ -275,5 +275,17 @@ namespace distinta_base
         {
             CenterToParent();
         }
+
+        private void form_codice_Validating(object sender, CancelEventArgs e)
+        {
+            bool ris = form_codice.Text.All(char.IsLetterOrDigit);
+            if (!ris)
+            {
+                MessageBox.Show("Il codice può essere composto solo da lettere e numeri.", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                form_codice.Text = "";
+                form_codice.Focus();
+                return;
+            }
+        }
     }
 }
