@@ -253,7 +253,6 @@ namespace distinta_base
                 foreach (Componente sottoComponente in Albero.SottoNodi)
                 {
                     AggiungiComponente(comp, compPadre, sottoComponente);
-                    return;
                 }
             }
         }
