@@ -30,6 +30,7 @@ namespace distinta_base
         public Componente TreeNodeToNode(TreeNode TreeNode)
         {
             Componente Componente = new Componente();
+            Nodi.Clear();
             AggiornaNodi(Albero);
             foreach (Componente Nodo in Nodi)
             {
@@ -43,7 +44,7 @@ namespace distinta_base
 
         public void AggiornaNodi(Componente comp)
         {
-            Nodi.Clear();
+            
             if(comp.SottoNodi!=null)
             {
                 foreach (Componente sottoComp in comp.SottoNodi)

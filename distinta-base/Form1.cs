@@ -299,6 +299,7 @@ namespace distinta_base
         private void treeView_DistintaBase_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (treeView_DistintaBase.SelectedNode == null) return;
+            TreeNode tree = treeView_DistintaBase.SelectedNode;
             AggiornaTreeView(generale.ModificaNodo(treeView_DistintaBase));
             ControlloTreeView();
         }//doppio click su nodo mi permette di modificarlo
@@ -327,6 +328,7 @@ namespace distinta_base
         {
             if (treeNode == null)
             {
+                treeView_DistintaBase.Nodes.Clear();
                 return;
             }
             treeView_DistintaBase.Nodes.Clear();

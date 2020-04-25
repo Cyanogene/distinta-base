@@ -89,7 +89,7 @@ namespace distinta_base
         public TreeNode caricaDistintaBase()
         {
             Componente comp = distintaBase.Carica();
-            if (comp == null) return null;
+            if (comp == null) return distintaBase.NodeToTreeNode(distintaBase.Albero);
             if (EsisteComponente(comp))
             {
                 if (MessageBox.Show("Nel catalogo è presente un componente con lo stesso codice della distinta base che si sta caricando,proseguire il caricamento e quindi rimuovere il componente dal catalogo?", "ATTENZIONE", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -98,7 +98,7 @@ namespace distinta_base
                 }
                 else
                 {
-                    return null;
+                    return distintaBase.NodeToTreeNode(distintaBase.Albero);
                 }
             }
             else if (EsisteComponenteESottocomponenti(comp))
@@ -109,7 +109,7 @@ namespace distinta_base
                 }
                 else
                 {
-                    return null;
+                    return distintaBase.NodeToTreeNode(distintaBase.Albero);
                 }
             }
             distintaBase.Albero = comp;
@@ -119,7 +119,7 @@ namespace distinta_base
         public TreeNode NuovoNodoDistintaBase()
         {
             Componente comp = distintaBase.AggiungiMateriaPrima(Componenti());
-            if (comp == null) return null;
+            if (comp == null) return distintaBase.NodeToTreeNode(distintaBase.Albero);
             distintaBase.Albero = comp;
             return distintaBase.NodeToTreeNode(comp);
         }
@@ -156,7 +156,7 @@ namespace distinta_base
         public TreeNode CaricaNodoDaFile(TreeView treeView)
         {
             Componente comp = distintaBase.CaricaNodoDaFile();
-            if (comp == null) return null;
+            if (comp == null) return distintaBase.NodeToTreeNode(distintaBase.Albero);
             Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
             AggiungiComponente(comp, compPadre, distintaBase.Albero);
             return distintaBase.NodeToTreeNode(distintaBase.Albero);
@@ -164,7 +164,7 @@ namespace distinta_base
 
         public TreeNode CaricaNodoDaCatalogo(TreeView treeView)
         {
-            if (catalogo.Nodi.Count() == 0) { MessageBox.Show("Il catalogo è vuoto", "ATTENZIONE"); return null; }
+            if (catalogo.Nodi.Count() == 0) { MessageBox.Show("Il catalogo è vuoto", "ATTENZIONE"); return distintaBase.NodeToTreeNode(distintaBase.Albero); }
             Componente comp = distintaBase.CaricaDaCatalogo(catalogo.Nodi);
             if (comp == null) return null;
             Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
@@ -175,7 +175,7 @@ namespace distinta_base
         public TreeNode CaricaTreeNodeMateriaPrima(TreeView treeView)
         {
             Componente comp = distintaBase.AggiungiMateriaPrima(Componenti());
-            if (comp == null) return null;
+            if (comp == null) return distintaBase.NodeToTreeNode(distintaBase.Albero);
             Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
             AggiungiComponente(comp, compPadre, distintaBase.Albero);
             return distintaBase.NodeToTreeNode(distintaBase.Albero);
@@ -191,7 +191,7 @@ namespace distinta_base
             {
                 if (!form2.attendo)
                 {
-                    return null;
+                    return distintaBase.NodeToTreeNode(distintaBase.Albero);
                 }
             }
             comp.SottoNodi = compVecchio.SottoNodi;
