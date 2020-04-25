@@ -254,6 +254,7 @@ namespace distinta_base
 
         private void informazioniToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (treeView_DistintaBase.SelectedNode == null) return;
             if (treeView_DistintaBase.SelectedNode == null) { return; }
             string Codice = treeView_DistintaBase.SelectedNode.Tag.ToString();
 
@@ -262,36 +263,42 @@ namespace distinta_base
 
         private void daCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (treeView_DistintaBase.SelectedNode == null) return;
             AggiornaTreeView(generale.CaricaNodoDaCatalogo(treeView_DistintaBase));
             ControlloTreeView();
         }//context menu click destro nodo mostra caricaNodo da Catalogo
 
         private void daFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (treeView_DistintaBase.SelectedNode == null) return;
             AggiornaTreeView(generale.CaricaNodoDaFile(treeView_DistintaBase));
             ControlloTreeView();
         }//context menu click destro nodo mostra caricaNodo da File
 
         private void creaNuovoNodoToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+            if (treeView_DistintaBase.SelectedNode == null) return;
             AggiornaTreeView(generale.CaricaTreeNodeMateriaPrima(treeView_DistintaBase));
             ControlloTreeView();
         }//context menu click destro nodo mostra creaNuovoNodo
 
         private void aggiungiACatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (treeView_DistintaBase.SelectedNode == null) return;
             generale.AggiungiComponenteACatalogo(treeView_DistintaBase);
             AggiornaCatalogo();
         }//context menu click destro nodo carica il nodo in catalogo
 
         private void modificaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (treeView_DistintaBase.SelectedNode == null) return;
             AggiornaTreeView(generale.ModificaNodo(treeView_DistintaBase));
             ControlloTreeView();
         }//context menu click destro nodo mi permette di modificarlo
 
         private void treeView_DistintaBase_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            if (treeView_DistintaBase.SelectedNode == null) return;
             AggiornaTreeView(generale.ModificaNodo(treeView_DistintaBase));
             ControlloTreeView();
         }//doppio click su nodo mi permette di modificarlo
