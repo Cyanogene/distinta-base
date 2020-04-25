@@ -92,6 +92,19 @@ namespace distinta_base
                     if (nodo.Nome == nodoInput.Nome && nodo.Descrizione == nodoInput.Descrizione && nodo.LeadTime == nodoInput.LeadTime && nodo.LeadTimeSicurezza == nodoInput.LeadTimeSicurezza && nodo.ScortaSicurezza == nodoInput.ScortaSicurezza && nodo.Lotto == nodoInput.Lotto && nodo.PeriodoDiCopertura == nodoInput.PeriodoDiCopertura)
                     {
                         nodo = nodoInput;
+                        nodo.Codice = form_codice.Text;
+                        if(codiceOK(nodo))
+                        {
+                            Close();
+                            return;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Il codice è già utilizzato per un altro componente, modificarlo", "ATTENZIONE");
+                            form_codice.Focus();
+                            form_codice.Clear();
+                            nodo = null;
+                        }
                         Close();
                         return;
                     }
@@ -167,6 +180,7 @@ namespace distinta_base
                         form_codice.Focus();
                         form_codice.Clear();
                         nodo = null;
+                        return;
                     }
                 }
                 else
@@ -284,6 +298,7 @@ namespace distinta_base
                 MessageBox.Show("Il codice può essere composto solo da lettere e numeri.", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 form_codice.Text = "";
                 form_codice.Focus();
+                nodo = new Componente();
                 return;
             }
         }

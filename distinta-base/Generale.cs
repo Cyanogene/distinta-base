@@ -14,8 +14,7 @@ namespace distinta_base
         public DistintaBase distintaBase = new DistintaBase();
         public Catalogo catalogo = new Catalogo();
 
-
-
+        
 
         //catalogo---------------------------------------------------------------
         public void AggiungiSemilavoratoACatalogo()
@@ -60,13 +59,13 @@ namespace distinta_base
 
         public void ModificaComponenteCatalogo(string codice)
         {
-            Componente comp = ComponenteDaCodice(codice);
+            Componente comp = ComponenteDaCodicePerCatalogo(codice);
             Componente newComp = catalogo.Modifica(comp, Componenti());
         }
 
         public void RimuoviComponenteDaCatalogo(string codice)
         {
-            catalogo.Nodi.Remove(ComponenteDaCodice(codice));
+            catalogo.Nodi.Remove(ComponenteDaCodicePerCatalogo(codice));
         }
 
         public string InfoComponente(string codice)
@@ -297,6 +296,7 @@ namespace distinta_base
         public List<Componente> Componenti()
         {
             List<Componente> componenti = new List<Componente>();
+            distintaBase.Nodi.Clear();
             distintaBase.AggiornaNodi(distintaBase.Albero);
             componenti.AddRange(distintaBase.Nodi);
             componenti.AddRange(catalogo.Nodi);
@@ -336,6 +336,19 @@ namespace distinta_base
         public Componente ComponenteDaCodice(string codice)
         {
             List<Componente> componenti = Componenti();
+            foreach (Componente comp in componenti)
+            {
+                if (comp.Codice == codice)
+                {
+                    return comp;
+                }
+            }
+            return null;
+        }
+
+        public Componente ComponenteDaCodicePerCatalogo(string codice)
+        {
+            List<Componente> componenti = catalogo.Nodi;
             foreach (Componente comp in componenti)
             {
                 if (comp.Codice == codice)
