@@ -52,8 +52,8 @@
             this.rimuoviToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informazioniToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_distintaBase = new System.Windows.Forms.Label();
+            this.lbl_catalogo = new System.Windows.Forms.Label();
             this.Cms_Informazioni = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.guidaSullaDistintaBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guidaSulCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,6 +78,7 @@
             // 
             // treeView_DistintaBase
             // 
+            this.treeView_DistintaBase.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.treeView_DistintaBase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.treeView_DistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView_DistintaBase.Location = new System.Drawing.Point(100, 100);
@@ -90,6 +91,7 @@
             // 
             // Btn_AggiungiMateriaPrima
             // 
+            this.Btn_AggiungiMateriaPrima.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Btn_AggiungiMateriaPrima.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_AggiungiMateriaPrima.Location = new System.Drawing.Point(957, 558);
             this.Btn_AggiungiMateriaPrima.Margin = new System.Windows.Forms.Padding(4);
@@ -102,6 +104,7 @@
             // 
             // Btn_AggiungiSemilavorato
             // 
+            this.Btn_AggiungiSemilavorato.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Btn_AggiungiSemilavorato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Btn_AggiungiSemilavorato.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_AggiungiSemilavorato.Location = new System.Drawing.Point(730, 558);
@@ -115,6 +118,7 @@
             // 
             // Btn_caricaDaCatalogo
             // 
+            this.Btn_caricaDaCatalogo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Btn_caricaDaCatalogo.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_caricaDaCatalogo.Location = new System.Drawing.Point(327, 558);
             this.Btn_caricaDaCatalogo.Margin = new System.Windows.Forms.Padding(4);
@@ -127,6 +131,7 @@
             // 
             // listView_catalogo
             // 
+            this.listView_catalogo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listView_catalogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.listView_catalogo.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView_catalogo.HideSelection = false;
@@ -233,6 +238,7 @@
             // 
             // Btn_creaNuovaDistintaBase
             // 
+            this.Btn_creaNuovaDistintaBase.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Btn_creaNuovaDistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_creaNuovaDistintaBase.Location = new System.Drawing.Point(100, 558);
             this.Btn_creaNuovaDistintaBase.Margin = new System.Windows.Forms.Padding(4);
@@ -273,27 +279,27 @@
             this.informazioniToolStripMenuItem1.Text = "Informazioni";
             this.informazioniToolStripMenuItem1.Click += new System.EventHandler(this.informazioniToolStripMenuItem1_Click);
             // 
-            // label1
+            // lbl_distintaBase
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(95, 69);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 27);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "DISTINTA BASE";
+            this.lbl_distintaBase.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_distintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lbl_distintaBase.Location = new System.Drawing.Point(95, 69);
+            this.lbl_distintaBase.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_distintaBase.Name = "lbl_distintaBase";
+            this.lbl_distintaBase.Size = new System.Drawing.Size(166, 27);
+            this.lbl_distintaBase.TabIndex = 20;
+            this.lbl_distintaBase.Text = "DISTINTA BASE";
             // 
-            // label2
+            // lbl_catalogo
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(725, 69);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 27);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "CATALOGO";
+            this.lbl_catalogo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_catalogo.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_catalogo.Location = new System.Drawing.Point(725, 69);
+            this.lbl_catalogo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_catalogo.Name = "lbl_catalogo";
+            this.lbl_catalogo.Size = new System.Drawing.Size(125, 27);
+            this.lbl_catalogo.TabIndex = 20;
+            this.lbl_catalogo.Text = "CATALOGO";
             // 
             // Cms_Informazioni
             // 
@@ -425,8 +431,8 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbl_catalogo);
+            this.Controls.Add(this.lbl_distintaBase);
             this.Controls.Add(this.Btn_creaNuovaDistintaBase);
             this.Controls.Add(this.listView_catalogo);
             this.Controls.Add(this.Btn_caricaDaCatalogo);
@@ -439,8 +445,8 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Distinta base";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.Cms_TreeView.ResumeLayout(false);
             this.Cms_ListBox.ResumeLayout(false);
             this.Cms_Informazioni.ResumeLayout(false);
@@ -471,8 +477,8 @@
         private System.Windows.Forms.ToolStripMenuItem creaNuovoNodoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificaToolStripMenuItem1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_distintaBase;
+        private System.Windows.Forms.Label lbl_catalogo;
         private System.Windows.Forms.ContextMenuStrip Cms_Informazioni;
         private System.Windows.Forms.ToolStripMenuItem guidaSullaDistintaBaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem guidaSulCatalogoToolStripMenuItem;

@@ -274,6 +274,7 @@
             this.Controls.Add(this.form_descrizione);
             this.Controls.Add(this.form_codice);
             this.Controls.Add(this.form_nome);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2_NewNode";
             this.Text = "Distinta base";

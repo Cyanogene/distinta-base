@@ -27,9 +27,63 @@ namespace distinta_base
             CreaListView();
             ControlloTreeView();
             AggiornaCatalogo();
+
+            formOriginalSize = Size;
+
+            BtncreaNuovaDistintaBaseOriginalRect = new Rectangle(Btn_creaNuovaDistintaBase.Location.X, Btn_creaNuovaDistintaBase.Location.Y, Btn_creaNuovaDistintaBase.Width, Btn_creaNuovaDistintaBase.Height);
+            BtncaricaDaCatalogoOriginalRect = new Rectangle(Btn_caricaDaCatalogo.Location.X, Btn_caricaDaCatalogo.Location.Y, Btn_caricaDaCatalogo.Width, Btn_caricaDaCatalogo.Height);
+            BtnAggiungiSemilavoratoOriginalRect = new Rectangle(Btn_AggiungiSemilavorato.Location.X, Btn_AggiungiSemilavorato.Location.Y, Btn_AggiungiSemilavorato.Width, Btn_AggiungiSemilavorato.Height);
+            BtnAggiungiMateriaPrimaOriginalRect = new Rectangle(Btn_AggiungiMateriaPrima.Location.X, Btn_AggiungiMateriaPrima.Location.Y, Btn_AggiungiMateriaPrima.Width, Btn_AggiungiMateriaPrima.Height);
+            TreeViewDistintaBaseOriginalRect = new Rectangle(treeView_DistintaBase.Location.X, treeView_DistintaBase.Location.Y, treeView_DistintaBase.Width, treeView_DistintaBase.Height);
+            ListView_catalogoOriginalRect = new Rectangle(listView_catalogo.Location.X, listView_catalogo.Location.Y, listView_catalogo.Width, listView_catalogo.Height);
+            LblDistintaBaseOriginalRect = new Rectangle(lbl_distintaBase.Location.X, lbl_distintaBase.Location.Y, lbl_distintaBase.Width, lbl_distintaBase.Height);
+            LblCatalogoOriginalRect = new Rectangle(lbl_catalogo.Location.X, lbl_catalogo.Location.Y, lbl_catalogo.Width, lbl_catalogo.Height);
+        }
+
+        private void resizeChildrenControls()
+        {
+            resizeControl(BtncreaNuovaDistintaBaseOriginalRect, Btn_creaNuovaDistintaBase);
+            resizeControl(BtncaricaDaCatalogoOriginalRect, Btn_caricaDaCatalogo);
+            resizeControl(BtnAggiungiSemilavoratoOriginalRect, Btn_AggiungiSemilavorato);
+            resizeControl(BtnAggiungiMateriaPrimaOriginalRect, Btn_AggiungiMateriaPrima);
+            resizeControl(TreeViewDistintaBaseOriginalRect, treeView_DistintaBase);
+            resizeControl(ListView_catalogoOriginalRect, listView_catalogo);
+            resizeControl(LblDistintaBaseOriginalRect, lbl_distintaBase);
+            resizeControl(LblCatalogoOriginalRect, lbl_catalogo);
+        }
+        
+
+        private void resizeControl(Rectangle originalControlRect, Control control)
+        {
+            float xRatio = (float)(Width) / (float)(formOriginalSize.Width);
+            float yRatio = (float)(Height) / (float)(formOriginalSize.Height);
+
+            int newX = (int)(originalControlRect.Location.X * xRatio);
+            int newY = (int)(originalControlRect.Location.Y * yRatio);
+            int newWidth = (int)(originalControlRect.Size.Width * xRatio);
+            int newHeight = (int)(originalControlRect.Size.Height * yRatio);
+
+            control.Location = new Point(newX, newY);
+            control.Size = new Size(newWidth, newHeight);
         }
 
 
+
+        private Rectangle BtncreaNuovaDistintaBaseOriginalRect;
+        private Rectangle BtncaricaDaCatalogoOriginalRect;
+        private Rectangle BtnAggiungiSemilavoratoOriginalRect;
+        private Rectangle BtnAggiungiMateriaPrimaOriginalRect;
+        private Rectangle TreeViewDistintaBaseOriginalRect;
+        private Rectangle ListView_catalogoOriginalRect;
+        private Rectangle LblDistintaBaseOriginalRect;
+        private Rectangle LblCatalogoOriginalRect;
+
+        private Size formOriginalSize;
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            resizeChildrenControls();
+        }
 
 
         //Catalogo---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -132,7 +186,7 @@ namespace distinta_base
             listView_catalogo.FullRowSelect = true;
             listView_catalogo.Columns.Add("Nome", 120);
             listView_catalogo.Columns.Add("Codice", 100);
-            listView_catalogo.Columns.Add("Descrizione", 220);
+            listView_catalogo.Columns.Add("Descrizione", 500);
         }//Crea le colonne della listView  (NOME CODICE DESCRIZIONE) <--- di ogni prodotto
 
         private void listView_catalogo_ColumnWidthChanging_1(object sender, ColumnWidthChangingEventArgs e)
@@ -350,6 +404,7 @@ namespace distinta_base
         {
             MessageBox.Show("Si può caricare, salvare o resettare il catalogo tramite l'apposita voce nella barra-menu.\nSi può caricare un componente o crearne uno nuovo con gli appositi pulsanti.", "TUTORIAL", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        
 
         /*private void Btn_Informazioni_MouseClick(object sender, MouseEventArgs e)
         {
