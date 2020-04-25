@@ -208,7 +208,7 @@ namespace distinta_base
         {
             treeView_DistintaBase.Nodes.Clear();
             TreeNode treeNode = generale.CaricaDaCatalogo();
-            if (treeNode.Text != "")
+            if (treeNode != null)
             {
                 treeView_DistintaBase.Nodes.Add(treeNode);
             }
