@@ -83,60 +83,10 @@ namespace distinta_base
                         Lotto = Lotto,
                         PeriodoDiCopertura = PeriodoDiCopertura,
                     };
-                    if ( nodo.Nome == nodoInput.Nome && nodo.Codice == nodoInput.Codice && nodo.Descrizione == nodoInput.Descrizione && nodo.LeadTime == nodoInput.LeadTime && nodo.LeadTimeSicurezza == nodoInput.LeadTimeSicurezza && nodo.ScortaSicurezza == nodoInput.ScortaSicurezza && nodo.Lotto == nodoInput.Lotto && nodo.PeriodoDiCopertura == nodoInput.PeriodoDiCopertura)
+                    if(codiceOK(nodo))
                     {
-                        nodo = nodoInput;
                         Close();
                         return;
-                    }
-                    if (nodo.Nome == nodoInput.Nome && nodo.Descrizione == nodoInput.Descrizione && nodo.LeadTime == nodoInput.LeadTime && nodo.LeadTimeSicurezza == nodoInput.LeadTimeSicurezza && nodo.ScortaSicurezza == nodoInput.ScortaSicurezza && nodo.Lotto == nodoInput.Lotto && nodo.PeriodoDiCopertura == nodoInput.PeriodoDiCopertura)
-                    {
-                        nodo = nodoInput;
-                        nodo.Codice = form_codice.Text;
-                        if(codiceOK(nodo))
-                        {
-                            Close();
-                            return;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Il codice è già utilizzato per un altro componente, modificarlo", "ATTENZIONE");
-                            form_codice.Focus();
-                            form_codice.Clear();
-                            nodo = null;
-                        }
-                        Close();
-                        return;
-                    }
-                    else
-                    {
-                        if (nodo.Codice != nodoInput.Codice && codiceOK(nodo))
-                        {
-                            Close();
-                            return;
-                        }
-                        else
-                        {
-                            if (MessageBox.Show("Hai modificato il componente quindi ora devi modificare il codice, mantenere le modifiche?", "ATTENZIONE", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                            {
-                                form_codice.Focus();
-                                form_codice.Clear();
-                                nodo = null;
-                                return;
-                            }
-                            else
-                            {
-                                form_nome.Text = nodoInput.Nome;
-                                form_codice.Text = nodoInput.Codice;
-                                form_descrizione.Text = nodoInput.Descrizione;
-                                form_leadTime.Value = nodoInput.LeadTime;
-                                form_leadTimeSicurezza.Value = nodoInput.LeadTimeSicurezza;
-                                form__scortaDiSicurezza.Value = nodoInput.ScortaSicurezza;
-                                form_lotto.Value = nodoInput.Lotto;
-                                form_periodoDiCopertura.Value = nodoInput.PeriodoDiCopertura;
-                                return;
-                            }
-                        }
                     }
                 }
                 else
@@ -198,7 +148,7 @@ namespace distinta_base
             {
                 foreach (Componente sottoComp in componenteDaControllare.SottoNodi)
                 {
-                    if(!ControlloCodice(componenteDaControllare, sottoComp))
+                    if (!ControlloCodice(componenteDaControllare, sottoComp))
                     {
                         return false;
                     }
@@ -206,7 +156,7 @@ namespace distinta_base
             }
             if (componenteDaControllare.Codice == componente.Codice)
             {
-                if(NodiUguali(componenteDaControllare, componente))
+                if (NodiUguali(componenteDaControllare, componente) ||  (NodiUguali(componente,nodoInput) && contatoreCodice(componente.Codice) == 1))
                 {
                     return true;
                 }
@@ -218,11 +168,35 @@ namespace distinta_base
             return true;
         }
 
+        private int contatoreCodice(string codice)
+        {
+            int n = 0;
+            foreach(Componente comp in Componenti)
+            {
+                n += contatoreCodiceSecondario(codice, comp);
+            }
+            return n;
+        }
+
+        public int contatoreCodiceSecondario(string codice, Componente comp)
+        {
+            int n = 0;
+            if(comp.Codice == codice)
+            {
+                n++;
+            }
+            foreach(Componente sottoComp in comp.SottoNodi)
+            {
+                n += contatoreCodiceSecondario(codice, sottoComp);
+            }
+            return n;
+        }
+
         private bool codiceOK(Componente comp)
         {
             foreach (Componente componente in Componenti)
             {
-                if(!ControlloCodice(comp, componente))
+                if (!ControlloCodice(comp, componente))
                 {
                     return false;
                 }
@@ -237,16 +211,6 @@ namespace distinta_base
                 return true;
             }
             return false;
-        }
-
-
-
-        private Random random = new Random();
-
-        public string RandomString(int length)
-        {
-            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
 

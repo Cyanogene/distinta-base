@@ -130,20 +130,7 @@ namespace distinta_base
                     return null;
                 }
             }
-            Componente NewComponente = new Componente
-            {
-                Nome = nodo.Nome,
-                Codice = nodo.Codice,
-                LeadTime = nodo.LeadTime,
-                LeadTimeSicurezza = nodo.LeadTimeSicurezza,
-                Descrizione = nodo.Descrizione,
-                PeriodoDiCopertura = nodo.PeriodoDiCopertura,
-                ScortaSicurezza = nodo.ScortaSicurezza,
-                Lotto = nodo.Lotto,
-                SottoNodi = nodo.SottoNodi,
-                Code = RandomString(100),
-            };
-            return NewComponente;
+            return nodo;
         }//
 
         public Componente CaricaDaCatalogo(List<Componente> Componenti)
@@ -158,20 +145,7 @@ namespace distinta_base
                     return null;
                 }
             }
-            Componente NewComponente = new Componente
-            {
-                Nome = nodo.Nome,
-                Codice = nodo.Codice,
-                LeadTime = nodo.LeadTime,
-                LeadTimeSicurezza = nodo.LeadTimeSicurezza,
-                Descrizione = nodo.Descrizione,
-                PeriodoDiCopertura = nodo.PeriodoDiCopertura,
-                ScortaSicurezza = nodo.ScortaSicurezza,
-                Lotto = nodo.Lotto,
-                SottoNodi = nodo.SottoNodi,
-                Code = RandomString(100),
-            };
-            return NewComponente;
+            return nodo;
         }//
         
         public Componente CaricaNodoDaFile()
@@ -190,28 +164,7 @@ namespace distinta_base
                     stream.Close();
                 }
             }
-            Componente NewComponente = new Componente
-            {
-                Nome = risultato.Nome,
-                Codice = risultato.Codice,
-                LeadTime = risultato.LeadTime,
-                LeadTimeSicurezza = risultato.LeadTimeSicurezza,
-                Descrizione = risultato.Descrizione,
-                PeriodoDiCopertura = risultato.PeriodoDiCopertura,
-                ScortaSicurezza = risultato.ScortaSicurezza,
-                Lotto = risultato.Lotto,
-                SottoNodi = risultato.SottoNodi,
-                Code = RandomString(100),
-            };
-            return NewComponente;
-        }
-
-        private Random random = new Random();
-
-        public string RandomString(int length)
-        {
-            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+            return risultato;
         }
     }
 }

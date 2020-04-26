@@ -25,7 +25,6 @@ namespace distinta_base
         public int Lotto { get; set; }
         public int PeriodoDiCopertura { get; set; }
         public List<Componente> SottoNodi = new List<Componente>();
-        public string Code { get; set; }
 
         public static Componente DeepClone<Componente>(Componente obj)
         {

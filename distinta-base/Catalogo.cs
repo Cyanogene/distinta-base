@@ -110,20 +110,8 @@ namespace distinta_base
                     return;
                 }
             }
-            Componente NewComponente = new Componente
-            {
-                Nome = ComponenteForm.Nome,
-                Codice = ComponenteForm.Codice,
-                LeadTime = ComponenteForm.LeadTime,
-                LeadTimeSicurezza = ComponenteForm.LeadTimeSicurezza,
-                Descrizione = ComponenteForm.Descrizione,
-                PeriodoDiCopertura = ComponenteForm.PeriodoDiCopertura,
-                ScortaSicurezza = ComponenteForm.ScortaSicurezza,
-                Lotto = ComponenteForm.Lotto,
-                SottoNodi = componente.SottoNodi,
-            };
             Nodi.Remove(componente);
-            Nodi.Add(NewComponente);
+            Nodi.Add(Componente.DeepClone<Componente>(ComponenteForm));
         }//
 
         public void SostituisciComponente(Componente comp)
