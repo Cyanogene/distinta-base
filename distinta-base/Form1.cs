@@ -163,7 +163,7 @@ namespace distinta_base
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
             string Codice = listView_catalogo.SelectedItems[0].SubItems[1].Text;
 
-            MessageBox.Show(generale.InfoComponente(Codice), "INFORMAZIONI", MessageBoxButtons.OK);
+            MessageBox.Show(generale.InfoComponenteCatalogo(Codice), "INFORMAZIONI", MessageBoxButtons.OK);
         }//contextMenu listbox da info elemento selezionato
 
         private void modificaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -236,7 +236,7 @@ namespace distinta_base
         private void SalvaDistintaBase()
         {
             if (treeView_DistintaBase.Nodes.Count == 0) return;
-            generale.salvaDistintaBase(treeView_DistintaBase);
+            generale.salvaDistintaBase();
             ControlloTreeView();
         }//BTN salva la distinta base
 
@@ -276,7 +276,7 @@ namespace distinta_base
         private void Btn_creaNuovaDistintaBase_Click(object sender, EventArgs e)
         {
             treeView_DistintaBase.Nodes.Clear();
-            TreeNode treeNode = generale.NuovoNodoDistintaBase();
+            TreeNode treeNode = generale.CreaNuovaDistintaBase();
             if (treeNode == null) return;
             if (treeNode.Text != "")
             {
@@ -316,7 +316,7 @@ namespace distinta_base
             if (treeView_DistintaBase.SelectedNode == null) { return; }
             string Codice = treeView_DistintaBase.SelectedNode.Tag.ToString();
 
-            MessageBox.Show(generale.InfoComponente(Codice), "INFORMAZIONI", MessageBoxButtons.OK);
+            MessageBox.Show(generale.InfoComponenteDistintabase(Codice), "INFORMAZIONI", MessageBoxButtons.OK);
         }//context menu click destro nodo mostra info
 
         private void daCatalogoToolStripMenuItem_Click(object sender, EventArgs e)

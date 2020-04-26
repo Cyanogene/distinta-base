@@ -21,7 +21,6 @@ namespace distinta_base
 
         public void AggiornaNodi(Componente comp)
         {
-            
             if(comp.SottoNodi!=null)
             {
                 foreach (Componente sottoComp in comp.SottoNodi)
@@ -92,7 +91,7 @@ namespace distinta_base
             OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
             Ofd_Catalogo.InitialDirectory = @"C:\";
             Ofd_Catalogo.Filter = "XML|*.xml";
-            Componente risultato = null; ;
+            Componente risultato = null;
 
             if (Ofd_Catalogo.ShowDialog() == DialogResult.OK)
             {
@@ -107,7 +106,6 @@ namespace distinta_base
                     catch
                     {
                         MessageBox.Show("Il file caricato non è un file di tipo distinta base, si prega di caricare un file di tipo distinta base", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return null;
                     }
                     stream.Close();
                 }
@@ -130,13 +128,27 @@ namespace distinta_base
                     return null;
                 }
             }
-            return nodo;
+            Componente NewComponente = new Componente
+            {
+                Nome = nodo.Nome,
+                Codice = nodo.Codice,
+                LeadTime = nodo.LeadTime,
+                LeadTimeSicurezza = nodo.LeadTimeSicurezza,
+                Descrizione = nodo.Descrizione,
+                PeriodoDiCopertura = nodo.PeriodoDiCopertura,
+                ScortaSicurezza = nodo.ScortaSicurezza,
+                Lotto = nodo.Lotto,
+                SottoNodi = nodo.SottoNodi,
+                Code = RandomString(100),
+            };
+            return NewComponente;
         }//
 
         public Componente CaricaDaCatalogo(List<Componente> Componenti)
         {
             Form3_Catalogo form3 = new Form3_Catalogo(Componenti);
             form3.ShowDialog();
+            Componente nodo = form3.nodo;
             while (form3.nodo == null)
             {
                 if (!form3.attendo)
@@ -144,7 +156,20 @@ namespace distinta_base
                     return null;
                 }
             }
-            return form3.nodo;
+            Componente NewComponente = new Componente
+            {
+                Nome = nodo.Nome,
+                Codice = nodo.Codice,
+                LeadTime = nodo.LeadTime,
+                LeadTimeSicurezza = nodo.LeadTimeSicurezza,
+                Descrizione = nodo.Descrizione,
+                PeriodoDiCopertura = nodo.PeriodoDiCopertura,
+                ScortaSicurezza = nodo.ScortaSicurezza,
+                Lotto = nodo.Lotto,
+                SottoNodi = nodo.SottoNodi,
+                Code = RandomString(100),
+            };
+            return NewComponente;
         }//
         
         public Componente CaricaNodoDaFile()
@@ -153,7 +178,6 @@ namespace distinta_base
             Ofd_Catalogo.InitialDirectory = @"C:\";
             Ofd_Catalogo.Filter = "XML|*.xml";
             Componente risultato = null;
-
             if (Ofd_Catalogo.ShowDialog() == DialogResult.OK)
             {
                 if (File.Exists(Ofd_Catalogo.FileName))
@@ -164,7 +188,28 @@ namespace distinta_base
                     stream.Close();
                 }
             }
-            return risultato;
+            Componente NewComponente = new Componente
+            {
+                Nome = risultato.Nome,
+                Codice = risultato.Codice,
+                LeadTime = risultato.LeadTime,
+                LeadTimeSicurezza = risultato.LeadTimeSicurezza,
+                Descrizione = risultato.Descrizione,
+                PeriodoDiCopertura = risultato.PeriodoDiCopertura,
+                ScortaSicurezza = risultato.ScortaSicurezza,
+                Lotto = risultato.Lotto,
+                SottoNodi = risultato.SottoNodi,
+                Code = RandomString(100),
+            };
+            return NewComponente;
+        }
+
+        private Random random = new Random();
+
+        public string RandomString(int length)
+        {
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }

@@ -102,16 +102,28 @@ namespace distinta_base
         {
             Form2_NewNode form2 = new Form2_NewNode(componente, Componenti);
             form2.ShowDialog();
-            Componente nuovoNodo = form2.nodo;
-            while (nuovoNodo == null)
+            Componente ComponenteForm = form2.nodo;
+            while (ComponenteForm == null)
             {
                 if (!form2.attendo)
                 {
                     return;
                 }
             }
-            nuovoNodo.SottoNodi = componente.SottoNodi;
-            componente = nuovoNodo;
+            Componente NewComponente = new Componente
+            {
+                Nome = ComponenteForm.Nome,
+                Codice = ComponenteForm.Codice,
+                LeadTime = ComponenteForm.LeadTime,
+                LeadTimeSicurezza = ComponenteForm.LeadTimeSicurezza,
+                Descrizione = ComponenteForm.Descrizione,
+                PeriodoDiCopertura = ComponenteForm.PeriodoDiCopertura,
+                ScortaSicurezza = ComponenteForm.ScortaSicurezza,
+                Lotto = ComponenteForm.Lotto,
+                SottoNodi = componente.SottoNodi,
+            };
+            Nodi.Remove(componente);
+            Nodi.Add(NewComponente);
         }//
 
         public void SostituisciComponente(Componente comp)
@@ -148,5 +160,7 @@ namespace distinta_base
             }
             return componente;
         }//
+        
+        
     }
 }
