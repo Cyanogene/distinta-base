@@ -92,7 +92,7 @@ namespace distinta_base
             OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
             Ofd_Catalogo.InitialDirectory = @"C:\";
             Ofd_Catalogo.Filter = "XML|*.xml";
-            Componente risultato = new Componente();
+            Componente risultato = null; ;
 
             if (Ofd_Catalogo.ShowDialog() == DialogResult.OK)
             {
@@ -112,7 +112,6 @@ namespace distinta_base
                     stream.Close();
                 }
             }
-
             return risultato;
         }//
 
