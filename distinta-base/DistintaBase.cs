@@ -68,6 +68,8 @@ namespace distinta_base
 
         public void Salva(Componente nodo)
         {
+            Nodi.Clear();
+            AggiornaNodi(Albero);
             if (Nodi.Count == 0) return;
             SaveFileDialog Sfd_DistintaBase = new SaveFileDialog();
             Sfd_DistintaBase.InitialDirectory = @"C:\";
