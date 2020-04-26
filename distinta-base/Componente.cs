@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace distinta_base
 {
@@ -24,6 +26,19 @@ namespace distinta_base
         public int PeriodoDiCopertura { get; set; }
         public List<Componente> SottoNodi = new List<Componente>();
         public string Code { get; set; }
+
+        public static Componente DeepClone<Componente>(Componente obj)
+        {
+            if (obj == null) return default(Componente);
+            using (var ms = new MemoryStream())
+            {
+                var formatter = new BinaryFormatter();
+                formatter.Serialize(ms, obj);
+                ms.Position = 0;
+
+                return (Componente)formatter.Deserialize(ms);
+            }
+        }
     }
 
 
