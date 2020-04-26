@@ -40,6 +40,10 @@ namespace distinta_base
             LblCatalogoOriginalRect = new Rectangle(lbl_catalogo.Location.X, lbl_catalogo.Location.Y, lbl_catalogo.Width, lbl_catalogo.Height);
         }
 
+
+
+
+        //resize---------------------------------------------------------------------------------------------------------------------------------------------------
         private void resizeChildrenControls()
         {
             resizeControl(BtncreaNuovaDistintaBaseOriginalRect, Btn_creaNuovaDistintaBase);
@@ -52,7 +56,6 @@ namespace distinta_base
             resizeControl(LblCatalogoOriginalRect, lbl_catalogo);
         }
         
-
         private void resizeControl(Rectangle originalControlRect, Control control)
         {
             float xRatio = (float)(Width) / (float)(formOriginalSize.Width);
@@ -66,9 +69,7 @@ namespace distinta_base
             control.Location = new Point(newX, newY);
             control.Size = new Size(newWidth, newHeight);
         }
-
-
-
+               
         private Rectangle BtncreaNuovaDistintaBaseOriginalRect;
         private Rectangle BtncaricaDaCatalogoOriginalRect;
         private Rectangle BtnAggiungiSemilavoratoOriginalRect;
@@ -84,6 +85,9 @@ namespace distinta_base
         {
             resizeChildrenControls();
         }
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
         //Catalogo---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -387,6 +391,7 @@ namespace distinta_base
             }
             treeView_DistintaBase.Nodes.Clear();
             treeView_DistintaBase.Nodes.Add(treeNode);
+            treeView_DistintaBase.ExpandAll();
         }
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -404,36 +409,7 @@ namespace distinta_base
         {
             MessageBox.Show("Si può caricare, salvare o resettare il catalogo tramite l'apposita voce nella barra-menu.\nSi può caricare un componente o crearne uno nuovo con gli appositi pulsanti.", "TUTORIAL", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        
 
-        /*private void Btn_Informazioni_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-                Cms_Informazioni.Show(Btn_Informazioni, e.Location);
-        }
-
-        private void Btn_Informazioni_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-                Btn_Informazioni.Image = Properties.Resources.IconaPremuta;
-        }
-
-        private void Btn_Informazioni_MouseUp(object sender, MouseEventArgs e)
-        {
-            Btn_Informazioni.Image = Properties.Resources.IconaNormale;
-        }
-
-        private void guidaSullaDistintaBaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string text = "Fare click, col tasto destro del mouse, su un nodo per rimuoverlo, modificarlo, ottenere le proprie informazioni oppure aggiungere un sottonodo.";
-            MessageBox.Show(text, "Guida sulla distinta base", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void guidaSulCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string text = "Fare click, col tasto destro del mouse, su un elemento del catalogo per rimuoverlo, modificarlo oppure per ottenere le proprie informazioni.";
-            MessageBox.Show(text, "Guida sulla distinta base", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }*/
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     }

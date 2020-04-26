@@ -69,9 +69,9 @@ namespace distinta_base
             }
         }//
 
-        
 
-        public Componente AggiungiSemilavorato(List<Componente> componenti)
+
+        public Componente AggiungiSemilavorato()
         {
             OpenFileDialog Ofd_semilavorato = new OpenFileDialog();
             Ofd_semilavorato.InitialDirectory = @"C:\";
@@ -82,6 +82,52 @@ namespace distinta_base
             }
             return null;
         }//
+
+        public Componente AggiungiMateriaPrima(List<Componente> Componenti)
+        {
+            Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti);
+            form2.ShowDialog();
+            Componente nodo = form2.nodo;
+            while (nodo == null)
+            {
+                if (!form2.attendo)
+                {
+                    return  null;
+                }
+            }
+            return nodo;
+        }//
+        
+        public void Modifica(Componente componente, List<Componente> Componenti)
+        {
+            Form2_NewNode form2 = new Form2_NewNode(componente, Componenti);
+            form2.ShowDialog();
+            Componente nuovoNodo = form2.nodo;
+            while (nuovoNodo == null)
+            {
+                if (!form2.attendo)
+                {
+                    return;
+                }
+            }
+            nuovoNodo.SottoNodi = componente.SottoNodi;
+            componente = nuovoNodo;
+        }//
+
+        public void SostituisciComponente(Componente comp)
+        {
+            List<Componente> sottonodi = new List<Componente>();
+            Componente componenteDaRimuovere = new Componente();
+            foreach(Componente componente in Nodi)
+            {
+                if(componente.Codice == comp.Codice)
+                {
+                    componenteDaRimuovere = componente;
+                }
+            }
+            Nodi.Remove(componenteDaRimuovere);
+            Nodi.Add(comp);
+        }
 
         private Componente CaricaComponenteDaFile(string filePosition)
         {
@@ -102,51 +148,5 @@ namespace distinta_base
             }
             return componente;
         }//
-
-        public Componente AggiungiMateriaPrima(List<Componente> Componenti)
-        {
-            Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti);
-            form2.ShowDialog();
-            Componente nodo = form2.nodo;
-            while (nodo == null)
-            {
-                if (!form2.attendo)
-                {
-                    return  null;
-                }
-            }
-            return nodo;
-        }//
-        
-        public Componente Modifica(Componente componente, List<Componente> Componenti)
-        {
-            Form2_NewNode form2 = new Form2_NewNode(componente, Componenti);
-            form2.ShowDialog();
-            Componente nuovoNodo = form2.nodo;
-            while (nuovoNodo == null)
-            {
-                if (!form2.attendo)
-                {
-                    return null;
-                }
-            }
-            nuovoNodo.SottoNodi = componente.SottoNodi;
-            return nuovoNodo;
-        }//
-
-        public void SostituisciComponente(Componente comp)
-        {
-            List<Componente> sottonodi = new List<Componente>();
-            Componente componenteDaRimuovere = new Componente();
-            foreach(Componente componente in Nodi)
-            {
-                if(componente.Codice == comp.Codice)
-                {
-                    componenteDaRimuovere = componente;
-                }
-            }
-            Nodi.Remove(componenteDaRimuovere);
-            Nodi.Add(comp);
-        }
     }
 }

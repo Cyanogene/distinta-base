@@ -19,13 +19,21 @@ namespace distinta_base
 
         public Componente Albero = new Componente();
 
-
-
-
-        public Componente TreeViewToNode(TreeView TreeView)
+        public void AggiornaNodi(Componente comp)
         {
-            return Albero;
-        }//
+            
+            if(comp.SottoNodi!=null)
+            {
+                foreach (Componente sottoComp in comp.SottoNodi)
+                {
+                    AggiornaNodi(sottoComp);
+                }
+            }
+            Nodi.Add(comp);
+        }
+
+        
+
 
         public Componente TreeNodeToNode(TreeNode TreeNode)
         {
@@ -41,19 +49,6 @@ namespace distinta_base
             }
             return Componente;
         }//
-
-        public void AggiornaNodi(Componente comp)
-        {
-            
-            if(comp.SottoNodi!=null)
-            {
-                foreach (Componente sottoComp in comp.SottoNodi)
-                {
-                    AggiornaNodi(sottoComp);
-                }
-            }
-            Nodi.Add(comp);
-        }
 
         public TreeNode NodeToTreeNode(Componente Node)
         {
@@ -94,7 +89,6 @@ namespace distinta_base
 
         public Componente Carica()
         {
-            Nodi.Clear();
             OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
             Ofd_Catalogo.InitialDirectory = @"C:\";
             Ofd_Catalogo.Filter = "XML|*.xml";
@@ -113,6 +107,7 @@ namespace distinta_base
                     catch
                     {
                         MessageBox.Show("Il file caricato non è un file di tipo distinta base, si prega di caricare un file di tipo distinta base", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
                     }
                     stream.Close();
                 }
@@ -139,9 +134,9 @@ namespace distinta_base
             return nodo;
         }//
 
-        public Componente CaricaDaCatalogo(List<Componente> Nodi)
+        public Componente CaricaDaCatalogo(List<Componente> Componenti)
         {
-            Form3_Catalogo form3 = new Form3_Catalogo(Nodi);
+            Form3_Catalogo form3 = new Form3_Catalogo(Componenti);
             form3.ShowDialog();
             while (form3.nodo == null)
             {
@@ -171,8 +166,6 @@ namespace distinta_base
                 }
             }
             return risultato;
-
         }
-
     }
 }
