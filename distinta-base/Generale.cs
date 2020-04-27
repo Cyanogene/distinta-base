@@ -369,7 +369,9 @@ namespace distinta_base
                 }
                 return;
             }
-            NodiSoprastanti.Add(Albero);
+            Componente newComp = Componente.DeepClone<Componente>(Albero);
+            newComp.SottoNodi = null;
+            NodiSoprastanti.Add(newComp);
             if (Albero.SottoNodi != null && Albero.SottoNodi.Count > 0)
             {
                 foreach (Componente sottoComponente in Albero.SottoNodi)
