@@ -308,7 +308,7 @@ namespace distinta_base
             }
             else
             {
-                MessageBox.Show("Il componente ha codice uguale a un componente presente nel programma sebbene non siano lo stesso componente");
+                MessageBox.Show("Il componente ha codice uguale a un componente presente nel programma sebbene non siano lo stesso componente.\nLe modifiche non verranno appliccate", "ATTENZIONE", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             return distintaBase.NodeToTreeNode(distintaBase.Albero);
         }
