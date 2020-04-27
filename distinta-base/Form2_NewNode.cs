@@ -88,6 +88,14 @@ namespace distinta_base
                         Close();
                         return;
                     }
+                    else
+                    {
+                        MessageBox.Show("Il codice inserito è già in uso per un altro componente", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        nodo = null;
+                        form_codice.Clear();
+                        form_codice.Focus();
+                        return;
+                    }
                 }
                 else
                 {
@@ -185,9 +193,12 @@ namespace distinta_base
             {
                 n++;
             }
-            foreach(Componente sottoComp in comp.SottoNodi)
+            if(comp.SottoNodi!=null)
             {
-                n += contatoreCodiceSecondario(codice, sottoComp);
+                foreach (Componente sottoComp in comp.SottoNodi)
+                {
+                    n += contatoreCodiceSecondario(codice, sottoComp);
+                }
             }
             return n;
         }

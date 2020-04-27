@@ -98,7 +98,7 @@ namespace distinta_base
             return nodo;
         }//
         
-        public void Modifica(Componente componente, List<Componente> Componenti)
+        public Componente Modifica(Componente componente, List<Componente> Componenti)
         {
             Form2_NewNode form2 = new Form2_NewNode(componente, Componenti);
             form2.ShowDialog();
@@ -107,28 +107,14 @@ namespace distinta_base
             {
                 if (!form2.attendo)
                 {
-                    return;
+                    return null;
                 }
             }
-            Nodi.Remove(componente);
-            Nodi.Add(Componente.DeepClone<Componente>(ComponenteForm));
+            return Componente.DeepClone<Componente>(ComponenteForm);
         }//
 
-        public void SostituisciComponente(Componente comp)
-        {
-            List<Componente> sottonodi = new List<Componente>();
-            Componente componenteDaRimuovere = new Componente();
-            foreach(Componente componente in Nodi)
-            {
-                if(componente.Codice == comp.Codice)
-                {
-                    componenteDaRimuovere = componente;
-                }
-            }
-            Nodi.Remove(componenteDaRimuovere);
-            Nodi.Add(comp);
-        }
 
+        
         private Componente CaricaComponenteDaFile(string filePosition)
         {
             Componente componente = new Componente();
@@ -148,7 +134,6 @@ namespace distinta_base
             }
             return componente;
         }//
-        
         
     }
 }

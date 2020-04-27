@@ -28,7 +28,7 @@ namespace distinta_base
                     AggiornaNodi(sottoComp);
                 }
             }
-            Nodi.Add(comp);
+            if(comp.Nome!=null) Nodi.Add(comp);
         }
 
         
