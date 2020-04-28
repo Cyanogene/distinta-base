@@ -74,7 +74,7 @@ namespace distinta_base
             SaveFileDialog Sfd_DistintaBase = new SaveFileDialog();
             Sfd_DistintaBase.InitialDirectory = @"C:\";
             Sfd_DistintaBase.RestoreDirectory = true;
-            Sfd_DistintaBase.FileName = "*_DistintaBase.xml";
+            Sfd_DistintaBase.FileName = Albero.Nome+"_DistintaBase.xml";
             Sfd_DistintaBase.DefaultExt = "xml";
             Sfd_DistintaBase.Filter = "xml files (*.xml)|*.xml";
             if (Sfd_DistintaBase.ShowDialog() == DialogResult.OK)
