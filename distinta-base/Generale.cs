@@ -282,7 +282,7 @@ namespace distinta_base
 
         public TreeNode ModificaNodo(TreeView treeView)
         {
-            Componente compVecchio = Componente.DeepClone<Componente>(distintaBase.TreeNodeToNode(treeView.SelectedNode));
+            Componente compVecchio = distintaBase.TreeNodeToNode(treeView.SelectedNode);
             Form2_NewNode form2 = new Form2_NewNode(compVecchio, ComponentiDistintaBase());
             form2.ShowDialog();
             Componente newComp = form2.nodo;
@@ -293,16 +293,18 @@ namespace distinta_base
                     return distintaBase.NodeToTreeNode(distintaBase.Albero);
                 }
             }
+            distintaBase.Nodi.Clear();
+            distintaBase.AggiornaNodi(distintaBase.Albero);
             newComp = Componente.DeepClone<Componente>(newComp);
             if (codiceOK(newComp))
             {
-                if (treeView.Nodes.Count == 1)
+                if (distintaBase.Nodi.Count==1)
                 {
                     distintaBase.Albero = newComp;
                 }
                 else
                 {
-                    Componente compPadre = Componente.DeepClone<Componente>(distintaBase.TreeNodeToNode(treeView.SelectedNode.Parent));
+                    Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode.Parent);
                     ModificaComponente(newComp, compVecchio, compPadre, distintaBase.Albero);
                 }
             }
