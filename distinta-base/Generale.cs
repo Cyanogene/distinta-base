@@ -304,8 +304,11 @@ namespace distinta_base
                 }
                 else
                 {
-                    Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode.Parent);
-                    ModificaComponente(newComp, compVecchio, compPadre, distintaBase.Albero);
+                    if(!(treeView.SelectedNode.Parent==null))
+                    {
+                        Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode.Parent);
+                        ModificaComponente(newComp, compVecchio, compPadre, distintaBase.Albero);
+                    }
                 }
             }
             else
