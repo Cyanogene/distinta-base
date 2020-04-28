@@ -25,7 +25,7 @@ namespace distinta_base
             SaveFileDialog Sfd_Catalogo = new SaveFileDialog();
             Sfd_Catalogo.InitialDirectory = @"C:\";
             Sfd_Catalogo.RestoreDirectory = true;
-            Sfd_Catalogo.FileName = "*.xml";
+            Sfd_Catalogo.FileName = "*_Catalogo.xml";
             Sfd_Catalogo.DefaultExt = "xml";
             Sfd_Catalogo.Filter = "xml files (*.xml)|*.xml";
             if (Sfd_Catalogo.ShowDialog() == DialogResult.OK)
