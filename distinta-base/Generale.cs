@@ -232,8 +232,8 @@ namespace distinta_base
             {
                 TreeNode daEliminare = treeView.SelectedNode;
                 TreeNode padre = daEliminare.Parent;
-                Componente comp = Componente.DeepClone<Componente>(distintaBase.TreeNodeToNode(daEliminare));
-                Componente compPadre = Componente.DeepClone<Componente>(distintaBase.TreeNodeToNode(padre));
+                Componente comp = distintaBase.TreeNodeToNode(daEliminare);
+                Componente compPadre = distintaBase.TreeNodeToNode(padre);
                 EliminaComponente(comp, compPadre, distintaBase.Albero);
             }
             return distintaBase.NodeToTreeNode(distintaBase.Albero);
