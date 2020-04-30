@@ -25,6 +25,7 @@ namespace distinta_base
         int ScortaDiSicurezza = 0;
         int Lotto = 0;
         int PeriodoDiCopertura = 0;
+        int CoefficenteUtilizzo = 0;
         public Componente nodo;
         public bool attendo = true;
         List<Componente> Componenti = new List<Componente>();
@@ -51,6 +52,7 @@ namespace distinta_base
                 form__scortaDiSicurezza.Value = nodo.ScortaSicurezza;
                 form_lotto.Value = nodo.Lotto;
                 form_periodoDiCopertura.Value = nodo.PeriodoDiCopertura;
+                form_coeffDiUtilizzo.Value = nodo.CoefficenteUtilizzo;
                 nodoInput = nodo;
             }
             Componenti.AddRange(componenti);
@@ -72,6 +74,7 @@ namespace distinta_base
                     Lotto = Convert.ToInt32(form_lotto.Value);
                     PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
                     Codice = form_codice.Text;
+                    CoefficenteUtilizzo = Convert.ToInt32(form_coeffDiUtilizzo.Value);
                     nodo = new Componente
                     {
                         Nome = Nome,
@@ -82,6 +85,7 @@ namespace distinta_base
                         ScortaSicurezza = ScortaDiSicurezza,
                         Lotto = Lotto,
                         PeriodoDiCopertura = PeriodoDiCopertura,
+                        CoefficenteUtilizzo = CoefficenteUtilizzo,
                     };
                     if(codiceOK(nodo))
                     {
@@ -116,6 +120,7 @@ namespace distinta_base
                     Lotto = Convert.ToInt32(form_lotto.Value);
                     PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
                     Codice = form_codice.Text;
+                    CoefficenteUtilizzo = Convert.ToInt32(form_coeffDiUtilizzo.Value);
                     nodo = new Componente
                     {
                         Nome = Nome,
@@ -126,6 +131,7 @@ namespace distinta_base
                         ScortaSicurezza = ScortaDiSicurezza,
                         Lotto = Lotto,
                         PeriodoDiCopertura = PeriodoDiCopertura,
+                        CoefficenteUtilizzo = CoefficenteUtilizzo,
                     };
                     if (codiceOK(nodo))
                     {
@@ -164,14 +170,29 @@ namespace distinta_base
             }
             if (componenteDaControllare.Codice == componente.Codice)
             {
-                if (NodiUguali(componenteDaControllare, componente) ||  (NodiUguali(componente,nodoInput) && contatoreCodice(componente.Codice) == 1))
+                if(nodoInput!=null)
                 {
-                    return true;
+                    if (NodiUguali(componenteDaControllare, componente) || (NodiUguali(componente, nodoInput) && contatoreCodice(componente.Codice) == 1))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
-                    return false;
+                    if (NodiUguali(componenteDaControllare, componente))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
+                
             }
             return true;
         }

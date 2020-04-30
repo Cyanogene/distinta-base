@@ -48,11 +48,14 @@
             this.form__scortaDiSicurezza = new System.Windows.Forms.NumericUpDown();
             this.form_lotto = new System.Windows.Forms.NumericUpDown();
             this.form_periodoDiCopertura = new System.Windows.Forms.NumericUpDown();
+            this.form_coeffDiUtilizzo = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.form_leadTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form_leadTimeSicurezza)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form__scortaDiSicurezza)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form_lotto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form_periodoDiCopertura)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form_coeffDiUtilizzo)).BeginInit();
             this.SuspendLayout();
             // 
             // form_nome
@@ -250,11 +253,39 @@
             0});
             this.form_periodoDiCopertura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_periodoDiCopertura_KeyPress);
             // 
+            // form_coeffDiUtilizzo
+            // 
+            this.form_coeffDiUtilizzo.Location = new System.Drawing.Point(193, 305);
+            this.form_coeffDiUtilizzo.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.form_coeffDiUtilizzo.Name = "form_coeffDiUtilizzo";
+            this.form_coeffDiUtilizzo.Size = new System.Drawing.Size(50, 20);
+            this.form_coeffDiUtilizzo.TabIndex = 10;
+            this.form_coeffDiUtilizzo.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(48, 312);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(110, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "COEFF. DI UTILIZZO";
+            // 
             // Form2_NewNode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(513, 405);
+            this.Controls.Add(this.form_coeffDiUtilizzo);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.form_periodoDiCopertura);
             this.Controls.Add(this.form_lotto);
             this.Controls.Add(this.form__scortaDiSicurezza);
@@ -285,6 +316,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.form__scortaDiSicurezza)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form_lotto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form_periodoDiCopertura)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form_coeffDiUtilizzo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,5 +343,7 @@
         private System.Windows.Forms.NumericUpDown form__scortaDiSicurezza;
         private System.Windows.Forms.NumericUpDown form_lotto;
         private System.Windows.Forms.NumericUpDown form_periodoDiCopertura;
+        private System.Windows.Forms.NumericUpDown form_coeffDiUtilizzo;
+        private System.Windows.Forms.Label label3;
     }
 }

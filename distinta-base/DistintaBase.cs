@@ -51,7 +51,12 @@ namespace distinta_base
 
         public TreeNode NodeToTreeNode(Componente Node)
         {
-            TreeNode treeNode = new TreeNode(Node.Nome);
+            string Nome = Node.Nome;
+            if (!(Albero == Node) && Node.CoefficenteUtilizzo>1)
+            {
+                Nome = Node.CoefficenteUtilizzo + "× " + Nome;
+            }
+            TreeNode treeNode = new TreeNode(Nome);
             treeNode.Tag = Node.Codice;
             if (Node.SottoNodi != null && Node.SottoNodi.Count>0)
             {

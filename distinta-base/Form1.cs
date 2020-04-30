@@ -190,7 +190,7 @@ namespace distinta_base
             listView_catalogo.FullRowSelect = true;
             listView_catalogo.Columns.Add("Nome", 120);
             listView_catalogo.Columns.Add("Codice", 100);
-            listView_catalogo.Columns.Add("Descrizione", 500);
+            listView_catalogo.Columns.Add("Descrizione", 450);
         }//Crea le colonne della listView  (NOME CODICE DESCRIZIONE) <--- di ogni prodotto
 
         private void listView_catalogo_ColumnWidthChanging_1(object sender, ColumnWidthChangingEventArgs e)
