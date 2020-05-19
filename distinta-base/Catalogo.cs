@@ -19,7 +19,7 @@ namespace distinta_base
         {
             if (Nodi.Count == 0)
             {
-                MessageBox.Show("Il catalogo è vuoto", "ATTENZIONE");
+                MessageBox.Show("Il catalogo è vuoto", "Distinta Base");
                 return;
             }
             SaveFileDialog Sfd_Catalogo = new SaveFileDialog();
@@ -37,11 +37,10 @@ namespace distinta_base
                 sw.Close();
                 filesStream.Close();
             }
-        }//
+        }
 
         public void Carica()
         {
-            Nodi.Clear();
             OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
             Ofd_Catalogo.InitialDirectory = @"C:\";
             Ofd_Catalogo.Filter = "XML|*.xml";
@@ -58,16 +57,17 @@ namespace distinta_base
                     try
                     {
                         risultato = (List<Componente>)serializer.Deserialize(stream);
+                        Nodi.Clear();
+                        Nodi.AddRange(risultato);
                     }
                     catch
                     {
-                        MessageBox.Show("Il file caricato non è un file di tipo catalogo, si prega di caricare un file di tipo catalogo", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Il file caricato non è un file di tipo catalogo, si prega di caricare un file di tipo catalogo", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     stream.Close();
                 }
-                Nodi.AddRange(risultato);
             }
-        }//
+        }
 
 
 
@@ -81,7 +81,7 @@ namespace distinta_base
                 return CaricaComponenteDaFile(Ofd_semilavorato.FileName);
             }
             return null;
-        }//
+        }
 
         public Componente AggiungiMateriaPrima(List<Componente> Componenti)
         {
@@ -128,7 +128,7 @@ namespace distinta_base
                 }
                 catch
                 {
-                    MessageBox.Show("Il file caricato non è un file di tipo catalogo, si prega di caricare un file di tipo catalogo", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Il file caricato non è un file di tipo catalogo, si prega di caricare un file di tipo catalogo", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 stream.Close();
             }

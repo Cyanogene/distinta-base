@@ -443,6 +443,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(960, 540);
             this.Name = "Form1";
             this.Text = "Distinta base";
             this.Load += new System.EventHandler(this.Form1_Load);

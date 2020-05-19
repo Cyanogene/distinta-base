@@ -94,7 +94,7 @@ namespace distinta_base
                     }
                     else
                     {
-                        MessageBox.Show("Il codice inserito è già in uso per un altro componente", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Il codice inserito è già in uso per un altro componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         nodo = null;
                         form_codice.Clear();
                         form_codice.Focus();
@@ -103,7 +103,7 @@ namespace distinta_base
                 }
                 else
                 {
-                    MessageBox.Show("compilare tutti i campi prima di procedere", "ATTENZIONE", MessageBoxButtons.OK);
+                    MessageBox.Show("compilare tutti i campi prima di procedere", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     nodo = null;
                     return;
                 }
@@ -140,7 +140,7 @@ namespace distinta_base
                     }
                     else
                     {
-                        MessageBox.Show("Il codice è già utilizzato per un altro componente, modificarlo", "ATTENZIONE");
+                        MessageBox.Show("Il codice è già utilizzato per un altro componente, modificarlo", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         form_codice.Focus();
                         form_codice.Clear();
                         nodo = null;
@@ -149,7 +149,7 @@ namespace distinta_base
                 }
                 else
                 {
-                    MessageBox.Show("compilare tutti i campi prima di procedere", "ATTENZIONE", MessageBoxButtons.OK);
+                    MessageBox.Show("compilare tutti i campi prima di procedere", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     nodo = null;
                     return;
                 }
@@ -291,7 +291,7 @@ namespace distinta_base
             bool ris = form_codice.Text.All(char.IsLetterOrDigit);
             if (!ris)
             {
-                MessageBox.Show("Il codice può essere composto solo da lettere e numeri.", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Il codice può essere composto solo da lettere e numeri.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 form_codice.Text = "";
                 form_codice.Focus();
                 nodo = new Componente();

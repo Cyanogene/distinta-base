@@ -15,31 +15,44 @@ namespace distinta_base
 
     class DistintaBase
     {
-        public List<Componente> Nodi = new List<Componente>();//
-
         public Componente Albero = new Componente();
 
-        public void AggiornaNodi(Componente comp)
+        public List<Componente> Nodi()
         {
-            if(comp.SottoNodi!=null)
+            Componente componente = Albero;
+            List<Componente> nodi = new List<Componente>();
+            if (componente.SottoNodi != null)
             {
-                foreach (Componente sottoComp in comp.SottoNodi)
+                foreach (Componente sottoComp in componente.SottoNodi)
                 {
-                    AggiornaNodi(sottoComp);
+                    TrovaNodi(sottoComp,nodi);
                 }
             }
-            if(comp.Nome!=null) Nodi.Add(comp);
+            if (componente.Nome != null) nodi.Add(componente);
+            return nodi;
         }
 
-        
+        public List<Componente> TrovaNodi(Componente componente, List<Componente> nodi)
+        {
+            if (componente.SottoNodi != null)
+            {
+                foreach (Componente sottoComp in componente.SottoNodi)
+                {
+                    TrovaNodi(sottoComp, nodi);
+                }
+            }
+            if (componente.Nome != null) nodi.Add(componente);
+            return nodi;
+        }
+
+
 
 
         public Componente TreeNodeToNode(TreeNode TreeNode)
         {
             Componente Componente = new Componente();
-            Nodi.Clear();
-            AggiornaNodi(Albero);
-            foreach (Componente Nodo in Nodi)
+            List<Componente> nodi = Nodi();
+            foreach (Componente Nodo in nodi)
             {
                 if (Nodo.Codice == TreeNode.Tag.ToString() && Nodo.SottoNodi.Count == TreeNode.Nodes.Count)
                 {
@@ -47,18 +60,18 @@ namespace distinta_base
                 }
             }
             return Componente;
-        }//
+        }
 
         public TreeNode NodeToTreeNode(Componente Node)
         {
             string Nome = Node.Nome;
-            if (!(Albero == Node) && Node.CoefficenteUtilizzo>1)
+            if (!(Albero == Node) && Node.CoefficenteUtilizzo > 1)
             {
                 Nome = Node.CoefficenteUtilizzo + "× " + Nome;
             }
             TreeNode treeNode = new TreeNode(Nome);
             treeNode.Tag = Node.Codice;
-            if (Node.SottoNodi != null && Node.SottoNodi.Count>0)
+            if (Node.SottoNodi != null && Node.SottoNodi.Count > 0)
             {
                 foreach (Componente node in Node.SottoNodi)
                 {
@@ -66,20 +79,19 @@ namespace distinta_base
                 }
             }
             return treeNode;
-        }//
+        }
 
 
 
 
-        public void Salva(Componente nodo)
+        public void Salva()
         {
-            Nodi.Clear();
-            AggiornaNodi(Albero);
-            if (Nodi.Count == 0) return;
+            List<Componente> nodi = Nodi();
+            if (nodi.Count == 0) return;
             SaveFileDialog Sfd_DistintaBase = new SaveFileDialog();
             Sfd_DistintaBase.InitialDirectory = @"C:\";
             Sfd_DistintaBase.RestoreDirectory = true;
-            Sfd_DistintaBase.FileName = Albero.Nome+"_DistintaBase.xml";
+            Sfd_DistintaBase.FileName = Albero.Nome + "_DistintaBase.xml";
             Sfd_DistintaBase.DefaultExt = "xml";
             Sfd_DistintaBase.Filter = "xml files (*.xml)|*.xml";
             if (Sfd_DistintaBase.ShowDialog() == DialogResult.OK)
@@ -87,11 +99,11 @@ namespace distinta_base
                 Stream filesStream = Sfd_DistintaBase.OpenFile();
                 StreamWriter sw = new StreamWriter(filesStream);
                 XmlSerializer serializer = new XmlSerializer(typeof(Componente));
-                serializer.Serialize(sw, nodo);
+                serializer.Serialize(sw, Albero);
                 sw.Close();
                 filesStream.Close();
             }
-        }//
+        }
 
         public Componente Carica()
         {
@@ -112,7 +124,7 @@ namespace distinta_base
                     }
                     catch
                     {
-                        MessageBox.Show("Il file caricato non è un file di tipo distinta base, si prega di caricare un file di tipo distinta base", "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Il file caricato non è un file di tipo distinta base, si prega di caricare un file di tipo distinta base", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     stream.Close();
                 }
@@ -152,7 +164,7 @@ namespace distinta_base
             }
             return nodo;
         }//
-        
+
         public Componente CaricaNodoDaFile()
         {
             OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
