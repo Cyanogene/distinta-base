@@ -27,7 +27,9 @@ namespace distinta_base
             CreaListView();
             ControlloTreeView();
             AggiornaCatalogo();
-
+            Color a = new Color();
+            lbl_catalogo.BackColor = Color.FromArgb(232, 190, 118);
+            lbl_distintaBase.BackColor = Color.FromArgb(232, 190, 118);
             formOriginalSize = Size;
 
             BtncreaNuovaDistintaBaseOriginalRect = new Rectangle(Btn_creaNuovaDistintaBase.Location.X, Btn_creaNuovaDistintaBase.Location.Y, Btn_creaNuovaDistintaBase.Width, Btn_creaNuovaDistintaBase.Height);

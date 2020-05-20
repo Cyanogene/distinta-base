@@ -73,9 +73,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic);
             this.label2.Location = new System.Drawing.Point(33, 49);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(324, 16);
+            this.label2.Size = new System.Drawing.Size(277, 16);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Selezionare un componente e quindi preme il bottone";
+            this.label2.Text = "Seleziona un componente e premi il pulsante.\r\n";
             // 
             // Form3_Catalogo
             // 
@@ -88,6 +88,7 @@
             this.Controls.Add(this.listView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form3_Catalogo";
             this.Text = "Distinta base";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form3_Catalogo_FormClosed);

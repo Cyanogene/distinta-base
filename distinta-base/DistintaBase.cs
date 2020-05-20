@@ -124,7 +124,7 @@ namespace distinta_base
                     }
                     catch
                     {
-                        MessageBox.Show("Il file caricato non è un file di tipo distinta base, si prega di caricare un file di tipo distinta base", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Box.Show("Il file caricato non è un file di tipo distinta base, si prega di caricare un file di tipo distinta base", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     stream.Close();
                 }

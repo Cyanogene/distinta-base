@@ -40,6 +40,7 @@ namespace distinta_base
             ActiveControl = form_nome;
             /*form_codice.Enabled = false;
             form_codice.Text = "il codice viene assegnato automaticamente";*/
+            label1.BackColor = Color.FromArgb(232, 190, 118);
             if (nodo.Nome != null)//MODIFICO UN NODO
             {
                 label1.Text = "MODIFICA COMPONENTE";
