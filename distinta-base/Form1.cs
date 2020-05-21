@@ -14,8 +14,19 @@ namespace distinta_base
 {
     public partial class Form1 : Form
     {
-        
         private Programmazione generale = new Programmazione();
+
+        private Rectangle BtncreaNuovaDistintaBaseOriginalRect;
+        private Rectangle BtncaricaDaCatalogoOriginalRect;
+        private Rectangle BtnAggiungiSemilavoratoOriginalRect;
+
+        private Rectangle BtnAggiungiMateriaPrimaOriginalRect;
+        private Rectangle TreeViewDistintaBaseOriginalRect;
+        private Rectangle ListView_catalogoOriginalRect;
+
+        private Rectangle LblDistintaBaseOriginalRect;
+        private Rectangle LblCatalogoOriginalRect;
+        private Size formOriginalSize;
 
         public Form1()
         {
@@ -30,7 +41,15 @@ namespace distinta_base
             lbl_catalogo.BackColor = Color.FromArgb(232, 190, 118);
             lbl_distintaBase.BackColor = Color.FromArgb(232, 190, 118);
             formOriginalSize = Size;
+            ResizeInitialization();
+        }
 
+
+        //resizeFormElement---------------------------------------------------------------------------------------------------------------------------------------------
+
+        private void ResizeInitialization()
+        {
+            // Viene inizializzata una figura per ogni componente nel form
             BtncreaNuovaDistintaBaseOriginalRect = new Rectangle(Btn_creaNuovaDistintaBase.Location.X, Btn_creaNuovaDistintaBase.Location.Y, Btn_creaNuovaDistintaBase.Width, Btn_creaNuovaDistintaBase.Height);
             BtncaricaDaCatalogoOriginalRect = new Rectangle(Btn_caricaDaCatalogo.Location.X, Btn_caricaDaCatalogo.Location.Y, Btn_caricaDaCatalogo.Width, Btn_caricaDaCatalogo.Height);
             BtnAggiungiSemilavoratoOriginalRect = new Rectangle(Btn_AggiungiSemilavorato.Location.X, Btn_AggiungiSemilavorato.Location.Y, Btn_AggiungiSemilavorato.Width, Btn_AggiungiSemilavorato.Height);
@@ -41,27 +60,24 @@ namespace distinta_base
             LblCatalogoOriginalRect = new Rectangle(lbl_catalogo.Location.X, lbl_catalogo.Location.Y, lbl_catalogo.Width, lbl_catalogo.Height);
         }
 
-
-
-
-        //resizeFormElement---------------------------------------------------------------------------------------------------------------------------------------------
-
-        private void resizeChildrenControls()
+        private void ResizeChildrenControls()
         {
-            resizeControl(BtncreaNuovaDistintaBaseOriginalRect, Btn_creaNuovaDistintaBase);
-            resizeControl(BtncaricaDaCatalogoOriginalRect, Btn_caricaDaCatalogo);
-            resizeControl(BtnAggiungiSemilavoratoOriginalRect, Btn_AggiungiSemilavorato);
-            resizeControl(BtnAggiungiMateriaPrimaOriginalRect, Btn_AggiungiMateriaPrima);
-            resizeControl(TreeViewDistintaBaseOriginalRect, treeView_DistintaBase);
-            resizeControl(ListView_catalogoOriginalRect, listView_catalogo);
-            resizeControl(LblDistintaBaseOriginalRect, lbl_distintaBase);
-            resizeControl(LblCatalogoOriginalRect, lbl_catalogo);
+            // Se avviene un resize, questo metodo si occupa di chiamare tutti i metodi necessari
+            ResizeControl(BtncreaNuovaDistintaBaseOriginalRect, Btn_creaNuovaDistintaBase);
+            ResizeControl(BtncaricaDaCatalogoOriginalRect, Btn_caricaDaCatalogo);
+            ResizeControl(BtnAggiungiSemilavoratoOriginalRect, Btn_AggiungiSemilavorato);
+            ResizeControl(BtnAggiungiMateriaPrimaOriginalRect, Btn_AggiungiMateriaPrima);
+            ResizeControl(TreeViewDistintaBaseOriginalRect, treeView_DistintaBase);
+            ResizeControl(ListView_catalogoOriginalRect, listView_catalogo);
+            ResizeControl(LblDistintaBaseOriginalRect, lbl_distintaBase);
+            ResizeControl(LblCatalogoOriginalRect, lbl_catalogo);
         }
         
-        private void resizeControl(Rectangle originalControlRect, Control control)
+        private void ResizeControl(Rectangle originalControlRect, Control control)
         {
-            float xRatio = (float)(Width) / (float)(formOriginalSize.Width);
-            float yRatio = (float)(Height) / (float)(formOriginalSize.Height);
+            // Metodo principale che sposta il componente in una posizione adeguata alla nuova finestra.
+            float xRatio = Width / (float)formOriginalSize.Width;
+            float yRatio = Height / (float)formOriginalSize.Height;
 
             int newX = (int)(originalControlRect.Location.X * xRatio);
             int newY = (int)(originalControlRect.Location.Y * yRatio);
@@ -72,20 +88,9 @@ namespace distinta_base
             control.Size = new Size(newWidth, newHeight);
         }
                
-        private Rectangle BtncreaNuovaDistintaBaseOriginalRect;
-        private Rectangle BtncaricaDaCatalogoOriginalRect;
-        private Rectangle BtnAggiungiSemilavoratoOriginalRect;
-        private Rectangle BtnAggiungiMateriaPrimaOriginalRect;
-        private Rectangle TreeViewDistintaBaseOriginalRect;
-        private Rectangle ListView_catalogoOriginalRect;
-        private Rectangle LblDistintaBaseOriginalRect;
-        private Rectangle LblCatalogoOriginalRect;
-
-        private Size formOriginalSize;
-
         private void Form1_Resize(object sender, EventArgs e)
         {
-            resizeChildrenControls();
+            ResizeChildrenControls();
         }
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -94,6 +99,7 @@ namespace distinta_base
 
 
         //Catalogo---------------------------------------------------------------------------------------------------------------------------------------------------
+
 
         private void CaricaCatalogo()
         {
@@ -112,7 +118,6 @@ namespace distinta_base
             generale.catalogo.Nodi.Clear();
             AggiornaCatalogo();
         }
-
 
         private void caricaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -214,8 +219,10 @@ namespace distinta_base
             foreach (Componente comp in generale.catalogo.Nodi)
             {
                 string[] items = { comp.Nome, comp.Codice, comp.Descrizione };
-                ListViewItem ListViewNodo = new ListViewItem(items);
-                ListViewNodo.Font = new Font("Microsoft Tai Le", 12);
+                ListViewItem ListViewNodo = new ListViewItem(items)
+                {
+                    Font = new Font("Microsoft Tai Le", 12)
+                };
                 if (i % 2 != 0)
                     ListViewNodo.BackColor = Color.FromArgb(238, 239, 249);
                 listView_catalogo.Items.Add(ListViewNodo);

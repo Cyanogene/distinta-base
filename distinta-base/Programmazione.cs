@@ -14,12 +14,32 @@ namespace distinta_base
         public DistintaBase distintaBase = new DistintaBase();
         public Catalogo catalogo = new Catalogo();
 
+        /// <summary>
+        /// Apre la finestra di creazione della materia prima. Creata quest'ultima, ritorno il componente creato.
+        /// </summary>
+        /// <param name="Componenti">La lista di tutti i componenti.</param>
+        /// <returns></returns>
+        public Componente AggiungiMateriaPrima(List<Componente> Componenti)
+        {
+            Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti);
+            form2.ShowDialog();
+            Componente nodo = form2.nodo;
+            while (nodo == null)
+            {
+                if (!form2.attendo)
+                {
+                    return null;
+                }
+            }
+            return nodo;
+        }
 
         public List<Componente> Componenti()
         {
             List<Componente> componenti = new List<Componente>();
             List<Componente> distintaBaseNodi = ComponentiDistintaBase();
             List<Componente> catalogoNodi = ComponentiCatalogo();
+
             Componente compMomentaneo = new Componente();
             foreach (Componente comp in distintaBaseNodi)
             {
@@ -79,11 +99,17 @@ namespace distinta_base
             return componenti;
         }
         
-        private bool codiceOK(Componente comp, Componente compVecchio, List<Componente> componenti)
+        /// <summary>
+        /// Controlla se il codice selezionato è valido.
+        /// </summary>
+        /// <param name="comp">Componente da controllare.</param>
+        /// <param name="componenti">La lista di tutti i componenti.</param>
+        /// <returns></returns>
+        private bool ControllaCodice(Componente comp, Componente compVecchio, List<Componente> componenti)
         {
             foreach (Componente componente in componenti)
             {
-                if (!ControlloCodice(comp, compVecchio, componente))
+                if (!ControlloCodiceSingoloComponente(comp, componente))
                 {
                     int cont = 0;
                     List<Componente> tuttiComponenti = TuttiComponenti();
@@ -104,18 +130,25 @@ namespace distinta_base
             return true;
         }
 
-        private bool ControlloCodice(Componente componente, Componente compVecchio, Componente componenteDaControllare)
+        /// <summary>
+        /// Effettua la comparazione dei codici.
+        /// </summary>
+        /// <param name="componente">Componente attualmente selezionato nel ciclo di controllo.</param>
+        /// <param name="componenteDaControllare">Componente da controllare.</param>
+        /// <returns></returns>
+        private bool ControlloCodiceSingoloComponente(Componente componente, Componente componenteDaControllare)
         {
             if (componente.SottoNodi != null)
             {
                 foreach (Componente sottoComp in componente.SottoNodi)
                 {
-                    if (!ControlloCodice(componenteDaControllare, sottoComp, compVecchio))
+                    if (!ControlloCodiceSingoloComponente(componenteDaControllare, sottoComp))
                     {
                         return false;
                     }
                 }
             }
+
             if (componenteDaControllare.Codice == componente.Codice)
             {
                 if (NodiUgualiNoSottocomp(componenteDaControllare, componente))
@@ -138,7 +171,7 @@ namespace distinta_base
         {
             Componente comp = catalogo.AggiungiSemilavorato();
             if (comp == null) return;
-            if (!codiceOK(comp, new Componente(), Componenti()))
+            if (!ControllaCodice(comp, new Componente(), Componenti()))
             {
                 MessageBox.Show("Nel semilavorato che si sta caricando è presente un componente con codice uguale a un componente presente nel programma sebbene non siano lo stesso componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -161,7 +194,7 @@ namespace distinta_base
 
         public void AggiungiMateriaPrimaACatalogo()
         {
-            Componente comp = catalogo.AggiungiMateriaPrima(Componenti());
+            Componente comp = AggiungiMateriaPrima(Componenti());
             if (comp == null) return;
             comp.CoefficenteUtilizzo = 1;
             foreach (Componente componente in catalogo.Nodi)
@@ -181,7 +214,7 @@ namespace distinta_base
             if (compVecchio == null) return;
             Componente newComp = catalogo.Modifica(compVecchio, Componenti());
             if (newComp == null) return;
-            if (!codiceOK(newComp, compVecchio, Componenti()))
+            if (!ControllaCodice(newComp, compVecchio, Componenti()))
             {
                 MessageBox.Show("Nel componente modificato è presente un componente con codice uguale a un componente presente nel programma sebbene non siano lo stesso componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -234,7 +267,7 @@ namespace distinta_base
         {
             Componente Albero = Componente.DeepClone<Componente>(distintaBase.Carica());
             if (Albero == null) return distintaBase.NodeToTreeNode(distintaBase.Albero);
-            if (!codiceOK(Albero, new Componente(), Componenti()))
+            if (!ControllaCodice(Albero, new Componente(), Componenti()))
             {
                 MessageBox.Show("Nel semilavorato che si sta caricando vi sono 1 o più componenti con codice uguale a un componente presente nel programma sebbene non siano lo stesso componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return distintaBase.NodeToTreeNode(distintaBase.Albero);
@@ -250,9 +283,9 @@ namespace distinta_base
 
         public TreeNode CreaNuovaDistintaBase()
         {
-            Componente newComp = distintaBase.AggiungiMateriaPrima(Componenti());
+            Componente newComp = AggiungiMateriaPrima(Componenti());
             if (newComp == null) return null;
-            if (codiceOK(newComp, new Componente(), Componenti()))
+            if (ControllaCodice(newComp, new Componente(), Componenti()))
             {
                 distintaBase.Albero = newComp;
             }
@@ -303,7 +336,7 @@ namespace distinta_base
             Componente NewComponente = Componente.DeepClone<Componente>(distintaBase.CaricaNodoDaFile());
             if (NewComponente == null) return distintaBase.NodeToTreeNode(distintaBase.Albero);
             Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
-            if (codiceOK(NewComponente, new Componente(), Componenti()))
+            if (ControllaCodice(NewComponente, new Componente(), Componenti()))
             {
                 AggiungiComponente(NewComponente, compPadre, distintaBase.Albero, new List<Componente>(), true);
             }
@@ -325,7 +358,7 @@ namespace distinta_base
             Componente comp = Componente.DeepClone<Componente>(distintaBase.CaricaDaCatalogo(catalogo.Nodi));
             if (comp == null) return null;
             Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
-            if (codiceOK(comp, new Componente(), Componenti()))
+            if (ControllaCodice(comp, new Componente(), Componenti()))
             {
                 AggiungiComponente(comp, compPadre, distintaBase.Albero, new List<Componente>(), true);
             }
@@ -339,10 +372,10 @@ namespace distinta_base
 
         public TreeNode CaricaTreeNodeMateriaPrima(TreeView treeView)
         {
-            Componente NewComponente = Componente.DeepClone<Componente>(distintaBase.AggiungiMateriaPrima(ComponentiDistintaBase()));
+            Componente NewComponente = Componente.DeepClone<Componente>(AggiungiMateriaPrima(ComponentiDistintaBase()));
             if (NewComponente == null) return distintaBase.NodeToTreeNode(distintaBase.Albero);
             Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
-            if (codiceOK(NewComponente, new Componente(), Componenti()))
+            if (ControllaCodice(NewComponente, new Componente(), Componenti()))
             {
                 AggiungiComponente(NewComponente, compPadre, distintaBase.Albero, new List<Componente>(), true);
             }
@@ -369,7 +402,7 @@ namespace distinta_base
             }
             List<Componente> nodi = distintaBase.Nodi();
             newComp = Componente.DeepClone<Componente>(newComp);
-            if (codiceOK(newComp, compVecchio, Componenti()))
+            if (ControllaCodice(newComp, compVecchio, Componenti()))
             {
                 if (nodi.Count == 1)
                 {
@@ -533,14 +566,14 @@ namespace distinta_base
 
         private bool NodiUguali(Componente nodo1, Componente nodo2)
         {
-            if (nodo1.SottoNodi == null)
-            {
-                nodo1.SottoNodi = new List<Componente>();
-            }
-            if (nodo2.SottoNodi == null)
-            {
-                nodo2.SottoNodi = new List<Componente>();
-            }
+            //if (nodo1.SottoNodi == null)
+            //{
+            //    nodo1.SottoNodi = new List<Componente>();
+            //}
+            //if (nodo2.SottoNodi == null)
+            //{
+            //    nodo2.SottoNodi = new List<Componente>();
+            //}
             if (nodo1.Codice == nodo2.Codice && nodo1.SottoNodi.Count == nodo2.SottoNodi.Count && nodo1.Nome == nodo2.Nome && nodo1.Descrizione == nodo2.Descrizione && nodo1.LeadTime == nodo2.LeadTime && nodo1.LeadTimeSicurezza == nodo2.LeadTimeSicurezza && nodo1.ScortaSicurezza == nodo2.ScortaSicurezza && nodo1.Lotto == nodo2.Lotto && nodo1.PeriodoDiCopertura == nodo2.PeriodoDiCopertura)
             {
                 return true;
@@ -550,14 +583,14 @@ namespace distinta_base
 
         private bool NodiUgualiNoCodice(Componente nodo1, Componente nodo2)
         {
-            if (nodo1.SottoNodi == null)
-            {
-                nodo1.SottoNodi = new List<Componente>();
-            }
-            if (nodo2.SottoNodi == null)
-            {
-                nodo2.SottoNodi = new List<Componente>();
-            }
+            //if (nodo1.SottoNodi == null)
+            //{
+            //    nodo1.SottoNodi = new List<Componente>();
+            //}
+            //if (nodo2.SottoNodi == null)
+            //{
+            //    nodo2.SottoNodi = new List<Componente>();
+            //}
             if (nodo1.SottoNodi.Count == nodo2.SottoNodi.Count && nodo1.Nome == nodo2.Nome && nodo1.Descrizione == nodo2.Descrizione && nodo1.LeadTime == nodo2.LeadTime && nodo1.LeadTimeSicurezza == nodo2.LeadTimeSicurezza && nodo1.ScortaSicurezza == nodo2.ScortaSicurezza && nodo1.Lotto == nodo2.Lotto && nodo1.PeriodoDiCopertura == nodo2.PeriodoDiCopertura)
             {
                 return true;
@@ -567,14 +600,14 @@ namespace distinta_base
 
         private bool NodiUgualiNoSottocomp(Componente nodo1, Componente nodo2)
         {
-            if (nodo1.SottoNodi == null)
-            {
-                nodo1.SottoNodi = new List<Componente>();
-            }
-            if (nodo2.SottoNodi == null)
-            {
-                nodo2.SottoNodi = new List<Componente>();
-            }
+            //if (nodo1.SottoNodi == null)
+            //{
+            //    nodo1.SottoNodi = new List<Componente>();
+            //}
+            //if (nodo2.SottoNodi == null)
+            //{
+            //    nodo2.SottoNodi = new List<Componente>();
+            //}
             if (nodo1.Codice == nodo2.Codice && nodo1.Nome == nodo2.Nome && nodo1.Descrizione == nodo2.Descrizione && nodo1.LeadTime == nodo2.LeadTime && nodo1.LeadTimeSicurezza == nodo2.LeadTimeSicurezza && nodo1.ScortaSicurezza == nodo2.ScortaSicurezza && nodo1.Lotto == nodo2.Lotto && nodo1.PeriodoDiCopertura == nodo2.PeriodoDiCopertura)
             {
                 return true;

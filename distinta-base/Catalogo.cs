@@ -13,21 +13,24 @@ namespace distinta_base
     {
         public List<Componente> Nodi = new List<Componente>();
 
-
-
+        /// <summary>
+        /// Salva un catalogo.
+        /// </summary>
         public void Salva()
         {
             if (Nodi.Count == 0)
             {
-                MessageBox.Show("Il catalogo è vuoto", "Distinta Base");
+                MessageBox.Show("Il catalogo è vuoto.", "Distinta Base");
                 return;
             }
-            SaveFileDialog Sfd_Catalogo = new SaveFileDialog();
-            Sfd_Catalogo.InitialDirectory = @"C:\";
-            Sfd_Catalogo.RestoreDirectory = true;
-            Sfd_Catalogo.FileName = "*_Catalogo.xml";
-            Sfd_Catalogo.DefaultExt = "xml";
-            Sfd_Catalogo.Filter = "xml files (*.xml)|*.xml";
+            SaveFileDialog Sfd_Catalogo = new SaveFileDialog
+            {
+                InitialDirectory = @"C:\",
+                RestoreDirectory = true,
+                FileName = "*_Catalogo.xml",
+                DefaultExt = "xml",
+                Filter = "xml files (*.xml)|*.xml"
+            };
             if (Sfd_Catalogo.ShowDialog() == DialogResult.OK)
             {
                 Stream filesStream = Sfd_Catalogo.OpenFile();
@@ -39,11 +42,16 @@ namespace distinta_base
             }
         }
 
+        /// <summary>
+        /// Carica un catalogo.
+        /// </summary>
         public void Carica()
         {
-            OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
-            Ofd_Catalogo.InitialDirectory = @"C:\";
-            Ofd_Catalogo.Filter = "XML|*.xml";
+            OpenFileDialog Ofd_Catalogo = new OpenFileDialog
+            {
+                InitialDirectory = @"C:\",
+                Filter = "XML|*.xml"
+            };
 
             List<Componente> NodiCatalogo = new List<Componente>();
 
@@ -62,42 +70,36 @@ namespace distinta_base
                     }
                     catch
                     {
-                        MessageBox.Show("Il file caricato non è un file di tipo catalogo, si prega di caricare un file di tipo catalogo", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Il file caricato non è un file di tipo 'Catalogo'.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     stream.Close();
                 }
             }
         }
 
-
-
+        /// <summary>
+        /// Carica un semilavorato.
+        /// </summary>
         public Componente AggiungiSemilavorato()
         {
-            OpenFileDialog Ofd_semilavorato = new OpenFileDialog();
-            Ofd_semilavorato.InitialDirectory = @"C:\";
-            Ofd_semilavorato.Filter = "XML|*.xml";
+            OpenFileDialog Ofd_semilavorato = new OpenFileDialog
+            {
+                InitialDirectory = @"C:\",
+                Filter = "XML|*.xml"
+            };
             if (Ofd_semilavorato.ShowDialog() == DialogResult.OK)
             {
                 return CaricaComponenteDaFile(Ofd_semilavorato.FileName);
             }
             return null;
         }
-
-        public Componente AggiungiMateriaPrima(List<Componente> Componenti)
-        {
-            Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti);
-            form2.ShowDialog();
-            Componente nodo = form2.nodo;
-            while (nodo == null)
-            {
-                if (!form2.attendo)
-                {
-                    return  null;
-                }
-            }
-            return nodo;
-        }//
         
+        /// <summary>
+        /// Modifica il componente selezionato.
+        /// </summary>
+        /// <param name="componente">Il componente da modificare.</param>
+        /// <param name="Componenti">La lista di tutti i componenti.</param>
+        /// <returns></returns>
         public Componente Modifica(Componente componente, List<Componente> Componenti)
         {
             Form2_NewNode form2 = new Form2_NewNode(componente, Componenti);
@@ -111,10 +113,13 @@ namespace distinta_base
                 }
             }
             return Componente.DeepClone<Componente>(ComponenteForm);
-        }//
+        }
 
-
-        
+        /// <summary>
+        /// Carica un componente.
+        /// </summary>
+        /// <param name="filePosition">Il nome del file.</param>
+        /// <returns></returns>
         private Componente CaricaComponenteDaFile(string filePosition)
         {
             Componente componente = new Componente();
@@ -128,12 +133,11 @@ namespace distinta_base
                 }
                 catch
                 {
-                    MessageBox.Show("Il file caricato non è un file di tipo catalogo, si prega di caricare un file di tipo catalogo", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Il file caricato non è un file di tipo 'Catalogo'.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 stream.Close();
             }
             return componente;
-        }//
-        
+        }
     }
 }

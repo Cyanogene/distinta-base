@@ -33,7 +33,10 @@ namespace distinta_base
         Componente nodoInput = null;
         //--------------------------------------
 
-
+        // aggiungere controllo se il form è su catalogo o distintabase.
+        // se distinta allora uso coefficente
+        // se catalogo coefficente.visible = false;
+        // usare bool
         public Form2_NewNode(Componente nodo, List<Componente> componenti)
         {
             InitializeComponent();
@@ -60,103 +63,55 @@ namespace distinta_base
         }
 
 
-
+        // da sistemare totalmente
         private void Btn_aggiungi_Click(object sender, EventArgs e)
         {
-            if (nodoInput != null)
+            if (form_nome.Text != "" && form_codice.Text != "" && form_descrizione.Text != "" && form_leadTime.Value > 0 && form_lotto.Value > 0 && form_periodoDiCopertura.Value > 0)
             {
-                if (form_nome.Text != "" && form_codice.Text != "" && form_descrizione.Text != "" && form_leadTime.Value > 0 && form_lotto.Value > 0 && form_periodoDiCopertura.Value > 0)
+                Nome = form_nome.Text;
+                Descrizione = form_descrizione.Text;
+                LT = Convert.ToInt32(form_leadTime.Value);
+                LTS = Convert.ToInt32(form_leadTimeSicurezza.Value);
+                ScortaDiSicurezza = Convert.ToInt32(form__scortaDiSicurezza.Value);
+                Lotto = Convert.ToInt32(form_lotto.Value);
+                PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
+                Codice = form_codice.Text;
+                CoefficenteUtilizzo = Convert.ToInt32(form_coeffDiUtilizzo.Value);
+                nodo = new Componente
                 {
-                    Nome = form_nome.Text;
-                    Descrizione = form_descrizione.Text;
-                    LT = Convert.ToInt32(form_leadTime.Value);
-                    LTS = Convert.ToInt32(form_leadTimeSicurezza.Value);
-                    ScortaDiSicurezza = Convert.ToInt32(form__scortaDiSicurezza.Value);
-                    Lotto = Convert.ToInt32(form_lotto.Value);
-                    PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
-                    Codice = form_codice.Text;
-                    CoefficenteUtilizzo = Convert.ToInt32(form_coeffDiUtilizzo.Value);
-                    nodo = new Componente
-                    {
-                        Nome = Nome,
-                        Codice = Codice,
-                        Descrizione = Descrizione,
-                        LeadTime = LT,
-                        LeadTimeSicurezza = LTS,
-                        ScortaSicurezza = ScortaDiSicurezza,
-                        Lotto = Lotto,
-                        PeriodoDiCopertura = PeriodoDiCopertura,
-                        CoefficenteUtilizzo = CoefficenteUtilizzo,
-                    };
-                    if(codiceOK(nodo))
-                    {
-                        Close();
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Il codice inserito è già in uso per un altro componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        nodo = null;
-                        form_codice.Clear();
-                        form_codice.Focus();
-                        return;
-                    }
+                    Nome = Nome,
+                    Codice = Codice,
+                    Descrizione = Descrizione,
+                    LeadTime = LT,
+                    LeadTimeSicurezza = LTS,
+                    ScortaSicurezza = ScortaDiSicurezza,
+                    Lotto = Lotto,
+                    PeriodoDiCopertura = PeriodoDiCopertura,
+                    CoefficenteUtilizzo = CoefficenteUtilizzo,
+                };
+                if (codiceOK(nodo))
+                {
+                    Close();
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("compilare tutti i campi prima di procedere", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Il codice inserito è già in uso per un altro componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     nodo = null;
+                    form_codice.Clear();
+                    form_codice.Focus();
                     return;
                 }
             }
             else
             {
-                if (form_nome.Text != "" && form_codice.Text != "" && form_descrizione.Text != "" && form_leadTime.Value > 0 && form_lotto.Value > 0 && form_periodoDiCopertura.Value > 0)
-                {
-                    Nome = form_nome.Text;
-                    Descrizione = form_descrizione.Text;
-                    LT = Convert.ToInt32(form_leadTime.Value);
-                    LTS = Convert.ToInt32(form_leadTimeSicurezza.Value);
-                    ScortaDiSicurezza = Convert.ToInt32(form__scortaDiSicurezza.Value);
-                    Lotto = Convert.ToInt32(form_lotto.Value);
-                    PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
-                    Codice = form_codice.Text;
-                    CoefficenteUtilizzo = Convert.ToInt32(form_coeffDiUtilizzo.Value);
-                    nodo = new Componente
-                    {
-                        Nome = Nome,
-                        Codice = Codice,
-                        Descrizione = Descrizione,
-                        LeadTime = LT,
-                        LeadTimeSicurezza = LTS,
-                        ScortaSicurezza = ScortaDiSicurezza,
-                        Lotto = Lotto,
-                        PeriodoDiCopertura = PeriodoDiCopertura,
-                        CoefficenteUtilizzo = CoefficenteUtilizzo,
-                    };
-                    if (codiceOK(nodo))
-                    {
-                        Close();
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Il codice è già utilizzato per un altro componente, modificarlo", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        form_codice.Focus();
-                        form_codice.Clear();
-                        nodo = null;
-                        return;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("compilare tutti i campi prima di procedere", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    nodo = null;
-                    return;
-                }
+                MessageBox.Show("compilare tutti i campi prima di procedere", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                nodo = null;
+                return;
             }
-        }
 
+        }
+        // possibile metodo duplicato / con varianti, da controllare
         private bool ControlloCodice(Componente componenteDaControllare, Componente componente)
         {
             if (componente.SottoNodi != null)
@@ -197,7 +152,7 @@ namespace distinta_base
             }
             return true;
         }
-
+        //possibile metodo inutile?
         private int contatoreCodice(string codice)
         {
             int n = 0;
@@ -207,7 +162,7 @@ namespace distinta_base
             }
             return n;
         }
-
+        // possibile metodo inutile?
         public int contatoreCodiceSecondario(string codice, Componente comp)
         {
             int n = 0;
@@ -224,7 +179,7 @@ namespace distinta_base
             }
             return n;
         }
-
+        // possibile metodo duplicato
         private bool codiceOK(Componente comp)
         {
             foreach (Componente componente in Componenti)
@@ -236,7 +191,7 @@ namespace distinta_base
             }
             return true;
         }
-
+        // possibile metodo duplicato
         private bool NodiUguali(Componente nodo1, Componente nodo2)
         {
             if (nodo1.Nome == nodo2.Nome && nodo1.Descrizione == nodo2.Descrizione && nodo1.LeadTime == nodo2.LeadTime && nodo1.LeadTimeSicurezza == nodo2.LeadTimeSicurezza && nodo1.ScortaSicurezza == nodo2.ScortaSicurezza && nodo1.Lotto == nodo2.Lotto && nodo1.PeriodoDiCopertura == nodo2.PeriodoDiCopertura)
@@ -251,7 +206,7 @@ namespace distinta_base
         {
             attendo = false;
         }
-
+        //da riga 207 a riga 235 questi metodi passano da keypress a validating.
         private void form_leadTime_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))

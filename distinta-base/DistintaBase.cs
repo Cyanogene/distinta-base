@@ -17,6 +17,9 @@ namespace distinta_base
     {
         public Componente Albero = new Componente();
 
+        /// <summary>
+        /// Ritorna tutti i nodi presenti nell'albero.
+        /// </summary>
         public List<Componente> Nodi()
         {
             Componente componente = Albero;
@@ -32,6 +35,12 @@ namespace distinta_base
             return nodi;
         }
 
+        /// <summary>
+        /// Trova il nodo o nodi selezionati.
+        /// </summary>
+        /// <param name="componente">Il componente da trovare.</param>
+        /// <param name="nodi">I nodi dell'albero (radice e i suoi sottonodi).</param>
+        /// <returns></returns>
         public List<Componente> TrovaNodi(Componente componente, List<Componente> nodi)
         {
             if (componente.SottoNodi != null)
@@ -45,9 +54,11 @@ namespace distinta_base
             return nodi;
         }
 
-
-
-
+        /// <summary>
+        /// Trasforma un TreeNode (WinForms.TreeView) in un Nodo (custom).
+        /// </summary>
+        /// <param name="TreeNode">Il TreeNode da trasformare.</param>
+        /// <returns></returns>
         public Componente TreeNodeToNode(TreeNode TreeNode)
         {
             Componente Componente = new Componente();
@@ -62,6 +73,11 @@ namespace distinta_base
             return Componente;
         }
 
+        /// <summary>
+        /// Trasforma un Nodo (custom) in un TreeNode (WinForms.TreeView).
+        /// </summary>
+        /// <param name="Node">Il nodo da trasformare.</param>
+        /// <returns></returns>
         public TreeNode NodeToTreeNode(Componente Node)
         {
             string Nome = Node.Nome;
@@ -69,8 +85,11 @@ namespace distinta_base
             {
                 Nome = Node.CoefficenteUtilizzo + "× " + Nome;
             }
-            TreeNode treeNode = new TreeNode(Nome);
-            treeNode.Tag = Node.Codice;
+
+            TreeNode treeNode = new TreeNode(Nome)
+            {
+                Tag = Node.Codice
+            };
             if (Node.SottoNodi != null && Node.SottoNodi.Count > 0)
             {
                 foreach (Componente node in Node.SottoNodi)
@@ -81,19 +100,21 @@ namespace distinta_base
             return treeNode;
         }
 
-
-
-
+        /// <summary>
+        /// Salva l'albero.
+        /// </summary>
         public void Salva()
         {
             List<Componente> nodi = Nodi();
             if (nodi.Count == 0) return;
-            SaveFileDialog Sfd_DistintaBase = new SaveFileDialog();
-            Sfd_DistintaBase.InitialDirectory = @"C:\";
-            Sfd_DistintaBase.RestoreDirectory = true;
-            Sfd_DistintaBase.FileName = Albero.Nome + "_DistintaBase.xml";
-            Sfd_DistintaBase.DefaultExt = "xml";
-            Sfd_DistintaBase.Filter = "xml files (*.xml)|*.xml";
+            SaveFileDialog Sfd_DistintaBase = new SaveFileDialog
+            {
+                InitialDirectory = @"C:\",
+                RestoreDirectory = true,
+                FileName = Albero.Nome + "_DistintaBase.xml",
+                DefaultExt = "xml",
+                Filter = "xml files (*.xml)|*.xml"
+            };
             if (Sfd_DistintaBase.ShowDialog() == DialogResult.OK)
             {
                 Stream filesStream = Sfd_DistintaBase.OpenFile();
@@ -105,11 +126,17 @@ namespace distinta_base
             }
         }
 
+        /// <summary>
+        /// Carica un albero.
+        /// </summary>
+        /// <returns></returns>
         public Componente Carica()
         {
-            OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
-            Ofd_Catalogo.InitialDirectory = @"C:\";
-            Ofd_Catalogo.Filter = "XML|*.xml";
+            OpenFileDialog Ofd_Catalogo = new OpenFileDialog
+            {
+                InitialDirectory = @"C:\",
+                Filter = "XML|*.xml"
+            };
             Componente risultato = null;
 
             if (Ofd_Catalogo.ShowDialog() == DialogResult.OK)
@@ -124,32 +151,18 @@ namespace distinta_base
                     }
                     catch
                     {
-                        MessageBox.Show("Il file caricato non è un file di tipo distinta base, si prega di caricare un file di tipo distinta base", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Il file caricato non è un file di tipo 'DistintaBase'.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     stream.Close();
                 }
             }
             return risultato;
-        }//
+        }
 
-
-
-
-        public Componente AggiungiMateriaPrima(List<Componente> Componenti)
-        {
-            Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti);
-            form2.ShowDialog();
-            Componente nodo = form2.nodo;
-            while (nodo == null)
-            {
-                if (!form2.attendo)
-                {
-                    return null;
-                }
-            }
-            return nodo;
-        }//
-
+        /// <summary>
+        /// Carica un componente dal catalogo.
+        /// </summary>
+        /// <returns></returns>
         public Componente CaricaDaCatalogo(List<Componente> Componenti)
         {
             Form3_Catalogo form3 = new Form3_Catalogo(Componenti);
@@ -163,13 +176,19 @@ namespace distinta_base
                 }
             }
             return nodo;
-        }//
+        }
 
+        /// <summary>
+        /// Carica un nodo.
+        /// </summary>
+        /// <returns></returns>
         public Componente CaricaNodoDaFile()
         {
-            OpenFileDialog Ofd_Catalogo = new OpenFileDialog();
-            Ofd_Catalogo.InitialDirectory = @"C:\";
-            Ofd_Catalogo.Filter = "XML|*.xml";
+            OpenFileDialog Ofd_Catalogo = new OpenFileDialog
+            {
+                InitialDirectory = @"C:\",
+                Filter = "XML|*.xml"
+            };
             Componente risultato = null;
             if (Ofd_Catalogo.ShowDialog() == DialogResult.OK)
             {

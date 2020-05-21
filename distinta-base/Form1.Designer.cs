@@ -57,7 +57,6 @@
             this.Cms_Informazioni = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.guidaSullaDistintaBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guidaSulCatalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.distintaBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.caricaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -371,21 +370,21 @@
             // caricaToolStripMenuItem
             // 
             this.caricaToolStripMenuItem.Name = "caricaToolStripMenuItem";
-            this.caricaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.caricaToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.caricaToolStripMenuItem.Text = "Carica";
             this.caricaToolStripMenuItem.Click += new System.EventHandler(this.caricaToolStripMenuItem_Click);
             // 
             // salvaToolStripMenuItem
             // 
             this.salvaToolStripMenuItem.Name = "salvaToolStripMenuItem";
-            this.salvaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salvaToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.salvaToolStripMenuItem.Text = "Salva";
             this.salvaToolStripMenuItem.Click += new System.EventHandler(this.salvaToolStripMenuItem_Click);
             // 
             // resettaToolStripMenuItem
             // 
             this.resettaToolStripMenuItem.Name = "resettaToolStripMenuItem";
-            this.resettaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resettaToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.resettaToolStripMenuItem.Text = "Resetta";
             this.resettaToolStripMenuItem.Click += new System.EventHandler(this.resettaToolStripMenuItem_Click);
             // 
@@ -403,21 +402,21 @@
             // caricaToolStripMenuItem1
             // 
             this.caricaToolStripMenuItem1.Name = "caricaToolStripMenuItem1";
-            this.caricaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.caricaToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
             this.caricaToolStripMenuItem1.Text = "Carica";
             this.caricaToolStripMenuItem1.Click += new System.EventHandler(this.caricaToolStripMenuItem1_Click);
             // 
             // salvaToolStripMenuItem1
             // 
             this.salvaToolStripMenuItem1.Name = "salvaToolStripMenuItem1";
-            this.salvaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.salvaToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
             this.salvaToolStripMenuItem1.Text = "Salva";
             this.salvaToolStripMenuItem1.Click += new System.EventHandler(this.salvaToolStripMenuItem1_Click);
             // 
             // resettaToolStripMenuItem1
             // 
             this.resettaToolStripMenuItem1.Name = "resettaToolStripMenuItem1";
-            this.resettaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.resettaToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
             this.resettaToolStripMenuItem1.Text = "Resetta";
             this.resettaToolStripMenuItem1.Click += new System.EventHandler(this.resettaToolStripMenuItem1_Click);
             // 
@@ -434,14 +433,14 @@
             // distintaBaseToolStripMenuItem1
             // 
             this.distintaBaseToolStripMenuItem1.Name = "distintaBaseToolStripMenuItem1";
-            this.distintaBaseToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.distintaBaseToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
             this.distintaBaseToolStripMenuItem1.Text = "Distinta base";
             this.distintaBaseToolStripMenuItem1.Click += new System.EventHandler(this.distintaBaseToolStripMenuItem1_Click);
             // 
             // catalogoToolStripMenuItem1
             // 
             this.catalogoToolStripMenuItem1.Name = "catalogoToolStripMenuItem1";
-            this.catalogoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.catalogoToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
             this.catalogoToolStripMenuItem1.Text = "Catalogo";
             this.catalogoToolStripMenuItem1.Click += new System.EventHandler(this.catalogoToolStripMenuItem1_Click);
             // 
@@ -508,7 +507,6 @@
         private System.Windows.Forms.ToolStripMenuItem caricaSemilavoratoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creaNuovoNodoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aggiungiACatalogoToolStripMenuItem;
-        private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem distintaBaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem caricaToolStripMenuItem;
