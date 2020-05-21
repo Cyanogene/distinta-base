@@ -44,5 +44,10 @@ namespace distinta_base
         {
             this.Close();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(label1.Text);
+        }
     }
 }

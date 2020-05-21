@@ -79,7 +79,7 @@
             // treeView_DistintaBase
             // 
             this.treeView_DistintaBase.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.treeView_DistintaBase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.treeView_DistintaBase.BackColor = System.Drawing.Color.White;
             this.treeView_DistintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView_DistintaBase.Location = new System.Drawing.Point(100, 100);
             this.treeView_DistintaBase.Margin = new System.Windows.Forms.Padding(4);
@@ -91,50 +91,61 @@
             // 
             // Btn_AggiungiMateriaPrima
             // 
-            this.Btn_AggiungiMateriaPrima.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Btn_AggiungiMateriaPrima.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_AggiungiMateriaPrima.AutoSize = true;
             this.Btn_AggiungiMateriaPrima.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Btn_AggiungiMateriaPrima.Location = new System.Drawing.Point(957, 558);
             this.Btn_AggiungiMateriaPrima.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_AggiungiMateriaPrima.Name = "Btn_AggiungiMateriaPrima";
-            this.Btn_AggiungiMateriaPrima.Size = new System.Drawing.Size(223, 51);
+            this.Btn_AggiungiMateriaPrima.Size = new System.Drawing.Size(223, 52);
             this.Btn_AggiungiMateriaPrima.TabIndex = 3;
-            this.Btn_AggiungiMateriaPrima.Text = "AGGIUNGI MATERIA PRIMA";
+            this.Btn_AggiungiMateriaPrima.Text = "AGGIUNGI \r\nMATERIA PRIMA";
             this.Btn_AggiungiMateriaPrima.UseVisualStyleBackColor = true;
             this.Btn_AggiungiMateriaPrima.Click += new System.EventHandler(this.Btn_AggiungiMateriaPrima_Click);
             // 
             // Btn_AggiungiSemilavorato
             // 
-            this.Btn_AggiungiSemilavorato.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Btn_AggiungiSemilavorato.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_AggiungiSemilavorato.AutoSize = true;
             this.Btn_AggiungiSemilavorato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Btn_AggiungiSemilavorato.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Btn_AggiungiSemilavorato.Location = new System.Drawing.Point(730, 558);
             this.Btn_AggiungiSemilavorato.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_AggiungiSemilavorato.Name = "Btn_AggiungiSemilavorato";
-            this.Btn_AggiungiSemilavorato.Size = new System.Drawing.Size(223, 51);
+            this.Btn_AggiungiSemilavorato.Size = new System.Drawing.Size(223, 52);
             this.Btn_AggiungiSemilavorato.TabIndex = 2;
-            this.Btn_AggiungiSemilavorato.Text = "AGGIUNGI SEMILAVORATO";
+            this.Btn_AggiungiSemilavorato.Text = "AGGIUNGI \r\nSEMILAVORATO";
             this.Btn_AggiungiSemilavorato.UseVisualStyleBackColor = false;
             this.Btn_AggiungiSemilavorato.Click += new System.EventHandler(this.Btn_AggiungiSemilavorato_Click);
             // 
             // Btn_caricaDaCatalogo
             // 
-            this.Btn_caricaDaCatalogo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Btn_caricaDaCatalogo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_caricaDaCatalogo.AutoSize = true;
             this.Btn_caricaDaCatalogo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_caricaDaCatalogo.Location = new System.Drawing.Point(327, 558);
             this.Btn_caricaDaCatalogo.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_caricaDaCatalogo.Name = "Btn_caricaDaCatalogo";
-            this.Btn_caricaDaCatalogo.Size = new System.Drawing.Size(223, 51);
+            this.Btn_caricaDaCatalogo.Size = new System.Drawing.Size(223, 52);
             this.Btn_caricaDaCatalogo.TabIndex = 1;
-            this.Btn_caricaDaCatalogo.Text = "CARICA COMPONENTE DA\r\nCATALOGO";
+            this.Btn_caricaDaCatalogo.Text = "CARICA COMPONENTE\r\nDA CATALOGO";
             this.Btn_caricaDaCatalogo.UseVisualStyleBackColor = true;
             this.Btn_caricaDaCatalogo.Click += new System.EventHandler(this.Btn_caricaDaCatalogo_Click);
             // 
             // listView_catalogo
             // 
+            this.listView_catalogo.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.listView_catalogo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.listView_catalogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.listView_catalogo.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView_catalogo.BackColor = System.Drawing.Color.White;
+            this.listView_catalogo.Font = new System.Drawing.Font("Segoe UI", 16F);
             this.listView_catalogo.HideSelection = false;
+            this.listView_catalogo.HoverSelection = true;
             this.listView_catalogo.Location = new System.Drawing.Point(730, 100);
             this.listView_catalogo.Margin = new System.Windows.Forms.Padding(4);
             this.listView_catalogo.Name = "listView_catalogo";
@@ -238,12 +249,15 @@
             // 
             // Btn_creaNuovaDistintaBase
             // 
-            this.Btn_creaNuovaDistintaBase.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Btn_creaNuovaDistintaBase.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_creaNuovaDistintaBase.AutoSize = true;
             this.Btn_creaNuovaDistintaBase.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_creaNuovaDistintaBase.Location = new System.Drawing.Point(100, 558);
             this.Btn_creaNuovaDistintaBase.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_creaNuovaDistintaBase.Name = "Btn_creaNuovaDistintaBase";
-            this.Btn_creaNuovaDistintaBase.Size = new System.Drawing.Size(223, 51);
+            this.Btn_creaNuovaDistintaBase.Size = new System.Drawing.Size(223, 52);
             this.Btn_creaNuovaDistintaBase.TabIndex = 0;
             this.Btn_creaNuovaDistintaBase.Text = "AGGIUNGI NUOVA\r\nDISTINTA BASE\r\n";
             this.Btn_creaNuovaDistintaBase.UseVisualStyleBackColor = true;
@@ -281,26 +295,30 @@
             // 
             // lbl_distintaBase
             // 
-            this.lbl_distintaBase.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_distintaBase.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_distintaBase.BackColor = System.Drawing.SystemColors.Control;
             this.lbl_distintaBase.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_distintaBase.Location = new System.Drawing.Point(100, 59);
+            this.lbl_distintaBase.Location = new System.Drawing.Point(100, 65);
             this.lbl_distintaBase.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_distintaBase.MinimumSize = new System.Drawing.Size(166, 27);
             this.lbl_distintaBase.Name = "lbl_distintaBase";
-            this.lbl_distintaBase.Size = new System.Drawing.Size(450, 30);
+            this.lbl_distintaBase.Size = new System.Drawing.Size(450, 28);
             this.lbl_distintaBase.TabIndex = 20;
             this.lbl_distintaBase.Text = "DISTINTA BASE";
             // 
             // lbl_catalogo
             // 
-            this.lbl_catalogo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_catalogo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_catalogo.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_catalogo.Location = new System.Drawing.Point(730, 59);
+            this.lbl_catalogo.Location = new System.Drawing.Point(730, 65);
             this.lbl_catalogo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_catalogo.MinimumSize = new System.Drawing.Size(125, 27);
             this.lbl_catalogo.Name = "lbl_catalogo";
-            this.lbl_catalogo.Size = new System.Drawing.Size(450, 30);
+            this.lbl_catalogo.Size = new System.Drawing.Size(450, 28);
             this.lbl_catalogo.TabIndex = 20;
             this.lbl_catalogo.Text = "CATALOGO";
             // 
@@ -353,21 +371,21 @@
             // caricaToolStripMenuItem
             // 
             this.caricaToolStripMenuItem.Name = "caricaToolStripMenuItem";
-            this.caricaToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.caricaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.caricaToolStripMenuItem.Text = "Carica";
             this.caricaToolStripMenuItem.Click += new System.EventHandler(this.caricaToolStripMenuItem_Click);
             // 
             // salvaToolStripMenuItem
             // 
             this.salvaToolStripMenuItem.Name = "salvaToolStripMenuItem";
-            this.salvaToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.salvaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salvaToolStripMenuItem.Text = "Salva";
             this.salvaToolStripMenuItem.Click += new System.EventHandler(this.salvaToolStripMenuItem_Click);
             // 
             // resettaToolStripMenuItem
             // 
             this.resettaToolStripMenuItem.Name = "resettaToolStripMenuItem";
-            this.resettaToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.resettaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.resettaToolStripMenuItem.Text = "Resetta";
             this.resettaToolStripMenuItem.Click += new System.EventHandler(this.resettaToolStripMenuItem_Click);
             // 
@@ -385,21 +403,21 @@
             // caricaToolStripMenuItem1
             // 
             this.caricaToolStripMenuItem1.Name = "caricaToolStripMenuItem1";
-            this.caricaToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
+            this.caricaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.caricaToolStripMenuItem1.Text = "Carica";
             this.caricaToolStripMenuItem1.Click += new System.EventHandler(this.caricaToolStripMenuItem1_Click);
             // 
             // salvaToolStripMenuItem1
             // 
             this.salvaToolStripMenuItem1.Name = "salvaToolStripMenuItem1";
-            this.salvaToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
+            this.salvaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.salvaToolStripMenuItem1.Text = "Salva";
             this.salvaToolStripMenuItem1.Click += new System.EventHandler(this.salvaToolStripMenuItem1_Click);
             // 
             // resettaToolStripMenuItem1
             // 
             this.resettaToolStripMenuItem1.Name = "resettaToolStripMenuItem1";
-            this.resettaToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
+            this.resettaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.resettaToolStripMenuItem1.Text = "Resetta";
             this.resettaToolStripMenuItem1.Click += new System.EventHandler(this.resettaToolStripMenuItem1_Click);
             // 
@@ -416,14 +434,14 @@
             // distintaBaseToolStripMenuItem1
             // 
             this.distintaBaseToolStripMenuItem1.Name = "distintaBaseToolStripMenuItem1";
-            this.distintaBaseToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+            this.distintaBaseToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.distintaBaseToolStripMenuItem1.Text = "Distinta base";
             this.distintaBaseToolStripMenuItem1.Click += new System.EventHandler(this.distintaBaseToolStripMenuItem1_Click);
             // 
             // catalogoToolStripMenuItem1
             // 
             this.catalogoToolStripMenuItem1.Name = "catalogoToolStripMenuItem1";
-            this.catalogoToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+            this.catalogoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.catalogoToolStripMenuItem1.Text = "Catalogo";
             this.catalogoToolStripMenuItem1.Click += new System.EventHandler(this.catalogoToolStripMenuItem1_Click);
             // 

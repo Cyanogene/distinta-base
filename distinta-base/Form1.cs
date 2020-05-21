@@ -27,7 +27,6 @@ namespace distinta_base
             CreaListView();
             ControlloTreeView();
             AggiornaCatalogo();
-            Color a = new Color();
             lbl_catalogo.BackColor = Color.FromArgb(232, 190, 118);
             lbl_distintaBase.BackColor = Color.FromArgb(232, 190, 118);
             formOriginalSize = Size;
@@ -167,7 +166,7 @@ namespace distinta_base
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
             string Codice = listView_catalogo.SelectedItems[0].SubItems[1].Text;
 
-            MessageBox.Show(generale.InfoComponenteCatalogo(Codice), "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Box.Show(generale.InfoComponenteCatalogo(Codice), "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }//contextMenu listbox da info elemento selezionato
 
         private void modificaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -211,11 +210,16 @@ namespace distinta_base
         {
             listView_catalogo.SelectedItems.Clear();
             listView_catalogo.Items.Clear();
+            int i = 0;
             foreach (Componente comp in generale.catalogo.Nodi)
             {
                 string[] items = { comp.Nome, comp.Codice, comp.Descrizione };
                 ListViewItem ListViewNodo = new ListViewItem(items);
+                ListViewNodo.Font = new Font("Microsoft Tai Le", 12);
+                if (i % 2 != 0)
+                    ListViewNodo.BackColor = Color.FromArgb(238, 239, 249);
                 listView_catalogo.Items.Add(ListViewNodo);
+                i++;
             }
             ControlloTreeView();
         }
@@ -322,7 +326,7 @@ namespace distinta_base
             if (treeView_DistintaBase.SelectedNode == null) { return; }
             string Codice = treeView_DistintaBase.SelectedNode.Tag.ToString();
 
-            MessageBox.Show(generale.InfoComponenteDistintabase(Codice), "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Box.Show(generale.InfoComponenteDistintabase(Codice), "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }//context menu click destro nodo mostra info
 
         private void daCatalogoToolStripMenuItem_Click(object sender, EventArgs e)

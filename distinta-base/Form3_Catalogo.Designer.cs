@@ -32,11 +32,11 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView1
             // 
+            this.listView1.Font = new System.Drawing.Font("Segoe UI", 16F);
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(33, 77);
             this.listView1.Name = "listView1";
@@ -48,10 +48,11 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(271, 448);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.button1.Location = new System.Drawing.Point(235, 459);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 37);
+            this.button1.Size = new System.Drawing.Size(150, 48);
             this.button1.TabIndex = 1;
             this.button1.Text = "AGGIUNGI";
             this.button1.UseVisualStyleBackColor = true;
@@ -59,30 +60,19 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(29, 21);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18.5F);
+            this.label1.Location = new System.Drawing.Point(33, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 24);
+            this.label1.Size = new System.Drawing.Size(352, 48);
             this.label1.TabIndex = 2;
             this.label1.Text = "CATALOGO";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic);
-            this.label2.Location = new System.Drawing.Point(33, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(277, 16);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Seleziona un componente e premi il pulsante.\r\n";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form3_Catalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(423, 509);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(423, 528);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listView1);
@@ -94,7 +84,6 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form3_Catalogo_FormClosed);
             this.Load += new System.EventHandler(this.Form3_Catalogo_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -103,6 +92,5 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
     }
 }

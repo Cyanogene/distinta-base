@@ -33,7 +33,6 @@
             this.form_codice = new System.Windows.Forms.TextBox();
             this.form_descrizione = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.Btn_aggiungi = new System.Windows.Forms.Button();
             this.lbl_descrizione = new System.Windows.Forms.Label();
             this.lbl_leadTime = new System.Windows.Forms.Label();
@@ -78,14 +77,14 @@
             // 
             // form_nome
             // 
-            this.form_nome.Location = new System.Drawing.Point(193, 94);
+            this.form_nome.Location = new System.Drawing.Point(202, 98);
             this.form_nome.Name = "form_nome";
             this.form_nome.Size = new System.Drawing.Size(151, 20);
             this.form_nome.TabIndex = 0;
             // 
             // form_codice
             // 
-            this.form_codice.Location = new System.Drawing.Point(193, 120);
+            this.form_codice.Location = new System.Drawing.Point(202, 124);
             this.form_codice.Name = "form_codice";
             this.form_codice.Size = new System.Drawing.Size(212, 20);
             this.form_codice.TabIndex = 1;
@@ -93,36 +92,29 @@
             // 
             // form_descrizione
             // 
-            this.form_descrizione.Location = new System.Drawing.Point(193, 146);
+            this.form_descrizione.Location = new System.Drawing.Point(202, 150);
             this.form_descrizione.Name = "form_descrizione";
             this.form_descrizione.Size = new System.Drawing.Size(281, 20);
             this.form_descrizione.TabIndex = 2;
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(38, 25);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18.5F);
+            this.label1.Location = new System.Drawing.Point(38, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(436, 41);
+            this.label1.Size = new System.Drawing.Size(445, 42);
             this.label1.TabIndex = 1;
             this.label1.Text = "CREAZIONE NUOVO COMPONENTE";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(48, 66);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(240, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Compila tutti i campi e premi il pulsante.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Btn_aggiungi
             // 
-            this.Btn_aggiungi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_aggiungi.Location = new System.Drawing.Point(347, 334);
+            this.Btn_aggiungi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_aggiungi.AutoSize = true;
+            this.Btn_aggiungi.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_aggiungi.Location = new System.Drawing.Point(375, 302);
             this.Btn_aggiungi.Name = "Btn_aggiungi";
-            this.Btn_aggiungi.Size = new System.Drawing.Size(127, 37);
+            this.Btn_aggiungi.Size = new System.Drawing.Size(108, 50);
             this.Btn_aggiungi.TabIndex = 8;
             this.Btn_aggiungi.Text = "CREA";
             this.Btn_aggiungi.UseVisualStyleBackColor = true;
@@ -202,7 +194,7 @@
             // 
             // form_leadTime
             // 
-            this.form_leadTime.Location = new System.Drawing.Point(193, 172);
+            this.form_leadTime.Location = new System.Drawing.Point(202, 177);
             this.form_leadTime.Minimum = new decimal(new int[] {
             1,
             0,
@@ -220,7 +212,7 @@
             // 
             // form_leadTimeSicurezza
             // 
-            this.form_leadTimeSicurezza.Location = new System.Drawing.Point(193, 198);
+            this.form_leadTimeSicurezza.Location = new System.Drawing.Point(202, 204);
             this.form_leadTimeSicurezza.Name = "form_leadTimeSicurezza";
             this.form_leadTimeSicurezza.Size = new System.Drawing.Size(50, 20);
             this.form_leadTimeSicurezza.TabIndex = 4;
@@ -228,7 +220,7 @@
             // 
             // form__scortaDiSicurezza
             // 
-            this.form__scortaDiSicurezza.Location = new System.Drawing.Point(193, 224);
+            this.form__scortaDiSicurezza.Location = new System.Drawing.Point(202, 230);
             this.form__scortaDiSicurezza.Name = "form__scortaDiSicurezza";
             this.form__scortaDiSicurezza.Size = new System.Drawing.Size(50, 20);
             this.form__scortaDiSicurezza.TabIndex = 5;
@@ -236,7 +228,7 @@
             // 
             // form_lotto
             // 
-            this.form_lotto.Location = new System.Drawing.Point(193, 250);
+            this.form_lotto.Location = new System.Drawing.Point(202, 256);
             this.form_lotto.Minimum = new decimal(new int[] {
             1,
             0,
@@ -254,7 +246,7 @@
             // 
             // form_periodoDiCopertura
             // 
-            this.form_periodoDiCopertura.Location = new System.Drawing.Point(193, 276);
+            this.form_periodoDiCopertura.Location = new System.Drawing.Point(202, 282);
             this.form_periodoDiCopertura.Minimum = new decimal(new int[] {
             1,
             0,
@@ -272,7 +264,7 @@
             // 
             // form_coeffDiUtilizzo
             // 
-            this.form_coeffDiUtilizzo.Location = new System.Drawing.Point(193, 305);
+            this.form_coeffDiUtilizzo.Location = new System.Drawing.Point(202, 307);
             this.form_coeffDiUtilizzo.Minimum = new decimal(new int[] {
             1,
             0,
@@ -408,7 +400,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 405);
+            this.ClientSize = new System.Drawing.Size(513, 370);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.pictureBox7);
@@ -434,7 +426,6 @@
             this.Controls.Add(this.lbl_nome);
             this.Controls.Add(this.lbl_descrizione);
             this.Controls.Add(this.Btn_aggiungi);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.form_descrizione);
             this.Controls.Add(this.form_codice);
@@ -472,7 +463,6 @@
         private System.Windows.Forms.TextBox form_codice;
         private System.Windows.Forms.TextBox form_descrizione;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button Btn_aggiungi;
         private System.Windows.Forms.Label lbl_descrizione;
         private System.Windows.Forms.Label lbl_leadTime;

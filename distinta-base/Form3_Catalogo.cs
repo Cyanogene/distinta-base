@@ -16,6 +16,7 @@ namespace distinta_base
         {
             nodiCatalogo = input;
             InitializeComponent();
+            label1.BackColor = Color.FromArgb(232, 190, 118);
         }
 
         public List<Componente> nodiCatalogo { get; set; }
@@ -48,11 +49,13 @@ namespace distinta_base
 
         private void AggiornaCatalogo()
         {
+            int i = 0;
             listView1.Items.Clear();
             foreach (Componente n in nodiCatalogo)
             {
                 string[] items = { n.Nome, n.Codice, n.Descrizione };
                 ListViewItem ListViewNodo = new ListViewItem(items);
+                ListViewNodo.Font = new Font("Microsoft Tai Le", 12);
                 listView1.Items.Add(ListViewNodo);
             }
         }//aggiorna il catalogo listbox guardando la list<node> catalogo;
