@@ -36,8 +36,8 @@ namespace distinta_base
         private void Form1_Load(object sender, EventArgs e)
         {
             CreaListView();
+            generale.AggiornaCatalogo(listView_catalogo);
             ControlloTreeView();
-            AggiornaCatalogo();
             lbl_catalogo.BackColor = Color.FromArgb(232, 190, 118);
             lbl_distintaBase.BackColor = Color.FromArgb(232, 190, 118);
             formOriginalSize = Size;
@@ -104,19 +104,22 @@ namespace distinta_base
         private void CaricaCatalogo()
         {
             generale.catalogo.Carica();
-            AggiornaCatalogo();
+            generale.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }
 
         private void SalvaCatalogo()
         {
             generale.catalogo.Salva();
-            AggiornaCatalogo();
+            generale.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }
 
         private void ResettaCatalogo()
         {
             generale.catalogo.Nodi.Clear();
-            AggiornaCatalogo();
+            generale.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }
 
         private void caricaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -137,14 +140,16 @@ namespace distinta_base
         private void Btn_AggiungiSemilavorato_Click(object sender, EventArgs e)
         {
             generale.AggiungiSemilavoratoACatalogo();
-            AggiornaCatalogo();
+            generale.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }//carica la distinta base selezionata dall'utente nel catalogo
 
         private void Btn_AggiungiMateriaPrima_Click(object sender, EventArgs e)
         {
             //apro una nuova finestra dove l'utente deve inserire tutte le info del nuovo materiale (nome,id,descr,LT,LTS,ecc...)
             generale.AggiungiMateriaPrimaACatalogo();
-            AggiornaCatalogo();
+            generale.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }//crea un nodo con info date in input dall'utente
 
         
@@ -162,7 +167,8 @@ namespace distinta_base
                 string Codice = listView_catalogo.SelectedItems[0].SubItems[1].Text;
                 listView_catalogo.SelectedItems[0].Remove();
                 generale.RimuoviComponenteDaCatalogo(Codice);
-                AggiornaCatalogo();
+                generale.AggiornaCatalogo(listView_catalogo);
+                ControlloTreeView();
             }
         }//contextMenu listbox rimuove elemento selezionato
 
@@ -179,7 +185,8 @@ namespace distinta_base
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
             string Codice = listView_catalogo.SelectedItems[0].SubItems[1].Text;
             generale.ModificaComponenteCatalogo(Codice);
-            AggiornaCatalogo();
+            generale.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }//contextMenu listbox modifica elemento selezionato
 
         private void listView_catalogo_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -187,7 +194,8 @@ namespace distinta_base
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
             string Codice = listView_catalogo.SelectedItems[0].SubItems[1].Text;
             generale.ModificaComponenteCatalogo(Codice);
-            AggiornaCatalogo();
+            generale.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }//doppio click su un elemento del catalogo e modifico
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -211,10 +219,9 @@ namespace distinta_base
             e.NewWidth = listView_catalogo.Columns[e.ColumnIndex].Width;
         }//blocca l'allargamento delle colonne da parte dell'utente
 
-        private void AggiornaCatalogo()
+        private void AggiornaCatalogo(ListView listView)
         {
-            listView_catalogo.SelectedItems.Clear();
-            listView_catalogo.Items.Clear();
+            listView.Items.Clear();
             int i = 0;
             foreach (Componente comp in generale.catalogo.Nodi)
             {
@@ -225,7 +232,7 @@ namespace distinta_base
                 };
                 if (i % 2 != 0)
                     ListViewNodo.BackColor = Color.FromArgb(238, 239, 249);
-                listView_catalogo.Items.Add(ListViewNodo);
+                listView.Items.Add(ListViewNodo);
                 i++;
             }
             ControlloTreeView();
@@ -259,8 +266,8 @@ namespace distinta_base
             {
                 treeView_DistintaBase.Nodes.Add(treeNode);
             }
+            AggiornaCatalogo(listView_catalogo);
             ControlloTreeView();
-            AggiornaCatalogo();
         }//BTN carica la distinta base selezionata
 
 
@@ -361,7 +368,8 @@ namespace distinta_base
         {
             if (treeView_DistintaBase.SelectedNode == null) return;
             generale.AggiungiComponenteACatalogo(treeView_DistintaBase);
-            AggiornaCatalogo();
+            generale.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }//context menu click destro nodo carica il nodo in catalogo
 
         private void modificaToolStripMenuItem1_Click(object sender, EventArgs e)

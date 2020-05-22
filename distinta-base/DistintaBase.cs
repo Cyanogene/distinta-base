@@ -129,7 +129,6 @@ namespace distinta_base
         /// <summary>
         /// Carica un albero.
         /// </summary>
-        /// <returns></returns>
         public Componente Carica()
         {
             OpenFileDialog Ofd_Catalogo = new OpenFileDialog
@@ -162,7 +161,6 @@ namespace distinta_base
         /// <summary>
         /// Carica un componente dal catalogo.
         /// </summary>
-        /// <returns></returns>
         public Componente CaricaDaCatalogo(List<Componente> Componenti)
         {
             Form3_Catalogo form3 = new Form3_Catalogo(Componenti);
@@ -181,7 +179,6 @@ namespace distinta_base
         /// <summary>
         /// Carica un nodo.
         /// </summary>
-        /// <returns></returns>
         public Componente CaricaNodoDaFile()
         {
             OpenFileDialog Ofd_Catalogo = new OpenFileDialog
