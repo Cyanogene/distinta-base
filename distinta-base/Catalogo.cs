@@ -102,7 +102,7 @@ namespace distinta_base
         /// <returns></returns>
         public Componente Modifica(Componente componente, List<Componente> Componenti)
         {
-            Form2_NewNode form2 = new Form2_NewNode(componente, Componenti);
+            Form2_NewNode form2 = new Form2_NewNode(componente, Componenti, true);
             form2.ShowDialog();
             Componente ComponenteForm = form2.nodo;
             while (ComponenteForm == null)
