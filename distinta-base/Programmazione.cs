@@ -219,24 +219,31 @@ namespace distinta_base
                 MessageBox.Show("Nel componente modificato è presente un componente con codice uguale a un componente presente nel programma sebbene non siano lo stesso componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else
+            if(CatalogoContieneComp(newComp))
             {
-                if (CatalogoContieneComp(newComp))
+                if(NodiUguali(compVecchio,newComp))
                 {
-                    if(compVecchio.CoefficenteUtilizzo == newComp.CoefficenteUtilizzo)
-                    {
-                        MessageBox.Show("In catalogo è già presente questo componente", "Distinta Base",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Non puoi modificare il coefficente di utilizzo di un componente in catalogo, è impostato di default a 1", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return;
-                    }
+
                 }
-                RimuoviComponenteDaCatalogo(compVecchio.Codice);
-                catalogo.Nodi.Add(Componente.DeepClone<Componente>(newComp));
+                else
+                {
+                    MessageBox.Show("In catalogo è già presente questo componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
             }
+
+            /*else if(!CatalogoContieneComp(newComp))
+            {
+                
+            }
+            else if(!(Componente.DeepClone<Componente>(compVecchio) == Componente.DeepClone<Componente>(newComp)))
+            {
+                MessageBox.Show("In catalogo è già presente questo componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }*/
+            RimuoviComponenteDaCatalogo(compVecchio.Codice);
+            catalogo.Nodi.Add(Componente.DeepClone<Componente>(newComp));
         }
 
         public void RimuoviComponenteDaCatalogo(string codice)
