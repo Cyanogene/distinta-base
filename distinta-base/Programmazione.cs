@@ -28,7 +28,7 @@ namespace distinta_base
         {
             Form2_NewNode form2 = new Form2_NewNode(new Componente(), Componenti, IsCatalogoOrRoot);
             form2.ShowDialog();
-            Componente nodo = form2.nodoFinale;
+            Componente nodo = form2.nodo;
             while (nodo == null)
             {
                 if (!form2.attendo)
@@ -527,7 +527,7 @@ namespace distinta_base
             Componente compVecchio = distintaBase.TreeNodeToNode(treeView.SelectedNode);
             Form2_NewNode form2 = new Form2_NewNode(compVecchio, ComponentiDistintaBase(), false);
             form2.ShowDialog();
-            Componente newComp = form2.nodoFinale;
+            Componente newComp = form2.nodo;
             List<Componente> nodi = distintaBase.Nodi();
             newComp = Componente.DeepClone(newComp);
             if (newComp == null) return null;

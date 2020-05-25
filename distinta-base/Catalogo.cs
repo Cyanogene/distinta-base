@@ -104,7 +104,7 @@ namespace distinta_base
         {
             Form2_NewNode form2 = new Form2_NewNode(componente, Componenti, true);
             form2.ShowDialog();
-            Componente ComponenteForm = form2.nodoFinale;
+            Componente ComponenteForm = form2.nodo;
             while (ComponenteForm == null)
             {
                 if (!form2.attendo)

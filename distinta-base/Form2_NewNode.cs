@@ -27,7 +27,6 @@ namespace distinta_base
         int PeriodoDiCopertura = 0;
         int CoefficenteUtilizzo = 0;
         public Componente nodo;
-        public Componente nodoFinale;
         public bool attendo = true;
         List<Componente> Componenti = new List<Componente>();
         Componente nodoInput = null;
@@ -85,7 +84,6 @@ namespace distinta_base
         {
             if (codiceOK(nodo))
             {
-                nodoFinale = nodo;
                 Close();
                 return;
             }

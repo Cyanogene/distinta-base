@@ -97,7 +97,6 @@ namespace distinta_base
                     treeNode.Nodes.Add(NodeToTreeNode(node));
                 }
             }
-            string a = treeNode.Tag.ToString();
             return treeNode;
         }
 
