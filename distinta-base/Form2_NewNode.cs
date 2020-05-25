@@ -16,7 +16,6 @@ namespace distinta_base
 
     public partial class Form2_NewNode : Form
     {
-        private Programmazione programmazione = new Programmazione();
         //variabili NODO------------------------
         string Nome = "";
         string Codice = "";
@@ -83,7 +82,7 @@ namespace distinta_base
 
         private void CheckCode()
         {
-            if (programmazione.ControllaCodice(nodo, new Componente(), Componenti))
+            if (codiceOK(nodo))
             {
                 Close();
                 return;
@@ -97,6 +96,95 @@ namespace distinta_base
                 form_codice.Focus();
                 return;
             }
+        }
+
+        private bool ControlloCodice(Componente componenteDaControllare, Componente componente)
+        {
+            if (componente.SottoNodi != null)
+            {
+                foreach (Componente sottoComp in componenteDaControllare.SottoNodi)
+                {
+                    if (!ControlloCodice(componenteDaControllare, sottoComp))
+                    {
+                        return false;
+                    }
+                }
+            }
+            if (componenteDaControllare.Codice == componente.Codice)
+            {
+                if (nodoInput != null)
+                {
+                    if (NodiUguali(componenteDaControllare, componente) || (NodiUguali(componente, nodoInput) && contatoreCodice(componente.Codice) == 1))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (NodiUguali(componenteDaControllare, componente))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+            }
+            return true;
+        }
+
+        private int contatoreCodice(string codice)
+        {
+            int n = 0;
+            foreach (Componente comp in Componenti)
+            {
+                n += contatoreCodiceSecondario(codice, comp);
+            }
+            return n;
+        }
+
+        public int contatoreCodiceSecondario(string codice, Componente comp)
+        {
+            int n = 0;
+            if (comp.Codice == codice)
+            {
+                n++;
+            }
+            if (comp.SottoNodi != null)
+            {
+                foreach (Componente sottoComp in comp.SottoNodi)
+                {
+                    n += contatoreCodiceSecondario(codice, sottoComp);
+                }
+            }
+            return n;
+        }
+
+        private bool codiceOK(Componente comp)
+        {
+            foreach (Componente componente in Componenti)
+            {
+                if (!ControlloCodice(comp, componente))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool NodiUguali(Componente nodo1, Componente nodo2)
+        {
+            if (nodo1.Nome == nodo2.Nome && nodo1.Descrizione == nodo2.Descrizione && nodo1.LeadTime == nodo2.LeadTime && nodo1.LeadTimeSicurezza == nodo2.LeadTimeSicurezza && nodo1.ScortaSicurezza == nodo2.ScortaSicurezza && nodo1.Lotto == nodo2.Lotto && nodo1.PeriodoDiCopertura == nodo2.PeriodoDiCopertura)
+            {
+                return true;
+            }
+            return false;
         }
 
         private void CreaNodo()

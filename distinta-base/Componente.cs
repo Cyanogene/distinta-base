@@ -34,7 +34,7 @@ namespace distinta_base
         /// <returns></returns>
         public static Componente DeepClone<Componente>(Componente obj)
         {
-            if (obj == null) return default;
+            if (obj == null) return default(Componente);
             using (var ms = new MemoryStream())
             {
                 var formatter = new BinaryFormatter();
