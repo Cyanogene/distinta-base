@@ -525,7 +525,7 @@ namespace distinta_base
         public TreeNode ModificaNodo(TreeView treeView)
         {
             Componente compVecchio = distintaBase.TreeNodeToNode(treeView.SelectedNode);
-            Form2_NewNode form2 = new Form2_NewNode(compVecchio, ComponentiDistintaBase(), false);
+            Form2_NewNode form2 = new Form2_NewNode(compVecchio, ComponentiDistintaBase(), true);
             form2.ShowDialog();
             Componente newComp = form2.nodo;
             List<Componente> nodi = distintaBase.Nodi();
