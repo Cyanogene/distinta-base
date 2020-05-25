@@ -27,12 +27,13 @@ namespace distinta_base
         int PeriodoDiCopertura = 0;
         int CoefficenteUtilizzo = 0;
         public Componente nodo;
+        public Componente nodoFinale;
         public bool attendo = true;
         List<Componente> Componenti = new List<Componente>();
         Componente nodoInput = null;
         //--------------------------------------
 
-        public Form2_NewNode(Componente nodo, List<Componente> componenti, bool IsCatalogo)
+        public Form2_NewNode(Componente nodo, List<Componente> componenti, bool IsCatalogoOrRoot)
         {
             InitializeComponent();
             ActiveControl = form_nome;
@@ -40,7 +41,7 @@ namespace distinta_base
             form_codice.Text = "il codice viene assegnato automaticamente";*/
 
             label1.BackColor = Color.FromArgb(232, 190, 118);
-            if (IsCatalogo)
+            if (IsCatalogoOrRoot)
             {
                 form_coeffDiUtilizzo.Visible = false;
                 label3.Visible = false;
@@ -84,6 +85,7 @@ namespace distinta_base
         {
             if (codiceOK(nodo))
             {
+                nodoFinale = nodo;
                 Close();
                 return;
             }
@@ -114,7 +116,7 @@ namespace distinta_base
             {
                 if (nodoInput != null)
                 {
-                    if (NodiUguali(componenteDaControllare, componente) || (NodiUguali(componente, nodoInput) && contatoreCodice(componente.Codice) == 1))
+                    if (NodiUgualiNoCodiceNoSottocomp(componenteDaControllare, componente) || (NodiUgualiNoCodiceNoSottocomp(componente, nodoInput) && contatoreCodice(componente.Codice) == 1))
                     {
                         return true;
                     }
@@ -125,7 +127,7 @@ namespace distinta_base
                 }
                 else
                 {
-                    if (NodiUguali(componenteDaControllare, componente))
+                    if (NodiUgualiNoCodiceNoSottocomp(componenteDaControllare, componente))
                     {
                         return true;
                     }
@@ -178,7 +180,7 @@ namespace distinta_base
             return true;
         }
 
-        private bool NodiUguali(Componente nodo1, Componente nodo2)
+        private bool NodiUgualiNoCodiceNoSottocomp(Componente nodo1, Componente nodo2)
         {
             if (nodo1.Nome == nodo2.Nome && nodo1.Descrizione == nodo2.Descrizione && nodo1.LeadTime == nodo2.LeadTime && nodo1.LeadTimeSicurezza == nodo2.LeadTimeSicurezza && nodo1.ScortaSicurezza == nodo2.ScortaSicurezza && nodo1.Lotto == nodo2.Lotto && nodo1.PeriodoDiCopertura == nodo2.PeriodoDiCopertura)
             {
