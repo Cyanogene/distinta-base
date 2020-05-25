@@ -363,7 +363,7 @@ namespace distinta_base
         {
             Componente componente = ComponenteCatalogoDaCodice(codice);
             if (componente == null) return "selezionare un componente";
-            return "Nome --> " + componente.Nome + "\nCodice --> " + componente.Codice + "\nDescrizione --> " + componente.Descrizione + "\nLeadTime --> " + componente.LeadTime + "\nLeadTimeSicurezza --> " + componente.LeadTimeSicurezza + "\nLotto --> " + componente.Lotto + "\nScortaDiSicurezza --> " + componente.ScortaSicurezza + "\nPeriodoDiCopertura --> " + componente.PeriodoDiCopertura;
+            return "NOME --> " + componente.Nome + "\nCODICE --> " + componente.Codice + "\nDESCRIZIONE --> " + componente.Descrizione + "\nLEAD TIME --> " + componente.LeadTime + "\nLEAD TIME SICUREZZA --> " + componente.LeadTimeSicurezza + "\nLOTTO --> " + componente.Lotto + "\nSCORTA DI SICUREZZA --> " + componente.ScortaSicurezza + "\nPERIODO DI COPERTURA --> " + componente.PeriodoDiCopertura;
         }
 
 
@@ -718,8 +718,12 @@ namespace distinta_base
         /// </summary>
         private bool NodiUguali(Componente nodo1, Componente nodo2)
         {
-            int NewNodo1 = nodo1.GetHashCode();
-            int NewNodo2 = nodo2.GetHashCode();
+            Componente app1 = Componente.DeepClone(nodo1);
+            Componente app2 = Componente.DeepClone(nodo2);
+            app1.CoefficenteUtilizzo = 0;
+            app2.CoefficenteUtilizzo = 0;
+            int NewNodo1 = app1.GetHashCode();
+            int NewNodo2 = app2.GetHashCode();
             if (NewNodo1 == NewNodo2)
                 return true;
             return false;
@@ -734,6 +738,8 @@ namespace distinta_base
             Componente app2 = Componente.DeepClone(nodo2);
             app1.Codice = null;
             app2.Codice = null;
+            app1.CoefficenteUtilizzo = 0;
+            app2.CoefficenteUtilizzo = 0;
             int NewNodo1 = app1.GetHashCode();
             int NewNodo2 = app2.GetHashCode();
             if (NewNodo1 == NewNodo2)
@@ -750,6 +756,8 @@ namespace distinta_base
             Componente app2 = Componente.DeepClone(nodo2);
             app1.SottoNodi = null;
             app2.SottoNodi = null;
+            app1.CoefficenteUtilizzo = 0;
+            app2.CoefficenteUtilizzo = 0;
             int NewNodo1 = app1.GetHashCode();
             int NewNodo2 = app2.GetHashCode();
             if (NewNodo1 == NewNodo2)
