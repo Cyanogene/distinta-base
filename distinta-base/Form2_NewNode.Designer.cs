@@ -78,6 +78,7 @@
             // form_nome
             // 
             this.form_nome.Location = new System.Drawing.Point(202, 98);
+            this.form_nome.MaxLength = 235;
             this.form_nome.Name = "form_nome";
             this.form_nome.Size = new System.Drawing.Size(151, 20);
             this.form_nome.TabIndex = 0;
@@ -85,6 +86,7 @@
             // form_codice
             // 
             this.form_codice.Location = new System.Drawing.Point(202, 124);
+            this.form_codice.MaxLength = 235;
             this.form_codice.Name = "form_codice";
             this.form_codice.Size = new System.Drawing.Size(212, 20);
             this.form_codice.TabIndex = 1;
@@ -93,6 +95,7 @@
             // form_descrizione
             // 
             this.form_descrizione.Location = new System.Drawing.Point(202, 150);
+            this.form_descrizione.MaxLength = 235;
             this.form_descrizione.Name = "form_descrizione";
             this.form_descrizione.Size = new System.Drawing.Size(281, 20);
             this.form_descrizione.TabIndex = 2;
@@ -208,7 +211,6 @@
             0,
             0,
             0});
-            this.form_leadTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_leadTime_KeyPress);
             // 
             // form_leadTimeSicurezza
             // 
@@ -216,7 +218,6 @@
             this.form_leadTimeSicurezza.Name = "form_leadTimeSicurezza";
             this.form_leadTimeSicurezza.Size = new System.Drawing.Size(50, 20);
             this.form_leadTimeSicurezza.TabIndex = 4;
-            this.form_leadTimeSicurezza.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_leadTimeSicurezza_KeyPress);
             // 
             // form__scortaDiSicurezza
             // 
@@ -224,7 +225,6 @@
             this.form__scortaDiSicurezza.Name = "form__scortaDiSicurezza";
             this.form__scortaDiSicurezza.Size = new System.Drawing.Size(50, 20);
             this.form__scortaDiSicurezza.TabIndex = 5;
-            this.form__scortaDiSicurezza.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form__scortaDiSicurezza_KeyPress);
             // 
             // form_lotto
             // 
@@ -242,7 +242,6 @@
             0,
             0,
             0});
-            this.form_lotto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_lotto_KeyPress);
             // 
             // form_periodoDiCopertura
             // 
@@ -260,7 +259,6 @@
             0,
             0,
             0});
-            this.form_periodoDiCopertura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_periodoDiCopertura_KeyPress);
             // 
             // form_coeffDiUtilizzo
             // 

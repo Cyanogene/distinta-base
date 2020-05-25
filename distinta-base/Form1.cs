@@ -14,8 +14,19 @@ namespace distinta_base
 {
     public partial class Form1 : Form
     {
-        
-        private Programmazione generale = new Programmazione();
+        private Programmazione programmazione = new Programmazione();
+
+        private Rectangle BtncreaNuovaDistintaBaseOriginalRect;
+        private Rectangle BtncaricaDaCatalogoOriginalRect;
+        private Rectangle BtnAggiungiSemilavoratoOriginalRect;
+
+        private Rectangle BtnAggiungiMateriaPrimaOriginalRect;
+        private Rectangle TreeViewDistintaBaseOriginalRect;
+        private Rectangle ListView_catalogoOriginalRect;
+
+        private Rectangle LblDistintaBaseOriginalRect;
+        private Rectangle LblCatalogoOriginalRect;
+        private Size formOriginalSize;
 
         public Form1()
         {
@@ -25,12 +36,20 @@ namespace distinta_base
         private void Form1_Load(object sender, EventArgs e)
         {
             CreaListView();
+            programmazione.AggiornaCatalogo(listView_catalogo);
             ControlloTreeView();
-            AggiornaCatalogo();
             lbl_catalogo.BackColor = Color.FromArgb(232, 190, 118);
             lbl_distintaBase.BackColor = Color.FromArgb(232, 190, 118);
             formOriginalSize = Size;
+            ResizeInitialization();
+        }
 
+
+        //resizeFormElement---------------------------------------------------------------------------------------------------------------------------------------------
+
+        private void ResizeInitialization()
+        {
+            // Viene inizializzata una figura per ogni componente nel form
             BtncreaNuovaDistintaBaseOriginalRect = new Rectangle(Btn_creaNuovaDistintaBase.Location.X, Btn_creaNuovaDistintaBase.Location.Y, Btn_creaNuovaDistintaBase.Width, Btn_creaNuovaDistintaBase.Height);
             BtncaricaDaCatalogoOriginalRect = new Rectangle(Btn_caricaDaCatalogo.Location.X, Btn_caricaDaCatalogo.Location.Y, Btn_caricaDaCatalogo.Width, Btn_caricaDaCatalogo.Height);
             BtnAggiungiSemilavoratoOriginalRect = new Rectangle(Btn_AggiungiSemilavorato.Location.X, Btn_AggiungiSemilavorato.Location.Y, Btn_AggiungiSemilavorato.Width, Btn_AggiungiSemilavorato.Height);
@@ -41,27 +60,24 @@ namespace distinta_base
             LblCatalogoOriginalRect = new Rectangle(lbl_catalogo.Location.X, lbl_catalogo.Location.Y, lbl_catalogo.Width, lbl_catalogo.Height);
         }
 
-
-
-
-        //resizeFormElement---------------------------------------------------------------------------------------------------------------------------------------------
-
-        private void resizeChildrenControls()
+        private void ResizeChildrenControls()
         {
-            resizeControl(BtncreaNuovaDistintaBaseOriginalRect, Btn_creaNuovaDistintaBase);
-            resizeControl(BtncaricaDaCatalogoOriginalRect, Btn_caricaDaCatalogo);
-            resizeControl(BtnAggiungiSemilavoratoOriginalRect, Btn_AggiungiSemilavorato);
-            resizeControl(BtnAggiungiMateriaPrimaOriginalRect, Btn_AggiungiMateriaPrima);
-            resizeControl(TreeViewDistintaBaseOriginalRect, treeView_DistintaBase);
-            resizeControl(ListView_catalogoOriginalRect, listView_catalogo);
-            resizeControl(LblDistintaBaseOriginalRect, lbl_distintaBase);
-            resizeControl(LblCatalogoOriginalRect, lbl_catalogo);
+            // Se avviene un resize, questo metodo si occupa di chiamare tutti i metodi necessari
+            ResizeControl(BtncreaNuovaDistintaBaseOriginalRect, Btn_creaNuovaDistintaBase);
+            ResizeControl(BtncaricaDaCatalogoOriginalRect, Btn_caricaDaCatalogo);
+            ResizeControl(BtnAggiungiSemilavoratoOriginalRect, Btn_AggiungiSemilavorato);
+            ResizeControl(BtnAggiungiMateriaPrimaOriginalRect, Btn_AggiungiMateriaPrima);
+            ResizeControl(TreeViewDistintaBaseOriginalRect, treeView_DistintaBase);
+            ResizeControl(ListView_catalogoOriginalRect, listView_catalogo);
+            ResizeControl(LblDistintaBaseOriginalRect, lbl_distintaBase);
+            ResizeControl(LblCatalogoOriginalRect, lbl_catalogo);
         }
         
-        private void resizeControl(Rectangle originalControlRect, Control control)
+        private void ResizeControl(Rectangle originalControlRect, Control control)
         {
-            float xRatio = (float)(Width) / (float)(formOriginalSize.Width);
-            float yRatio = (float)(Height) / (float)(formOriginalSize.Height);
+            // Metodo principale che sposta il componente in una posizione adeguata alla nuova finestra.
+            float xRatio = Width / (float)formOriginalSize.Width;
+            float yRatio = Height / (float)formOriginalSize.Height;
 
             int newX = (int)(originalControlRect.Location.X * xRatio);
             int newY = (int)(originalControlRect.Location.Y * yRatio);
@@ -72,20 +88,9 @@ namespace distinta_base
             control.Size = new Size(newWidth, newHeight);
         }
                
-        private Rectangle BtncreaNuovaDistintaBaseOriginalRect;
-        private Rectangle BtncaricaDaCatalogoOriginalRect;
-        private Rectangle BtnAggiungiSemilavoratoOriginalRect;
-        private Rectangle BtnAggiungiMateriaPrimaOriginalRect;
-        private Rectangle TreeViewDistintaBaseOriginalRect;
-        private Rectangle ListView_catalogoOriginalRect;
-        private Rectangle LblDistintaBaseOriginalRect;
-        private Rectangle LblCatalogoOriginalRect;
-
-        private Size formOriginalSize;
-
         private void Form1_Resize(object sender, EventArgs e)
         {
-            resizeChildrenControls();
+            ResizeChildrenControls();
         }
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -95,24 +100,27 @@ namespace distinta_base
 
         //Catalogo---------------------------------------------------------------------------------------------------------------------------------------------------
 
+
         private void CaricaCatalogo()
         {
-            generale.catalogo.Carica();
-            AggiornaCatalogo();
+            programmazione.catalogo.Carica();
+            programmazione.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }
 
         private void SalvaCatalogo()
         {
-            generale.catalogo.Salva();
-            AggiornaCatalogo();
+            programmazione.catalogo.Salva();
+            programmazione.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }
 
         private void ResettaCatalogo()
         {
-            generale.catalogo.Nodi.Clear();
-            AggiornaCatalogo();
+            programmazione.catalogo.Nodi.Clear();
+            programmazione.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }
-
 
         private void caricaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -131,15 +139,17 @@ namespace distinta_base
         
         private void Btn_AggiungiSemilavorato_Click(object sender, EventArgs e)
         {
-            generale.AggiungiSemilavoratoACatalogo();
-            AggiornaCatalogo();
+            programmazione.AggiungiSemilavoratoACatalogo();
+            programmazione.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }//carica la distinta base selezionata dall'utente nel catalogo
 
         private void Btn_AggiungiMateriaPrima_Click(object sender, EventArgs e)
         {
             //apro una nuova finestra dove l'utente deve inserire tutte le info del nuovo materiale (nome,id,descr,LT,LTS,ecc...)
-            generale.AggiungiMateriaPrimaACatalogo();
-            AggiornaCatalogo();
+            programmazione.AggiungiMateriaPrimaACatalogo();
+            programmazione.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }//crea un nodo con info date in input dall'utente
 
         
@@ -156,8 +166,9 @@ namespace distinta_base
             {
                 string Codice = listView_catalogo.SelectedItems[0].SubItems[1].Text;
                 listView_catalogo.SelectedItems[0].Remove();
-                generale.RimuoviComponenteDaCatalogo(Codice);
-                AggiornaCatalogo();
+                programmazione.RimuoviComponenteDaCatalogo(Codice);
+                programmazione.AggiornaCatalogo(listView_catalogo);
+                ControlloTreeView();
             }
         }//contextMenu listbox rimuove elemento selezionato
 
@@ -166,23 +177,25 @@ namespace distinta_base
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
             string Codice = listView_catalogo.SelectedItems[0].SubItems[1].Text;
 
-            Box.Show(generale.InfoComponenteCatalogo(Codice), "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Box.Show(programmazione.InfoComponenteCatalogo(Codice), "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }//contextMenu listbox da info elemento selezionato
 
         private void modificaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
             string Codice = listView_catalogo.SelectedItems[0].SubItems[1].Text;
-            generale.ModificaComponenteCatalogo(Codice);
-            AggiornaCatalogo();
+            programmazione.ModificaComponenteCatalogo(Codice);
+            programmazione.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }//contextMenu listbox modifica elemento selezionato
 
         private void listView_catalogo_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (listView_catalogo.SelectedItems.Count == 0) { return; }
             string Codice = listView_catalogo.SelectedItems[0].SubItems[1].Text;
-            generale.ModificaComponenteCatalogo(Codice);
-            AggiornaCatalogo();
+            programmazione.ModificaComponenteCatalogo(Codice);
+            programmazione.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }//doppio click su un elemento del catalogo e modifico
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -206,19 +219,20 @@ namespace distinta_base
             e.NewWidth = listView_catalogo.Columns[e.ColumnIndex].Width;
         }//blocca l'allargamento delle colonne da parte dell'utente
 
-        private void AggiornaCatalogo()
+        private void AggiornaCatalogo(ListView listView)
         {
-            listView_catalogo.SelectedItems.Clear();
-            listView_catalogo.Items.Clear();
+            listView.Items.Clear();
             int i = 0;
-            foreach (Componente comp in generale.catalogo.Nodi)
+            foreach (Componente comp in programmazione.catalogo.Nodi)
             {
                 string[] items = { comp.Nome, comp.Codice, comp.Descrizione };
-                ListViewItem ListViewNodo = new ListViewItem(items);
-                ListViewNodo.Font = new Font("Microsoft Tai Le", 12);
+                ListViewItem ListViewNodo = new ListViewItem(items)
+                {
+                    Font = new Font("Microsoft Tai Le", 12)
+                };
                 if (i % 2 != 0)
                     ListViewNodo.BackColor = Color.FromArgb(238, 239, 249);
-                listView_catalogo.Items.Add(ListViewNodo);
+                listView.Items.Add(ListViewNodo);
                 i++;
             }
             ControlloTreeView();
@@ -233,27 +247,27 @@ namespace distinta_base
         private void SalvaDistintaBase()
         {
             if (treeView_DistintaBase.Nodes.Count == 0) return;
-            generale.salvaDistintaBase();
+            programmazione.salvaDistintaBase();
             ControlloTreeView();
         }//BTN salva la distinta base
 
         private void ResettaDistintaBase()
         {
             treeView_DistintaBase.Nodes.Clear();
-            generale.distintaBase.Albero = new Componente();
+            programmazione.distintaBase.Albero = new Componente();
             ControlloTreeView();
         }//BTN resetta la distinta base
 
         private void CaricaDistintaBase()
         {
             treeView_DistintaBase.Nodes.Clear();
-            TreeNode treeNode = generale.caricaDistintaBase();
+            TreeNode treeNode = programmazione.caricaDistintaBase();
             if (treeNode.Text != "")
             {
                 treeView_DistintaBase.Nodes.Add(treeNode);
             }
+            AggiornaCatalogo(listView_catalogo);
             ControlloTreeView();
-            AggiornaCatalogo();
         }//BTN carica la distinta base selezionata
 
 
@@ -276,7 +290,7 @@ namespace distinta_base
         private void Btn_caricaDaCatalogo_Click(object sender, EventArgs e)
         {
             treeView_DistintaBase.Nodes.Clear();
-            TreeNode treeNode = generale.CaricaDaCatalogo();
+            TreeNode treeNode = programmazione.CaricaDaCatalogo();
             if (treeNode != null)
             {
                 treeView_DistintaBase.Nodes.Add(treeNode);
@@ -287,7 +301,7 @@ namespace distinta_base
         private void Btn_creaNuovaDistintaBase_Click(object sender, EventArgs e)
         {
             treeView_DistintaBase.Nodes.Clear();
-            TreeNode treeNode = generale.CreaNuovaDistintaBase();
+            TreeNode treeNode = programmazione.CreaNuovaDistintaBase();
             if (treeNode == null) return;
             if (treeNode.Text != "")
             {
@@ -315,7 +329,8 @@ namespace distinta_base
         {
             if(MessageBox.Show("Vuoi rimuovere il componente definitivamente?", "Distinta Base", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
-                AggiornaTreeView(generale.RimuoviNodo(treeView_DistintaBase));
+                programmazione.RimuoviNodo(treeView_DistintaBase);
+                treeView_DistintaBase.SelectedNode.Remove();
                 ControlloTreeView();
             }
         }//context menu click destro nodo rimuove nodo
@@ -323,53 +338,91 @@ namespace distinta_base
         private void informazioniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (treeView_DistintaBase.SelectedNode == null) return;
-            if (treeView_DistintaBase.SelectedNode == null) { return; }
             string Codice = treeView_DistintaBase.SelectedNode.Tag.ToString();
 
-            Box.Show(generale.InfoComponenteDistintabase(Codice), "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Box.Show(programmazione.InfoComponenteDistintabase(Codice), "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }//context menu click destro nodo mostra info
 
         private void daCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (treeView_DistintaBase.SelectedNode == null) return;
-            AggiornaTreeView(generale.CaricaNodoDaCatalogo(treeView_DistintaBase));
-            ControlloTreeView();
+            TreeNode treeNode = programmazione.CaricaNodoDaCatalogo(treeView_DistintaBase);
+            if (treeNode!=null)
+            {
+                treeView_DistintaBase.SelectedNode.Nodes.Add(treeNode);
+                ControlloTreeView();
+            }
         }//context menu click destro nodo mostra caricaNodo da Catalogo
 
         private void daFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (treeView_DistintaBase.SelectedNode == null) return;
-            AggiornaTreeView(generale.CaricaNodoDaFile(treeView_DistintaBase));
-            ControlloTreeView();
+            TreeNode treeNode = programmazione.CaricaNodoDaFile(treeView_DistintaBase);
+            if (treeNode != null)
+            {
+                treeView_DistintaBase.SelectedNode.Nodes.Add(treeNode);
+                ControlloTreeView();
+            }
         }//context menu click destro nodo mostra caricaNodo da File
 
         private void creaNuovoNodoToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             if (treeView_DistintaBase.SelectedNode == null) return;
-            AggiornaTreeView(generale.CaricaTreeNodeMateriaPrima(treeView_DistintaBase));
-            ControlloTreeView();
+            TreeNode treeNode = programmazione.CaricaTreeNodeMateriaPrima(treeView_DistintaBase);
+            if (treeNode != null)
+            {
+                treeView_DistintaBase.SelectedNode.Nodes.Add(treeNode);
+                ControlloTreeView();
+            }
         }//context menu click destro nodo mostra creaNuovoNodo
 
         private void aggiungiACatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (treeView_DistintaBase.SelectedNode == null) return;
-            generale.AggiungiComponenteACatalogo(treeView_DistintaBase);
-            AggiornaCatalogo();
+            programmazione.AggiungiComponenteACatalogo(treeView_DistintaBase);
+            programmazione.AggiornaCatalogo(listView_catalogo);
+            ControlloTreeView();
         }//context menu click destro nodo carica il nodo in catalogo
 
         private void modificaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (treeView_DistintaBase.SelectedNode == null) return;
-            AggiornaTreeView(generale.ModificaNodo(treeView_DistintaBase));
-            ControlloTreeView();
+            TreeNode treeNode = programmazione.ModificaNodo(treeView_DistintaBase);
+            if (treeNode != null)
+            {
+                if(treeView_DistintaBase.SelectedNode.Parent==null)
+                {
+                    treeView_DistintaBase.Nodes.Clear();
+                    treeView_DistintaBase.Nodes.Add(treeNode);
+                }
+                else
+                {
+                    TreeNode treeNodePadre = treeView_DistintaBase.SelectedNode.Parent;
+                    treeNodePadre.Nodes.Remove(treeView_DistintaBase.SelectedNode);
+                    treeNodePadre.Nodes.Add(treeNode);
+                    ControlloTreeView();
+                }
+            }
         }//context menu click destro nodo mi permette di modificarlo
 
         private void treeView_DistintaBase_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (treeView_DistintaBase.SelectedNode == null) return;
-            TreeNode tree = treeView_DistintaBase.SelectedNode;
-            AggiornaTreeView(generale.ModificaNodo(treeView_DistintaBase));
-            ControlloTreeView();
+            TreeNode treeNode = programmazione.ModificaNodo(treeView_DistintaBase);
+            if (treeNode != null)
+            {
+                if (treeView_DistintaBase.SelectedNode.Parent == null)
+                {
+
+                }
+                else
+                {
+                    TreeNode treeNodePadre = treeView_DistintaBase.SelectedNode.Parent;
+                    treeNodePadre.Nodes.Remove(treeView_DistintaBase.SelectedNode);
+                    treeNodePadre.Nodes.Add(treeNode);
+                    ControlloTreeView();
+                }
+            }
         }//doppio click su nodo mi permette di modificarlo
 
 
@@ -380,7 +433,7 @@ namespace distinta_base
             {
                 Btn_caricaDaCatalogo.Visible = true;
                 Btn_creaNuovaDistintaBase.Visible = true;
-                if (generale.catalogo.Nodi.Count() == 0)
+                if (programmazione.catalogo.Nodi.Count() == 0)
                 {
                     Btn_caricaDaCatalogo.Visible = false;
                 }
@@ -391,18 +444,7 @@ namespace distinta_base
                 Btn_creaNuovaDistintaBase.Visible = false;
             }
         }//controlla se treeview è vuota, se vuota abilita i bottoni "crea nuova distinta base"
-
-        private void AggiornaTreeView(TreeNode treeNode)
-        {
-            if (treeNode == null)
-            {
-                treeView_DistintaBase.Nodes.Clear();
-                return;
-            }
-            treeView_DistintaBase.Nodes.Clear();
-            treeView_DistintaBase.Nodes.Add(treeNode);
-            treeView_DistintaBase.ExpandAll();
-        }
+        
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 

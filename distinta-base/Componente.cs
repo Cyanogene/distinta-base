@@ -27,6 +27,11 @@ namespace distinta_base
         public int CoefficenteUtilizzo { get; set; }
         public List<Componente> SottoNodi = new List<Componente>();
 
+        /// <summary>
+        /// Crea una copia esatta (in tutti i sensi) del componente selezionato.
+        /// </summary>
+        /// <param name="obj">Il componente da clonare.</param>
+        /// <returns></returns>
         public static Componente DeepClone<Componente>(Componente obj)
         {
             if (obj == null) return default(Componente);

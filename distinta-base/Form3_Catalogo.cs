@@ -12,54 +12,30 @@ namespace distinta_base
 {
     public partial class Form3_Catalogo : Form
     {
-        public Form3_Catalogo(List<Componente> input)
-        {
-            nodiCatalogo = input;
-            InitializeComponent();
-            label1.BackColor = Color.FromArgb(232, 190, 118);
-        }
-
-        public List<Componente> nodiCatalogo { get; set; }
         public Componente nodo { get; set; }
         public bool attendo = true;
+        private Programmazione programmazione = new Programmazione();
+
+        public Form3_Catalogo(List<Componente> input)
+        {
+            InitializeComponent();
+            label1.BackColor = Color.FromArgb(232, 190, 118);
+            programmazione.catalogo.Nodi = input;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count == 0)
+            if (listView1.SelectedItems.Count <= 0)
             {
-                //messaggeBox
+                MessageBox.Show("Seleziona un componente.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            ListViewItem item = listView1.SelectedItems[0];
-            string Nome = item.SubItems[0].Text;
-            string Codice = item.SubItems[1].Text;
-            bool aggiungere = true;
-            Componente n = new Componente();
-            foreach (Componente node in nodiCatalogo)
-            {
-                if (node.Nome == Nome && node.Codice == Codice && aggiungere)
-                {
-                    n = node;
-                }
-            }
-            nodo = n;
-            Close();
+            PrendiElementoSelezionato();
         }
 
-        private void AggiornaCatalogo()
-        {
-            int i = 0;
-            listView1.Items.Clear();
-            foreach (Componente n in nodiCatalogo)
-            {
-                string[] items = { n.Nome, n.Codice, n.Descrizione };
-                ListViewItem ListViewNodo = new ListViewItem(items);
-                ListViewNodo.Font = new Font("Microsoft Tai Le", 12);
-                listView1.Items.Add(ListViewNodo);
-            }
-        }//aggiorna il catalogo listbox guardando la list<node> catalogo;
-
+        /// <summary>
+        /// Crea gli header della tabella.
+        /// </summary>
         private void CreaListView()
         {
             listView1.View = View.Details;
@@ -67,7 +43,27 @@ namespace distinta_base
             listView1.Columns.Add("Nome", 90);
             listView1.Columns.Add("Codice", 80);
             listView1.Columns.Add("Descrizione", 170);
-        }//Crea le colonne della listView  (NOME CODICE DESCRIZIONE) <--- di ogni prodotto
+        }
+
+        /// <summary>
+        /// Salva il componente selezionato in una variabile globale "nodo".
+        /// </summary>
+        private void PrendiElementoSelezionato()
+        {
+            ListViewItem item = listView1.SelectedItems[0];
+            string Nome = item.SubItems[0].Text;
+            string Codice = item.SubItems[1].Text;
+
+            foreach (Componente node in programmazione.catalogo.Nodi)
+            {
+                if (node.Codice == Codice)
+                {
+                    nodo = node;
+                    Close();
+                    return;
+                }
+            }
+        }
 
         private void Form3_Catalogo_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -77,32 +73,21 @@ namespace distinta_base
         private void Form3_Catalogo_Load(object sender, EventArgs e)
         {
             CreaListView();
-            AggiornaCatalogo();
+            programmazione.AggiornaCatalogo(listView1);
             CenterToParent();
         }
 
+        // Blocca qualsiasi cambiamento di misura delle colonne.
         private void listView1_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             e.Cancel = true;
             e.NewWidth = listView1.Columns[e.ColumnIndex].Width;
         }
 
+        // Salva il componente in una variabile globale "nodo" cliccando 2 volte sul componente.
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            ListViewItem item = listView1.SelectedItems[0];
-            string Nome = item.SubItems[0].Text;
-            string Codice = item.SubItems[1].Text;
-            bool aggiungere = true;
-            Componente n = new Componente();
-            foreach (Componente node in nodiCatalogo)
-            {
-                if (node.Nome == Nome && node.Codice == Codice && aggiungere)
-                {
-                    n = node;
-                }
-            }
-            nodo = n;
-            Close();
+            PrendiElementoSelezionato();
         }
     }
 }
