@@ -27,7 +27,7 @@ namespace distinta_base
             {
                 InitialDirectory = @"C:\",
                 RestoreDirectory = true,
-                FileName = "*_Catalogo.xml",
+                FileName = "Catalogo.xml",
                 DefaultExt = "xml",
                 Filter = "xml files (*.xml)|*.xml"
             };

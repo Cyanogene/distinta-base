@@ -198,6 +198,11 @@
             // form_leadTime
             // 
             this.form_leadTime.Location = new System.Drawing.Point(202, 177);
+            this.form_leadTime.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.form_leadTime.Minimum = new decimal(new int[] {
             1,
             0,
@@ -215,6 +220,11 @@
             // form_leadTimeSicurezza
             // 
             this.form_leadTimeSicurezza.Location = new System.Drawing.Point(202, 204);
+            this.form_leadTimeSicurezza.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.form_leadTimeSicurezza.Name = "form_leadTimeSicurezza";
             this.form_leadTimeSicurezza.Size = new System.Drawing.Size(50, 20);
             this.form_leadTimeSicurezza.TabIndex = 4;
@@ -222,6 +232,11 @@
             // form__scortaDiSicurezza
             // 
             this.form__scortaDiSicurezza.Location = new System.Drawing.Point(202, 230);
+            this.form__scortaDiSicurezza.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.form__scortaDiSicurezza.Name = "form__scortaDiSicurezza";
             this.form__scortaDiSicurezza.Size = new System.Drawing.Size(50, 20);
             this.form__scortaDiSicurezza.TabIndex = 5;
@@ -229,6 +244,11 @@
             // form_lotto
             // 
             this.form_lotto.Location = new System.Drawing.Point(202, 256);
+            this.form_lotto.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.form_lotto.Minimum = new decimal(new int[] {
             1,
             0,
@@ -246,6 +266,11 @@
             // form_periodoDiCopertura
             // 
             this.form_periodoDiCopertura.Location = new System.Drawing.Point(202, 282);
+            this.form_periodoDiCopertura.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.form_periodoDiCopertura.Minimum = new decimal(new int[] {
             1,
             0,
@@ -263,6 +288,11 @@
             // form_coeffDiUtilizzo
             // 
             this.form_coeffDiUtilizzo.Location = new System.Drawing.Point(202, 307);
+            this.form_coeffDiUtilizzo.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.form_coeffDiUtilizzo.Minimum = new decimal(new int[] {
             1,
             0,
