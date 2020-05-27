@@ -496,7 +496,7 @@ namespace distinta_base
             Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
             if (ControllaCodice(comp, new Componente(), Componenti()))
             {
-                AggiungiComponente(comp, compPadre, distintaBase.Albero, new List<Componente>(), true);
+                AggiungiComponente(comp, compPadre, distintaBase.Albero, new List<Componente>(), false);
             }
             return distintaBase.NodeToTreeNode(comp);
         }
@@ -524,8 +524,13 @@ namespace distinta_base
         /// <param name="treeView">L'albero dove cercare il nodo selezionato.</param></param>
         public TreeNode ModificaNodo(TreeView treeView)
         {
+            bool IsRadice = false;
             Componente compVecchio = distintaBase.TreeNodeToNode(treeView.SelectedNode);
-            Form2_NewNode form2 = new Form2_NewNode(compVecchio, ComponentiDistintaBase(), true);
+            if (treeView.SelectedNode.Parent == null)
+            {
+                IsRadice = true;
+            }
+            Form2_NewNode form2 = new Form2_NewNode(compVecchio, ComponentiDistintaBase(), IsRadice);
             form2.ShowDialog();
             Componente newComp = form2.nodo;
             List<Componente> nodi = distintaBase.Nodi();
