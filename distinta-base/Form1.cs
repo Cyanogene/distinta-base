@@ -454,12 +454,19 @@ namespace distinta_base
 
         private void distintaBaseToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Si può creare una nuova distinta base o caricarla da catalogo con gli appositi pulsanti.\nSi può salvare, caricare o resettare la distinta base selezionado l'apposita voce nella barra-menu.\nCon un click destro su un componente della distinta base si può eliminare, modificare, aggiungere sottocomponente, ottenere le info, aggiungere al catalogo il componente selezionato.\nCon un doppio click su un qualsiasi componente si può modificare quest'ultimo.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Si può creare una nuova distinta base o caricarla da catalogo con gli appositi pulsanti." +
+                "\nSi può salvare, caricare o resettare la distinta base selezionado l'apposita voce nella barra-menu." +
+                "\nCon un click destro su un componente della distinta base si può eliminare, modificare, aggiungere" +
+                " un sottocomponente, ottenere le info o aggiungere al catalogo un componente.\nCon " +
+                "un doppio click su un qualsiasi componente si può modificare quest'ultimo.", "Distinta Base", 
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void catalogoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Si può caricare, salvare o resettare il catalogo tramite l'apposita voce nella barra-menu.\nSi può caricare un componente o crearne uno nuovo con gli appositi pulsanti.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Si può caricare, salvare o resettare il catalogo tramite l'apposita voce nella barra-menu." +
+                "\nSi può caricare un componente o crearne uno nuovo con gli appositi pulsanti.", 
+                "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
