@@ -178,7 +178,9 @@ namespace distinta_base
 
         // Catalogo---------------------------------------------------------------
 
-
+        /// <summary>
+        /// restituisce il componente che in catalogo ha codice uguale alla stringa ricevuta in input (codice)
+        /// </summary>
         public Componente ComponenteCatalogoDaCodice(string codice)
         {
             List<Componente> componenti = catalogo.Nodi;
@@ -315,7 +317,6 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// 
         /// il componente del catalogo selezionato.
         /// </summary>
         /// <param name="codice">Il codice del componente da modificare.</param>
@@ -342,7 +343,7 @@ namespace distinta_base
                 return;
             }
 
-            
+
 
             RimuoviComponenteDaCatalogo(compVecchio.Codice);
             catalogo.Nodi.Add(Componente.DeepClone<Componente>(newComp));
@@ -500,8 +501,8 @@ namespace distinta_base
             Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
             if (ControllaCodice(comp, new Componente(), Componenti()))
             {
-                if(!AggiungiComponente(comp, compPadre, distintaBase.Albero, new List<Componente>(), true))
-                return null;
+                if (!AggiungiComponente(comp, compPadre, distintaBase.Albero, new List<Componente>(), true))
+                    return null;
             }
             return distintaBase.NodeToTreeNode(comp);
         }
@@ -518,8 +519,8 @@ namespace distinta_base
             Componente compPadre = distintaBase.TreeNodeToNode(treeView.SelectedNode);
             if (ControllaCodice(NewComponente, new Componente(), Componenti()))
             {
-                if(!AggiungiComponente(NewComponente, compPadre, distintaBase.Albero, new List<Componente>(), true))
-                return null;
+                if (!AggiungiComponente(NewComponente, compPadre, distintaBase.Albero, new List<Componente>(), true))
+                    return null;
             }
             return distintaBase.NodeToTreeNode(NewComponente);
         }
@@ -687,10 +688,6 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// Controlla se 2 nodi sono uguali in ogni campo.
-        /// </summary>
-
-        /// <summary>
         /// Controlla se 2 nodi sono uguali (non controlla i codici).
         /// </summary>
         private bool NodiUgualiNoCodice(Componente comp1, Componente comp2)
@@ -721,11 +718,11 @@ namespace distinta_base
         {
             if (node1.Codice == node2.Codice && node1.Nome == node2.Nome && node1.Descrizione == node2.Descrizione && node1.LeadTime == node2.LeadTime && node1.LeadTimeSicurezza == node2.LeadTimeSicurezza && node1.ScortaSicurezza == node2.ScortaSicurezza && node1.Lotto == node2.Lotto && node1.PeriodoDiCopertura == node2.PeriodoDiCopertura)
             {
-                if(node1.SottoNodi.Count == node2.SottoNodi.Count)
+                if (node1.SottoNodi.Count == node2.SottoNodi.Count)
                 {
-                    for(int i=0;i<node1.SottoNodi.Count;i++)
+                    for (int i = 0; i < node1.SottoNodi.Count; i++)
                     {
-                        if(!(NodiUguali(node1.SottoNodi[i], node2.SottoNodi[i])))
+                        if (!(NodiUguali(node1.SottoNodi[i], node2.SottoNodi[i])))
                         {
                             return false;
                         }
@@ -737,85 +734,84 @@ namespace distinta_base
         }
 
 
-    /// <summary>
-    /// Controlla se il catalogo contiene il componente selezionato (non controlla i sottoComponenti).
-    /// </summary>
-    /// <param name="comp">Il componente da controllare.</param>
-    private bool CatalogoContieneCompNoControlloSottocomp(Componente comp)
-    {
-        List<Componente> componentiCatalogo = ComponentiCatalogo();
-        foreach (Componente componente in componentiCatalogo)
+        /// <summary>
+        /// Controlla se il catalogo contiene il componente selezionato (non controlla i sottoComponenti).
+        /// </summary>
+        /// <param name="comp">Il componente da controllare.</param>
+        private bool CatalogoContieneCompNoControlloSottocomp(Componente comp)
         {
-            if (NodiUgualiNoSottocomp(comp, componente))
+            List<Componente> componentiCatalogo = ComponentiCatalogo();
+            foreach (Componente componente in componentiCatalogo)
             {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Controlla se il catalogo contiene il componente selezionato.
-    /// </summary>
-    /// <param name="comp">Il componente da controllare.</param>
-    private bool CatalogoContieneComp(Componente comp)
-    {
-        List<Componente> componentiCatalogo = ComponentiCatalogo();
-        foreach (Componente componente in componentiCatalogo)
-        {
-            if (NodiUguali(comp, componente))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Restituisce una lista di componenti della distinta base.
-    /// </summary>
-    private List<Componente> ComponentiDistintaBase()
-    {
-        List<Componente> componenti = new List<Componente>();
-        List<Componente> nodi = distintaBase.Nodi();
-        List<Componente> nodiDistintaBase = nodi;
-        Componente compMomentaneo = new Componente();
-        foreach (Componente comp in nodiDistintaBase)
-        {
-            compMomentaneo = Componente.DeepClone<Componente>(comp);
-            bool aggiungi = true;
-            foreach (Componente componente in componenti)
-            {
-                if (NodiUgualiNoSottocomp(componente, compMomentaneo))
+                if (NodiUgualiNoSottocomp(comp, componente))
                 {
-                    aggiungi = false;
+                    return true;
                 }
             }
-            if (aggiungi)
+            return false;
+        }
+
+        /// <summary>
+        /// Controlla se il catalogo contiene il componente selezionato.
+        /// </summary>
+        /// <param name="comp">Il componente da controllare.</param>
+        private bool CatalogoContieneComp(Componente comp)
+        {
+            List<Componente> componentiCatalogo = ComponentiCatalogo();
+            foreach (Componente componente in componentiCatalogo)
             {
+                if (NodiUguali(comp, componente))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Restituisce una lista di componenti della distinta base.
+        /// </summary>
+        private List<Componente> ComponentiDistintaBase()
+        {
+            List<Componente> componenti = new List<Componente>();
+            List<Componente> nodi = distintaBase.Nodi();
+            List<Componente> nodiDistintaBase = nodi;
+            Componente compMomentaneo = new Componente();
+            foreach (Componente comp in nodiDistintaBase)
+            {
+                compMomentaneo = Componente.DeepClone<Componente>(comp);
+                bool aggiungi = true;
+                foreach (Componente componente in componenti)
+                {
+                    if (NodiUgualiNoSottocomp(componente, compMomentaneo))
+                    {
+                        aggiungi = false;
+                    }
+                }
+                if (aggiungi)
+                {
+                    compMomentaneo.SottoNodi = null;
+                    componenti.Add(Componente.DeepClone<Componente>(compMomentaneo));
+                }
+            }
+            return componenti;
+        }
+
+        /// <summary>
+        /// Inserisce tutti i componenti del catalogo in una lista.
+        /// </summary>
+        public List<Componente> NodiCatalogo()
+        {
+            List<Componente> componenti = new List<Componente>();
+            List<Componente> nodiCatalogo = catalogo.Nodi;
+            Componente compMomentaneo = new Componente();
+            foreach (Componente comp in nodiCatalogo)
+            {
+                compMomentaneo = Componente.DeepClone<Componente>(comp);
                 compMomentaneo.SottoNodi = null;
                 componenti.Add(Componente.DeepClone<Componente>(compMomentaneo));
             }
+            return componenti;
         }
-        return componenti;
     }
-
-    /// <summary>
-    /// Inserisce tutti i componenti del catalogo in una lista.
-    /// </summary>
-    /// <returns></returns>
-    public List<Componente> NodiCatalogo()
-    {
-        List<Componente> componenti = new List<Componente>();
-        List<Componente> nodiCatalogo = catalogo.Nodi;
-        Componente compMomentaneo = new Componente();
-        foreach (Componente comp in nodiCatalogo)
-        {
-            compMomentaneo = Componente.DeepClone<Componente>(comp);
-            compMomentaneo.SottoNodi = null;
-            componenti.Add(Componente.DeepClone<Componente>(compMomentaneo));
-        }
-        return componenti;
-    }
-}
 }

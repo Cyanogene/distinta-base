@@ -16,7 +16,6 @@ namespace distinta_base
 
     public partial class Form2_NewNode : Form
     {
-        //variabili NODO------------------------
         string Nome = "";
         string Codice = "";
         string Descrizione = "";
@@ -26,11 +25,11 @@ namespace distinta_base
         int Lotto = 0;
         int PeriodoDiCopertura = 0;
         int CoefficenteUtilizzo = 0;
+
         public Componente nodo;
-        public bool attendo = true;
-        List<Componente> Componenti = new List<Componente>();
         Componente nodoInput = null;
-        //--------------------------------------
+        List<Componente> Componenti = new List<Componente>();
+        public bool attendo = true;
 
         public Form2_NewNode(Componente nodo, List<Componente> componenti, bool IsCatalogoOrRoot)
         {
@@ -65,6 +64,31 @@ namespace distinta_base
             Componenti.AddRange(componenti);
         }
 
+
+        private void Form2_NewNode_Load(object sender, EventArgs e)
+        {
+            CenterToParent();
+        }
+
+        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            attendo = false;
+        }
+        
+        private void form_codice_Validating(object sender, CancelEventArgs e)
+        {
+            bool ris = form_codice.Text.All(char.IsLetterOrDigit);
+            if (!ris)
+            {
+                MessageBox.Show("Il codice può essere composto solo da lettere e numeri.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                form_codice.Text = "";
+                form_codice.Focus();
+                return;
+            }
+        }
+
+
+
         private void Btn_aggiungi_Click(object sender, EventArgs e)
         {
             if (form_nome.Text != "" && form_codice.Text != "" && form_descrizione.Text != "")
@@ -80,6 +104,37 @@ namespace distinta_base
 
         }
 
+        /// <summary>
+        /// crea un nodo con i dati ricevuti in input dall'interfaccia
+        /// </summary>
+        private void CreaNodo()
+        {
+            Nome = form_nome.Text;
+            Descrizione = form_descrizione.Text;
+            LT = Convert.ToInt32(form_leadTime.Value);
+            LTS = Convert.ToInt32(form_leadTimeSicurezza.Value);
+            ScortaDiSicurezza = Convert.ToInt32(form__scortaDiSicurezza.Value);
+            Lotto = Convert.ToInt32(form_lotto.Value);
+            PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
+            Codice = form_codice.Text;
+            CoefficenteUtilizzo = Convert.ToInt32(form_coeffDiUtilizzo.Value);
+            nodo = new Componente
+            {
+                Nome = Nome,
+                Codice = Codice,
+                Descrizione = Descrizione,
+                LeadTime = LT,
+                LeadTimeSicurezza = LTS,
+                ScortaSicurezza = ScortaDiSicurezza,
+                Lotto = Lotto,
+                PeriodoDiCopertura = PeriodoDiCopertura,
+                CoefficenteUtilizzo = CoefficenteUtilizzo,
+            };
+        }
+
+        /// <summary>
+        /// controlla il codice del nuovo nodo, se è ok restituisce il nodo altrimenti comunica all'utente che il codice va cambiato
+        /// </summary>
         private void CheckCode()
         {
             if (codiceOK(nodo))
@@ -98,6 +153,9 @@ namespace distinta_base
             }
         }
 
+        /// <summary>
+        /// restituisce true se il codice del nodo ricevuto in input (componenteDaControllare) va bene
+        /// </summary>
         private bool ControlloCodice(Componente componenteDaControllare, Componente componente)
         {
             if (componente.SottoNodi != null)
@@ -139,6 +197,24 @@ namespace distinta_base
             return true;
         }
 
+        /// <summary>
+        /// restituisce true se il codice del nodo ricevuto in input (componenteDaControllare) va bene (lavora insieme al metodo ControlloCodice)
+        /// </summary>
+        private bool codiceOK(Componente comp)
+        {
+            foreach (Componente componente in Componenti)
+            {
+                if (!ControlloCodice(comp, componente))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// restituisce il numero di volte che il codice è utilizzato nei componenti del programma
+        /// </summary>
         private int contatoreCodice(string codice)
         {
             int n = 0;
@@ -149,7 +225,10 @@ namespace distinta_base
             return n;
         }
 
-        public int contatoreCodiceSecondario(string codice, Componente comp)
+        /// <summary>
+        /// restituisce il numero di volte che il codice è utilizzato nei componenti del programma (lavora insieme al metodo contatoreCodice)
+        /// </summary>
+        private int contatoreCodiceSecondario(string codice, Componente comp)
         {
             int n = 0;
             if (comp.Codice == codice)
@@ -165,19 +244,10 @@ namespace distinta_base
             }
             return n;
         }
-
-        private bool codiceOK(Componente comp)
-        {
-            foreach (Componente componente in Componenti)
-            {
-                if (!ControlloCodice(comp, componente))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
+        
+        /// <summary>
+        /// restituisce true se i nodi dati in input hanno tutte le variabili uguali eccetto i sottonodi
+        /// </summary>
         private bool NodiUgualiNoCodiceNoSottocomp(Componente nodo1, Componente nodo2)
         {
             if (nodo1.Nome == nodo2.Nome && nodo1.Descrizione == nodo2.Descrizione && nodo1.LeadTime == nodo2.LeadTime && nodo1.LeadTimeSicurezza == nodo2.LeadTimeSicurezza && nodo1.ScortaSicurezza == nodo2.ScortaSicurezza && nodo1.Lotto == nodo2.Lotto && nodo1.PeriodoDiCopertura == nodo2.PeriodoDiCopertura)
@@ -187,51 +257,7 @@ namespace distinta_base
             return false;
         }
 
-        private void CreaNodo()
-        {
-            Nome = form_nome.Text;
-            Descrizione = form_descrizione.Text;
-            LT = Convert.ToInt32(form_leadTime.Value);
-            LTS = Convert.ToInt32(form_leadTimeSicurezza.Value);
-            ScortaDiSicurezza = Convert.ToInt32(form__scortaDiSicurezza.Value);
-            Lotto = Convert.ToInt32(form_lotto.Value);
-            PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
-            Codice = form_codice.Text;
-            CoefficenteUtilizzo = Convert.ToInt32(form_coeffDiUtilizzo.Value);
-            nodo = new Componente
-            {
-                Nome = Nome,
-                Codice = Codice,
-                Descrizione = Descrizione,
-                LeadTime = LT,
-                LeadTimeSicurezza = LTS,
-                ScortaSicurezza = ScortaDiSicurezza,
-                Lotto = Lotto,
-                PeriodoDiCopertura = PeriodoDiCopertura,
-                CoefficenteUtilizzo = CoefficenteUtilizzo,
-            };
-        }
 
-        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            attendo = false;
-        }
-
-        private void Form2_NewNode_Load(object sender, EventArgs e)
-        {
-            CenterToParent();
-        }
-
-        private void form_codice_Validating(object sender, CancelEventArgs e)
-        {
-            bool ris = form_codice.Text.All(char.IsLetterOrDigit);
-            if (!ris)
-            {
-                MessageBox.Show("Il codice può essere composto solo da lettere e numeri.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                form_codice.Text = "";
-                form_codice.Focus();
-                return;
-            }
-        }
+        
     }
 }
