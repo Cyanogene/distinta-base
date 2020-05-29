@@ -278,7 +278,11 @@ namespace distinta_base
         /// </summary>
         private void SalvaDistintaBase()
         {
-            if (treeView_DistintaBase.Nodes.Count == 0) return;
+            if (treeView_DistintaBase.Nodes.Count == 0)
+            {
+                MessageBox.Show("Creare prima una distinta base", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             programmazione.salvaDistintaBase();
             ControlloTreeView();
         }

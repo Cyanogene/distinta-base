@@ -20,7 +20,7 @@ namespace distinta_base
         {
             if (Nodi.Count == 0)
             {
-                MessageBox.Show("Il catalogo è vuoto.", "Distinta Base");
+                MessageBox.Show("Il catalogo è vuoto.", "Distinta Base",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return;
             }
             SaveFileDialog Sfd_Catalogo = new SaveFileDialog
@@ -70,7 +70,7 @@ namespace distinta_base
                     }
                     catch
                     {
-                        MessageBox.Show("Il file caricato non è un file di tipo 'Catalogo'.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Il file caricato non è  di tipo 'Catalogo'.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     stream.Close();
                 }

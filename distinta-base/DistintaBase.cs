@@ -150,7 +150,7 @@ namespace distinta_base
                     }
                     catch
                     {
-                        MessageBox.Show("Il file caricato non è un file di tipo 'DistintaBase'.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Il file caricato non è un file di tipo 'DistintaBase'.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     stream.Close();
                 }
