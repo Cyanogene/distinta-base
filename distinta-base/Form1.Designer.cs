@@ -69,6 +69,7 @@
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.distintaBaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.catalogoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.manualeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Cms_TreeView.SuspendLayout();
             this.Cms_ListBox.SuspendLayout();
             this.Cms_Informazioni.SuspendLayout();
@@ -347,7 +348,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.distintaBaseToolStripMenuItem,
             this.catalogoToolStripMenuItem,
-            this.infoToolStripMenuItem});
+            this.infoToolStripMenuItem,
+            this.manualeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
@@ -433,16 +435,24 @@
             // distintaBaseToolStripMenuItem1
             // 
             this.distintaBaseToolStripMenuItem1.Name = "distintaBaseToolStripMenuItem1";
-            this.distintaBaseToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+            this.distintaBaseToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.distintaBaseToolStripMenuItem1.Text = "Distinta base";
             this.distintaBaseToolStripMenuItem1.Click += new System.EventHandler(this.distintaBaseToolStripMenuItem1_Click);
             // 
             // catalogoToolStripMenuItem1
             // 
             this.catalogoToolStripMenuItem1.Name = "catalogoToolStripMenuItem1";
-            this.catalogoToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+            this.catalogoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.catalogoToolStripMenuItem1.Text = "Catalogo";
             this.catalogoToolStripMenuItem1.Click += new System.EventHandler(this.catalogoToolStripMenuItem1_Click);
+            // 
+            // manualeToolStripMenuItem
+            // 
+            this.manualeToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
+            this.manualeToolStripMenuItem.Name = "manualeToolStripMenuItem";
+            this.manualeToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.manualeToolStripMenuItem.Text = "Manuale";
+            this.manualeToolStripMenuItem.Click += new System.EventHandler(this.manualeToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -519,6 +529,7 @@
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem distintaBaseToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem catalogoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem manualeToolStripMenuItem;
     }
 }
 

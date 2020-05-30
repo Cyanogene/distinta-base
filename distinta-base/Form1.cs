@@ -571,6 +571,17 @@ namespace distinta_base
                 "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        /// <summary>
+        /// Chiamato quando viene cliccata la voce Manuale online distintaBase nel menu info del contextMenu. 
+        /// </summary>
+        private void manualeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Vuoi aprire il manuale online?", "Gestione materiali", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://google.com");
+            }
+        }
+
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     }
