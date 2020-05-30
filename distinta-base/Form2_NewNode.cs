@@ -105,7 +105,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// crea un nodo con i dati ricevuti in input dall'interfaccia
+        /// Crea un nodo con i dati ricevuti in input dall'interfaccia.
         /// </summary>
         private void CreaNodo()
         {
@@ -133,7 +133,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// controlla il codice del nuovo nodo, se è ok restituisce il nodo altrimenti comunica all'utente che il codice va cambiato
+        /// Controlla il codice del nuovo nodo, se è ok restituisce il nodo altrimenti comunica all'utente che il codice va cambiato.
         /// </summary>
         private void CheckCode()
         {
@@ -154,7 +154,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// restituisce true se il codice del nodo ricevuto in input (componenteDaControllare) va bene
+        /// Restituisce true se il codice del nodo ricevuto in input (componenteDaControllare) va bene.
         /// </summary>
         private bool ControlloCodice(Componente componenteDaControllare, Componente componente)
         {
@@ -198,7 +198,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// restituisce true se il codice del nodo ricevuto in input (componenteDaControllare) va bene (lavora insieme al metodo ControlloCodice)
+        /// Restituisce true se il codice del nodo ricevuto in input (componenteDaControllare) va bene (lavora insieme al metodo ControlloCodice).
         /// </summary>
         private bool codiceOK(Componente comp)
         {
@@ -213,7 +213,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// restituisce il numero di volte che il codice è utilizzato nei componenti del programma
+        /// Restituisce il numero di volte che il codice è utilizzato nei componenti del programma.
         /// </summary>
         private int contatoreCodice(string codice)
         {
@@ -226,7 +226,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// restituisce il numero di volte che il codice è utilizzato nei componenti del programma (lavora insieme al metodo contatoreCodice)
+        /// Restituisce il numero di volte che il codice è utilizzato nei componenti del programma (lavora insieme al metodo contatoreCodice).
         /// </summary>
         private int contatoreCodiceSecondario(string codice, Componente comp)
         {
@@ -246,7 +246,7 @@ namespace distinta_base
         }
         
         /// <summary>
-        /// restituisce true se i nodi dati in input hanno tutte le variabili uguali eccetto i sottonodi
+        /// Restituisce true se i nodi dati in input hanno tutte le variabili uguali eccetto i sottonodi.
         /// </summary>
         private bool NodiUgualiNoCodiceNoSottocomp(Componente nodo1, Componente nodo2)
         {

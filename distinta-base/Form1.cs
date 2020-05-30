@@ -60,9 +60,11 @@ namespace distinta_base
             LblCatalogoOriginalRect = new Rectangle(lbl_catalogo.Location.X, lbl_catalogo.Location.Y, lbl_catalogo.Width, lbl_catalogo.Height);
         }
 
+        /// <summary>
+        /// Se avviene un resize, questo metodo si occupa di chiamare tutti i metodi necessari
+        /// </summary>
         private void ResizeChildrenControls()
         {
-            // Se avviene un resize, questo metodo si occupa di chiamare tutti i metodi necessari
             ResizeControl(BtncreaNuovaDistintaBaseOriginalRect, Btn_creaNuovaDistintaBase);
             ResizeControl(BtncaricaDaCatalogoOriginalRect, Btn_caricaDaCatalogo);
             ResizeControl(BtnAggiungiSemilavoratoOriginalRect, Btn_AggiungiSemilavorato);
@@ -72,10 +74,12 @@ namespace distinta_base
             ResizeControl(LblDistintaBaseOriginalRect, lbl_distintaBase);
             ResizeControl(LblCatalogoOriginalRect, lbl_catalogo);
         }
-        
+
+        /// <summary>
+        /// Metodo principale che sposta il componente in una posizione adeguata alla nuova finestra.
+        /// </summary>
         private void ResizeControl(Rectangle originalControlRect, Control control)
         {
-            // Metodo principale che sposta il componente in una posizione adeguata alla nuova finestra.
             float xRatio = Width / (float)formOriginalSize.Width;
             float yRatio = Height / (float)formOriginalSize.Height;
 
@@ -122,23 +126,32 @@ namespace distinta_base
             ControlloTreeView();
         }
 
+        /// <summary>
+        /// Metodo che viene chiamato al click della voce carica nella sezione catalogo del contextMenu.
+        /// </summary>
         private void caricaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             CaricaCatalogo();
         }
 
+        /// <summary>
+        /// Metodo che viene chiamato al click della voce salva nella sezione catalogo del contextMenu.
+        /// </summary>
         private void salvaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SalvaCatalogo();
         }
 
+        /// <summary>
+        /// Metodo che viene chiamato al click della voce resetta nella sezione catalogo del contextMenu.
+        /// </summary>
         private void resettaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ResettaCatalogo();
         }
 
         /// <summary>
-        /// carica la distinta base selezionata dall'utente nel catalogo
+        /// Carica la distinta base selezionata dall'utente nel catalogo.
         /// </summary>
         private void Btn_AggiungiSemilavorato_Click(object sender, EventArgs e)
         {
@@ -148,7 +161,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// crea un nodo con info date in input dall'utente
+        /// Crea un nodo con info date in input dall'utente.
         /// </summary>
         private void Btn_AggiungiMateriaPrima_Click(object sender, EventArgs e)
         {
@@ -159,7 +172,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// click destro su una riga della listbox apre contextMenu
+        /// Click destro su una riga della listbox chiama contextMenu.
         /// </summary>
         private void listView_catalogo_MouseClick(object sender, MouseEventArgs e)
         {
@@ -168,7 +181,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// contextMenu listbox rimuove elemento selezionato
+        /// ContextMenu listbox rimuove elemento selezionato.
         /// </summary>
         private void rimuoviToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -184,7 +197,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// contextMenu listbox da info elemento selezionato
+        /// ContextMenu listbox da info elemento selezionato.
         /// </summary>
         private void informazioniToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -195,7 +208,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// contextMenu listbox modifica elemento selezionato
+        /// ContextMenu listbox modifica elemento selezionato.
         /// </summary>
         private void modificaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -207,7 +220,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// doppio click su un elemento del catalogo e modifico
+        /// Doppio click su un elemento del catalogo e modifico.
         /// </summary>
         private void listView_catalogo_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -225,7 +238,7 @@ namespace distinta_base
         //ListView---------------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
-        /// Crea le colonne della listView  (NOME CODICE DESCRIZIONE)
+        /// Crea le colonne della listView  (NOME CODICE DESCRIZIONE).
         /// </summary>
         private void CreaListView()
         {
@@ -237,7 +250,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// blocca l'allargamento delle colonne da parte dell'utente
+        /// Blocca l'allargamento delle colonne da parte dell'utente.
         /// </summary>
         private void listView_catalogo_ColumnWidthChanging_1(object sender, ColumnWidthChangingEventArgs e)
         {
@@ -246,7 +259,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// aggiorna la listView Catalogo ottenendo i nodi dalla lista nodi della classe catalogo
+        /// Aggiorna la listView Catalogo ottenendo i nodi dalla lista nodi della classe catalogo.
         /// </summary>
         private void AggiornaCatalogo(ListView listView)
         {
@@ -274,7 +287,7 @@ namespace distinta_base
         //DistintaBase-----------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
-        /// BTN salva la distinta base
+        /// BTN salva la distinta base.
         /// </summary>
         private void SalvaDistintaBase()
         {
@@ -288,7 +301,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// BTN resetta la distinta base
+        /// BTN resetta la distinta base.
         /// </summary>
         private void ResettaDistintaBase()
         {
@@ -298,7 +311,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// BTN carica la distinta base selezionata
+        /// BTN carica la distinta base selezionata.
         /// </summary>
         private void CaricaDistintaBase()
         {
@@ -312,24 +325,32 @@ namespace distinta_base
             ControlloTreeView();
         }
 
-
+        /// <summary>
+        /// Metodo che viene chiamato al click della voce carica nella sezione distintaBase del contextMenu.
+        /// </summary>
         private void caricaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CaricaDistintaBase();
         }
 
+        /// <summary>
+        /// Metodo che viene chiamato al click della voce salva nella sezione distintaBase del contextMenu.
+        /// </summary>
         private void salvaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SalvaDistintaBase();
         }
 
+        /// <summary>
+        /// Metodo che viene chiamato al click della voce resetta nella sezione distintaBase del contextMenu.
+        /// </summary>
         private void resettaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ResettaDistintaBase();
         }
 
         /// <summary>
-        /// BTN carica un nodo dal catalogo
+        /// BTN carica un nodo dal catalogo.
         /// </summary>
         private void Btn_caricaDaCatalogo_Click(object sender, EventArgs e)
         {
@@ -343,7 +364,7 @@ namespace distinta_base
         } 
 
         /// <summary>
-        /// BTN crea una nuova distinta base
+        /// BTN crea una nuova distinta base.
         /// </summary>
         private void Btn_creaNuovaDistintaBase_Click(object sender, EventArgs e)
         {
@@ -358,7 +379,7 @@ namespace distinta_base
         } 
 
         /// <summary>
-        /// click destro su un nodo mostra menu a scomparsa con cosa si può fare con un nodo
+        /// Click destro su un nodo mostra menu a scomparsa con cosa si può fare con un nodo.
         /// </summary>
         private void treeView_DistintaBase_NodeMouseClick_1(object sender, TreeNodeMouseClickEventArgs e)
         {
@@ -375,7 +396,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// context menu click destro nodo rimuove nodo
+        /// Context menu click destro nodo rimuove nodo.
         /// </summary>
         private void rimuoviToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -388,7 +409,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// context menu click destro nodo mostra info
+        /// Context menu click destro nodo mostra info.
         /// </summary>
         private void informazioniToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -399,7 +420,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// context menu click destro nodo mostra caricaNodo da Catalogo
+        /// Context menu click destro nodo mostra caricaNodo da Catalogo.
         /// </summary>
         private void daCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -413,7 +434,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// context menu click destro nodo mostra caricaNodo da File
+        /// Context menu click destro nodo mostra caricaNodo da File.
         /// </summary>
         private void daFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -427,7 +448,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// context menu click destro nodo mostra creaNuovoNodo
+        /// Context menu click destro nodo mostra creaNuovoNodo.
         /// </summary>
         private void creaNuovoNodoToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -441,7 +462,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// context menu click destro nodo carica il nodo in catalogo
+        /// Context menu click destro nodo carica il nodo in catalogo.
         /// </summary>
         private void aggiungiACatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -452,7 +473,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// context menu click destro nodo mi permette di modificarlo
+        /// Context menu click destro nodo mi permette di modificarlo.
         /// </summary>
         private void modificaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -476,7 +497,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// doppio click su nodo mi permette di modificarlo
+        /// Doppio click su nodo mi permette di modificarlo.
         /// </summary>
         private void treeView_DistintaBase_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
@@ -500,7 +521,7 @@ namespace distinta_base
 
 
         /// <summary>
-        /// controlla se treeview è vuota, se vuota abilita i bottoni "crea nuova distinta base"
+        /// Controlla se treeview è vuota, se vuota abilita i bottoni "crea nuova distinta base".
         /// </summary>
         private void ControlloTreeView()
         {
@@ -527,6 +548,9 @@ namespace distinta_base
 
         //Informazioni-----------------------------------------------------------------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// Chiamato quando viene cliccata la voce informazioni distintaBase nel menu info del contextMenu.
+        /// </summary>
         private void distintaBaseToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Si può creare una nuova distinta base o caricarla da catalogo con gli appositi pulsanti." +
@@ -537,6 +561,9 @@ namespace distinta_base
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        /// <summary>
+        /// Chiamato quando viene cliccata la voce informazioni catalogo nel menu info del contextMenu.
+        /// </summary>
         private void catalogoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Si può caricare, salvare o resettare il catalogo tramite l'apposita voce nella barra-menu." +

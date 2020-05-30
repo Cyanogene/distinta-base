@@ -179,7 +179,7 @@ namespace distinta_base
         // Catalogo---------------------------------------------------------------
 
         /// <summary>
-        /// restituisce il componente che in catalogo ha codice uguale alla stringa ricevuta in input (codice)
+        /// Restituisce il componente che in catalogo ha codice uguale alla stringa ricevuta in input (codice).
         /// </summary>
         public Componente ComponenteCatalogoDaCodice(string codice)
         {
@@ -317,7 +317,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// il componente del catalogo selezionato.
+        /// Il componente del catalogo selezionato.
         /// </summary>
         /// <param name="codice">Il codice del componente da modificare.</param>
         public void ModificaComponenteCatalogo(string codice)
@@ -434,7 +434,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// Carica un componente dal catalogo
+        /// Carica un componente dal catalogo.
         /// </summary>
         public TreeNode CaricaDaCatalogo()
         {
@@ -447,7 +447,7 @@ namespace distinta_base
 
 
         /// <summary>
-        /// Rimuove il nodo selezionato
+        /// Rimuove il nodo selezionato.
         /// </summary>
         /// <param name="treeView">L'albero dove è presente il nodo selezionato.</param>
         public void RimuoviNodo(TreeView treeView)
@@ -587,7 +587,7 @@ namespace distinta_base
         //metodiDiAppoggio-------------------------------------------------------
 
         /// <summary>
-        /// Aggiunge un componente.
+        /// Aggiunge un componente alla variabile albero in distintaBase.
         /// </summary>
         private bool AggiungiComponente(Componente comp, Componente compPadre, Componente Albero, List<Componente> NodiSoprastanti, bool ok)
         {
@@ -639,7 +639,7 @@ namespace distinta_base
 
 
         /// <summary>
-        /// Elimina un componente.
+        /// Elimina un componente dalla variabile albero in distintaBase.
         /// </summary>
         private void EliminaComponente(Componente comp, Componente compPadre, Componente Albero)
         {
@@ -664,7 +664,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// Modifica un componente.
+        /// Modifica un componente nella variabile albero in distintaBase.
         /// </summary>
         private void ModificaComponente(Componente comp, Componente compVecchio, Componente compPadre, Componente Albero)
         {

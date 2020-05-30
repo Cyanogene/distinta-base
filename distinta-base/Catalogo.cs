@@ -78,7 +78,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// Carica un semilavorato.
+        /// Carica un semilavorato in catalogo.
         /// </summary>
         public Componente AggiungiSemilavorato()
         {
@@ -116,7 +116,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// Carica un componente.
+        /// Carica un componente da file xml.
         /// </summary>
         /// <param name="filePosition">Il nome del file.</param>
         /// <returns></returns>

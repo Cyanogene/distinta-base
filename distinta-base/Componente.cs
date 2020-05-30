@@ -28,7 +28,7 @@ namespace distinta_base
         public List<Componente> SottoNodi = new List<Componente>();
 
         /// <summary>
-        /// Crea una copia esatta (in tutti i sensi) del componente selezionato in una nuova posizione di memoria
+        /// Crea una copia esatta (in tutti i sensi) del componente selezionato in una nuova posizione di memoria.
         /// </summary>
         public static Componente DeepClone<Componente>(Componente obj)
         {
