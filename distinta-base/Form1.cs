@@ -563,7 +563,7 @@ namespace distinta_base
         {
             if (MessageBox.Show("Vuoi aprire il manuale online?", "Distinta base", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
             {
-                System.Diagnostics.Process.Start("https://drive.google.com/open?id=1uXvrq-7O6JHoaxMStwOJ9TgXVEClmdEO");
+                System.Diagnostics.Process.Start("https://drive.google.com/file/d/1j97a6cKnXM_3c8xwHiYDRuVbIkby1t4S/view?usp=sharing");
             }
         }
 
