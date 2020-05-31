@@ -177,7 +177,7 @@ namespace distinta_base
         }
 
         /// <summary>
-        /// Carica un componente da file xml.
+        /// Carica un componente da file xml richiedendo all'utente il percorso file.
         /// </summary>
         public Componente CaricaNodoDaFile()
         {

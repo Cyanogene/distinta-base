@@ -14,7 +14,7 @@ namespace distinta_base
         public List<Componente> Nodi = new List<Componente>();
 
         /// <summary>
-        /// Salva un catalogo.
+        /// Salva il catalogo attuale.
         /// </summary>
         public void Salva()
         {

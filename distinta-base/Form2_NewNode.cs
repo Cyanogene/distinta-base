@@ -12,7 +12,6 @@ using System.Windows.Forms;
 
 namespace distinta_base
 {
-    //TUTTE LE PARTI COMMENTATE IN QUESTO NAMESPACE SERVONO ALL'ASSEGNAZIONE AUTOMATICA DEL CODICE, NON CANCELLARE
 
     public partial class Form2_NewNode : Form
     {
