@@ -47,6 +47,10 @@ namespace distinta_base
 
         //resizeFormElement---------------------------------------------------------------------------------------------------------------------------------------------
 
+
+        /// <summary>
+        /// crea un rettangolo per ogni elemento del form (il rettangolo viene utilizzato per memorizzare posizione e dimensioni dell'elemento)
+        /// </summary>
         private void ResizeInitialization()
         {
             // Viene inizializzata una figura per ogni componente nel form
@@ -91,7 +95,7 @@ namespace distinta_base
             control.Location = new Point(newX, newY);
             control.Size = new Size(newWidth, newHeight);
         }
-               
+
         private void Form1_Resize(object sender, EventArgs e)
         {
             ResizeChildrenControls();
@@ -147,9 +151,9 @@ namespace distinta_base
         /// </summary>
         private void resettaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (programmazione.catalogo.Nodi.Count==0) return;
+            if (programmazione.catalogo.Nodi.Count == 0) return;
             if (DialogResult.Yes == MessageBox.Show("Vuoi resettare il catalogo?", "Distinta base", MessageBoxButtons.YesNo, MessageBoxIcon.Stop))
-            ResettaCatalogo();
+                ResettaCatalogo();
         }
 
         /// <summary>
@@ -349,8 +353,8 @@ namespace distinta_base
         private void resettaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (programmazione.distintaBase.Albero.Codice == null) return;
-            if(DialogResult.Yes==MessageBox.Show("Vuoi resettare la distinta base?","Distinta base", MessageBoxButtons.YesNo, MessageBoxIcon.Stop))
-            ResettaDistintaBase();
+            if (DialogResult.Yes == MessageBox.Show("Vuoi resettare la distinta base?", "Distinta base", MessageBoxButtons.YesNo, MessageBoxIcon.Stop))
+                ResettaDistintaBase();
         }
 
         /// <summary>
@@ -365,7 +369,7 @@ namespace distinta_base
                 treeView_DistintaBase.Nodes.Add(treeNode);
             }
             ControlloTreeView();
-        } 
+        }
 
         /// <summary>
         /// BTN crea una nuova distinta base.
@@ -380,7 +384,7 @@ namespace distinta_base
                 treeView_DistintaBase.Nodes.Add(treeNode);
             }
             ControlloTreeView();
-        } 
+        }
 
         /// <summary>
         /// Click destro su un nodo mostra menu a scomparsa con cosa si può fare con un nodo.
@@ -404,7 +408,7 @@ namespace distinta_base
         /// </summary>
         private void rimuoviToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Vuoi rimuovere il componente definitivamente?", "Distinta Base", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+            if (MessageBox.Show("Vuoi rimuovere il componente definitivamente?", "Distinta Base", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
                 programmazione.RimuoviNodo(treeView_DistintaBase);
                 treeView_DistintaBase.SelectedNode.Remove();
@@ -430,7 +434,7 @@ namespace distinta_base
         {
             if (treeView_DistintaBase.SelectedNode == null) return;
             TreeNode treeNode = programmazione.CaricaNodoDaCatalogo(treeView_DistintaBase);
-            if (treeNode!=null)
+            if (treeNode != null)
             {
                 treeView_DistintaBase.SelectedNode.Nodes.Add(treeNode);
                 ControlloTreeView();
@@ -485,7 +489,7 @@ namespace distinta_base
             TreeNode treeNode = programmazione.ModificaNodo(treeView_DistintaBase);
             if (treeNode != null)
             {
-                if(treeView_DistintaBase.SelectedNode.Parent==null)
+                if (treeView_DistintaBase.SelectedNode.Parent == null)
                 {
                     treeView_DistintaBase.Nodes.Clear();
                     treeView_DistintaBase.Nodes.Add(treeNode);
@@ -544,7 +548,7 @@ namespace distinta_base
                 Btn_creaNuovaDistintaBase.Visible = false;
             }
         }
-        
+
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
