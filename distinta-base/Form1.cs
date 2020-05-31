@@ -586,7 +586,7 @@ namespace distinta_base
         {
             if (MessageBox.Show("Vuoi aprire il manuale online?", "Distinta base", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
             {
-                System.Diagnostics.Process.Start("https://google.com");
+                System.Diagnostics.Process.Start("https://github.com/Cyanogene/distinta-base");
             }
         }
 
