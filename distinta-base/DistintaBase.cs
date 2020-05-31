@@ -22,36 +22,36 @@ namespace distinta_base
         /// </summary>
         public List<Componente> Nodi()
         {
-            Componente componente = Albero;
-            List<Componente> nodi = new List<Componente>();
-            if (componente.SottoNodi != null)
+            Componente Componente = Albero;
+            List<Componente> Nodi = new List<Componente>();
+            if (Componente.SottoNodi != null)
             {
-                foreach (Componente sottoComp in componente.SottoNodi)
+                foreach (Componente SottoComp in Componente.SottoNodi)
                 {
-                    TrovaNodi(sottoComp,nodi);
+                    TrovaNodi(SottoComp,Nodi);
                 }
             }
-            if (componente.Nome != null) nodi.Add(componente);
-            return nodi;
+            if (Componente.Nome != null) Nodi.Add(Componente);
+            return Nodi;
         }
 
         /// <summary>
         /// Trova il nodo o nodi selezionati.
         /// </summary>
-        /// <param name="componente">Il componente da trovare.</param>
-        /// <param name="nodi">I nodi dell'albero (radice e i suoi sottonodi).</param>
+        /// <param name="Componente">Il componente da trovare.</param>
+        /// <param name="Nodi">I nodi dell'albero (radice e i suoi sottonodi).</param>
         /// <returns></returns>
-        public List<Componente> TrovaNodi(Componente componente, List<Componente> nodi)
+        public List<Componente> TrovaNodi(Componente Componente, List<Componente> Nodi)
         {
-            if (componente.SottoNodi != null)
+            if (Componente.SottoNodi != null)
             {
-                foreach (Componente sottoComp in componente.SottoNodi)
+                foreach (Componente sottoComp in Componente.SottoNodi)
                 {
-                    TrovaNodi(sottoComp, nodi);
+                    TrovaNodi(sottoComp, Nodi);
                 }
             }
-            if (componente.Nome != null) nodi.Add(componente);
-            return nodi;
+            if (Componente.Nome != null) Nodi.Add(Componente);
+            return Nodi;
         }
 
         /// <summary>
@@ -92,9 +92,9 @@ namespace distinta_base
             };
             if (Node.SottoNodi != null && Node.SottoNodi.Count > 0)
             {
-                foreach (Componente node in Node.SottoNodi)
+                foreach (Componente Nodo in Node.SottoNodi)
                 {
-                    treeNode.Nodes.Add(NodeToTreeNode(node));
+                    treeNode.Nodes.Add(NodeToTreeNode(Nodo));
                 }
             }
             return treeNode;
@@ -105,8 +105,8 @@ namespace distinta_base
         /// </summary>
         public void Salva()
         {
-            List<Componente> nodi = Nodi();
-            if (nodi.Count == 0) return;
+            List<Componente> Nodes = Nodi();
+            if (Nodes.Count == 0) return;
             SaveFileDialog Sfd_DistintaBase = new SaveFileDialog
             {
                 InitialDirectory = @"C:\",
@@ -117,12 +117,12 @@ namespace distinta_base
             };
             if (Sfd_DistintaBase.ShowDialog() == DialogResult.OK)
             {
-                Stream filesStream = Sfd_DistintaBase.OpenFile();
-                StreamWriter sw = new StreamWriter(filesStream);
+                Stream FilesStream = Sfd_DistintaBase.OpenFile();
+                StreamWriter sw = new StreamWriter(FilesStream);
                 XmlSerializer serializer = new XmlSerializer(typeof(Componente));
                 serializer.Serialize(sw, Albero);
                 sw.Close();
-                filesStream.Close();
+                FilesStream.Close();
             }
         }
 
@@ -142,17 +142,17 @@ namespace distinta_base
             {
                 if (File.Exists(Ofd_Catalogo.FileName))
                 {
-                    StreamReader stream = new StreamReader(Ofd_Catalogo.FileName);
+                    StreamReader Strem = new StreamReader(Ofd_Catalogo.FileName);
                     XmlSerializer serializer = new XmlSerializer(typeof(Componente));
                     try
                     {
-                        risultato = (Componente)serializer.Deserialize(stream);
+                        risultato = (Componente)serializer.Deserialize(Strem);
                     }
                     catch
                     {
                         MessageBox.Show("Il file caricato non è un file di tipo 'DistintaBase'.", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-                    stream.Close();
+                    Strem.Close();
                 }
             }
             return risultato;
@@ -163,17 +163,17 @@ namespace distinta_base
         /// </summary>
         public Componente CaricaDaCatalogo(List<Componente> Componenti)
         {
-            Form3_Catalogo form3 = new Form3_Catalogo(Componenti);
-            form3.ShowDialog();
-            Componente nodo = form3.nodo;
-            while (form3.nodo == null)
+            Form3_Catalogo Form3 = new Form3_Catalogo(Componenti);
+            Form3.ShowDialog();
+            Componente Nodo = Form3.Nodo;
+            while (Form3.Nodo == null)
             {
-                if (!form3.attendo)
+                if (!Form3.Attendo)
                 {
                     return null;
                 }
             }
-            return nodo;
+            return Nodo;
         }
 
         /// <summary>
@@ -191,10 +191,10 @@ namespace distinta_base
             {
                 if (File.Exists(Ofd_Catalogo.FileName))
                 {
-                    StreamReader stream = new StreamReader(Ofd_Catalogo.FileName);
-                    XmlSerializer serializer = new XmlSerializer(typeof(Componente));
-                    risultato = (Componente)serializer.Deserialize(stream);
-                    stream.Close();
+                    StreamReader Stream = new StreamReader(Ofd_Catalogo.FileName);
+                    XmlSerializer Serializer = new XmlSerializer(typeof(Componente));
+                    risultato = (Componente)Serializer.Deserialize(Stream);
+                    Stream.Close();
                 }
             }
             return risultato;

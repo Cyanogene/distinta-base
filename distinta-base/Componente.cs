@@ -30,16 +30,16 @@ namespace distinta_base
         /// <summary>
         /// Crea una copia esatta (in tutti i sensi) del componente selezionato in una nuova posizione di memoria.
         /// </summary>
-        public static Componente DeepClone<Componente>(Componente obj)
+        public static Componente DeepClone<Componente>(Componente Obj)
         {
-            if (obj == null) return default(Componente);
-            using (var ms = new MemoryStream())
+            if (Obj == null) return default(Componente);
+            using (var Ms = new MemoryStream())
             {
-                var formatter = new BinaryFormatter();
-                formatter.Serialize(ms, obj);
-                ms.Position = 0;
+                var Formatter = new BinaryFormatter();
+                Formatter.Serialize(Ms, Obj);
+                Ms.Position = 0;
 
-                return (Componente)formatter.Deserialize(ms);
+                return (Componente)Formatter.Deserialize(Ms);
             }
         }
     }

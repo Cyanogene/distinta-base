@@ -26,10 +26,10 @@ namespace distinta_base
         int PeriodoDiCopertura = 0;
         int CoefficenteUtilizzo = 0;
 
-        public Componente nodo;
-        Componente nodoInput = null;
+        public Componente Nodo;
+        Componente NodoInput = null;
         List<Componente> Componenti = new List<Componente>();
-        public bool attendo = true;
+        public bool Attendo = true;
 
         public Form2_NewNode(Componente nodo, List<Componente> componenti, bool IsCatalogoOrRoot)
         {
@@ -59,7 +59,7 @@ namespace distinta_base
                 form_lotto.Value = nodo.Lotto;
                 form_periodoDiCopertura.Value = nodo.PeriodoDiCopertura;
                 form_coeffDiUtilizzo.Value = nodo.CoefficenteUtilizzo;
-                nodoInput = nodo;
+                NodoInput = nodo;
             }
             Componenti.AddRange(componenti);
         }
@@ -72,7 +72,7 @@ namespace distinta_base
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
-            attendo = false;
+            Attendo = false;
         }
         
         private void form_codice_Validating(object sender, CancelEventArgs e)
@@ -118,7 +118,7 @@ namespace distinta_base
             PeriodoDiCopertura = Convert.ToInt32(form_periodoDiCopertura.Value);
             Codice = form_codice.Text;
             CoefficenteUtilizzo = Convert.ToInt32(form_coeffDiUtilizzo.Value);
-            nodo = new Componente
+            Nodo = new Componente
             {
                 Nome = Nome,
                 Codice = Codice,
@@ -137,7 +137,7 @@ namespace distinta_base
         /// </summary>
         private void CheckCode()
         {
-            if (codiceOK(nodo))
+            if (codiceOK(Nodo))
             {
                 Close();
                 return;
@@ -146,7 +146,7 @@ namespace distinta_base
             else
             {
                 MessageBox.Show("Il codice inserito è già in uso per un altro componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                nodo = null;
+                Nodo = null;
                 form_codice.Clear();
                 form_codice.Focus();
                 return;
@@ -156,23 +156,23 @@ namespace distinta_base
         /// <summary>
         /// Restituisce true se il codice del nodo ricevuto in input (componenteDaControllare) va bene.
         /// </summary>
-        private bool ControlloCodice(Componente componenteDaControllare, Componente componente)
+        private bool ControlloCodice(Componente ComponenteDaControllare, Componente Componente)
         {
-            if (componente.SottoNodi != null)
+            if (Componente.SottoNodi != null)
             {
-                foreach (Componente sottoComp in componenteDaControllare.SottoNodi)
+                foreach (Componente SottoComponente in ComponenteDaControllare.SottoNodi)
                 {
-                    if (!ControlloCodice(componenteDaControllare, sottoComp))
+                    if (!ControlloCodice(ComponenteDaControllare, SottoComponente))
                     {
                         return false;
                     }
                 }
             }
-            if (componenteDaControllare.Codice == componente.Codice)
+            if (ComponenteDaControllare.Codice == Componente.Codice)
             {
-                if (nodoInput != null)
+                if (NodoInput != null)
                 {
-                    if (NodiUgualiNoCodiceNoSottocomp(componenteDaControllare, componente) || (NodiUgualiNoCodiceNoSottocomp(componente, nodoInput) && contatoreCodice(componente.Codice) == 1))
+                    if (NodiUgualiNoCodiceNoSottocomp(ComponenteDaControllare, Componente) || (NodiUgualiNoCodiceNoSottocomp(Componente, NodoInput) && ContatoreCodice(Componente.Codice) == 1))
                     {
                         return true;
                     }
@@ -183,7 +183,7 @@ namespace distinta_base
                 }
                 else
                 {
-                    if (NodiUgualiNoCodiceNoSottocomp(componenteDaControllare, componente))
+                    if (NodiUgualiNoCodiceNoSottocomp(ComponenteDaControllare, Componente))
                     {
                         return true;
                     }
@@ -200,11 +200,11 @@ namespace distinta_base
         /// <summary>
         /// Restituisce true se il codice del nodo ricevuto in input (componenteDaControllare) va bene (lavora insieme al metodo ControlloCodice).
         /// </summary>
-        private bool codiceOK(Componente comp)
+        private bool codiceOK(Componente Componente)
         {
-            foreach (Componente componente in Componenti)
+            foreach (Componente Comp in Componenti)
             {
-                if (!ControlloCodice(comp, componente))
+                if (!ControlloCodice(Componente, Comp))
                 {
                     return false;
                 }
@@ -215,12 +215,12 @@ namespace distinta_base
         /// <summary>
         /// Restituisce il numero di volte che il codice è utilizzato nei componenti del programma.
         /// </summary>
-        private int contatoreCodice(string codice)
+        private int ContatoreCodice(string Codice)
         {
             int n = 0;
-            foreach (Componente comp in Componenti)
+            foreach (Componente Componente in Componenti)
             {
-                n += contatoreCodiceSecondario(codice, comp);
+                n += contatoreCodiceSecondario(Codice, Componente);
             }
             return n;
         }
@@ -228,29 +228,29 @@ namespace distinta_base
         /// <summary>
         /// Restituisce il numero di volte che il codice è utilizzato nei componenti del programma (lavora insieme al metodo contatoreCodice).
         /// </summary>
-        private int contatoreCodiceSecondario(string codice, Componente comp)
+        private int contatoreCodiceSecondario(string Codice, Componente Componente)
         {
-            int n = 0;
-            if (comp.Codice == codice)
+            int Contatore = 0;
+            if (Componente.Codice == Codice)
             {
-                n++;
+                Contatore++;
             }
-            if (comp.SottoNodi != null)
+            if (Componente.SottoNodi != null)
             {
-                foreach (Componente sottoComp in comp.SottoNodi)
+                foreach (Componente sottoComp in Componente.SottoNodi)
                 {
-                    n += contatoreCodiceSecondario(codice, sottoComp);
+                    Contatore += contatoreCodiceSecondario(Codice, sottoComp);
                 }
             }
-            return n;
+            return Contatore;
         }
         
         /// <summary>
         /// Restituisce true se i nodi dati in input hanno tutte le variabili uguali eccetto i sottonodi.
         /// </summary>
-        private bool NodiUgualiNoCodiceNoSottocomp(Componente nodo1, Componente nodo2)
+        private bool NodiUgualiNoCodiceNoSottocomp(Componente Nodo1, Componente Nodo2)
         {
-            if (nodo1.Nome == nodo2.Nome && nodo1.Descrizione == nodo2.Descrizione && nodo1.LeadTime == nodo2.LeadTime && nodo1.LeadTimeSicurezza == nodo2.LeadTimeSicurezza && nodo1.ScortaSicurezza == nodo2.ScortaSicurezza && nodo1.Lotto == nodo2.Lotto && nodo1.PeriodoDiCopertura == nodo2.PeriodoDiCopertura)
+            if (Nodo1.Nome == Nodo2.Nome && Nodo1.Descrizione == Nodo2.Descrizione && Nodo1.LeadTime == Nodo2.LeadTime && Nodo1.LeadTimeSicurezza == Nodo2.LeadTimeSicurezza && Nodo1.ScortaSicurezza == Nodo2.ScortaSicurezza && Nodo1.Lotto == Nodo2.Lotto && Nodo1.PeriodoDiCopertura == Nodo2.PeriodoDiCopertura)
             {
                 return true;
             }

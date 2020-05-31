@@ -12,15 +12,15 @@ namespace distinta_base
 {
     public partial class Form3_Catalogo : Form
     {
-        public Componente nodo { get; set; }
-        public bool attendo = true;
-        private Programmazione programmazione = new Programmazione();
+        public Componente Nodo { get; set; }
+        public bool Attendo = true;
+        private Programmazione Programmazione = new Programmazione();
 
         public Form3_Catalogo(List<Componente> input)
         {
             InitializeComponent();
             label1.BackColor = Color.FromArgb(232, 190, 118);
-            programmazione.catalogo.Nodi = input;
+            Programmazione.Catalogo.Nodi = input;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,15 +50,15 @@ namespace distinta_base
         /// </summary>
         private void PrendiElementoSelezionato()
         {
-            ListViewItem item = listView1.SelectedItems[0];
-            string Nome = item.SubItems[0].Text;
-            string Codice = item.SubItems[1].Text;
+            ListViewItem Item = listView1.SelectedItems[0];
+            string Nome = Item.SubItems[0].Text;
+            string Codice = Item.SubItems[1].Text;
 
-            foreach (Componente node in programmazione.catalogo.Nodi)
+            foreach (Componente Componente in Programmazione.Catalogo.Nodi)
             {
-                if (node.Codice == Codice)
+                if (Componente.Codice == Codice)
                 {
-                    nodo = node;
+                    Nodo = Componente;
                     Close();
                     return;
                 }
@@ -67,13 +67,13 @@ namespace distinta_base
 
         private void Form3_Catalogo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            attendo = false;
+            Attendo = false;
         }
 
         private void Form3_Catalogo_Load(object sender, EventArgs e)
         {
             CreaListView();
-            programmazione.AggiornaCatalogo(listView1);
+            Programmazione.AggiornaCatalogo(listView1);
             CenterToParent();
         }
 
