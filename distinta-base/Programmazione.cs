@@ -427,7 +427,7 @@ namespace distinta_base
         {
             Componente NewComp = AggiungiMateriaPrima(Componenti(), true);
             if (NewComp == null) return null;
-            if (ControllaCodice(NewComp, new Componente(), s()))
+            if (ControllaCodice(NewComp, new Componente(),Componenti()))
             {
                 DistintaBase.Albero = NewComp;
             }
