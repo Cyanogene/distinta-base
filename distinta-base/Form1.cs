@@ -576,7 +576,7 @@ namespace distinta_base
         /// </summary>
         private void manualeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Vuoi aprire il manuale online?", "Gestione materiali", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+            if (MessageBox.Show("Vuoi aprire il manuale online?", "Distinta base", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
             {
                 System.Diagnostics.Process.Start("https://google.com");
             }
