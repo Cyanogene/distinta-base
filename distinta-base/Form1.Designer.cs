@@ -66,9 +66,6 @@
             this.caricaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.salvaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.resettaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.distintaBaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.catalogoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.manualeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Cms_TreeView.SuspendLayout();
             this.Cms_ListBox.SuspendLayout();
@@ -348,7 +345,6 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.distintaBaseToolStripMenuItem,
             this.catalogoToolStripMenuItem,
-            this.infoToolStripMenuItem,
             this.manualeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -421,30 +417,6 @@
             this.resettaToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
             this.resettaToolStripMenuItem1.Text = "Resetta";
             this.resettaToolStripMenuItem1.Click += new System.EventHandler(this.resettaToolStripMenuItem1_Click);
-            // 
-            // infoToolStripMenuItem
-            // 
-            this.infoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.distintaBaseToolStripMenuItem1,
-            this.catalogoToolStripMenuItem1});
-            this.infoToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F);
-            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
-            this.infoToolStripMenuItem.Text = "Info";
-            // 
-            // distintaBaseToolStripMenuItem1
-            // 
-            this.distintaBaseToolStripMenuItem1.Name = "distintaBaseToolStripMenuItem1";
-            this.distintaBaseToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.distintaBaseToolStripMenuItem1.Text = "Distinta base";
-            this.distintaBaseToolStripMenuItem1.Click += new System.EventHandler(this.distintaBaseToolStripMenuItem1_Click);
-            // 
-            // catalogoToolStripMenuItem1
-            // 
-            this.catalogoToolStripMenuItem1.Name = "catalogoToolStripMenuItem1";
-            this.catalogoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.catalogoToolStripMenuItem1.Text = "Catalogo";
-            this.catalogoToolStripMenuItem1.Click += new System.EventHandler(this.catalogoToolStripMenuItem1_Click);
             // 
             // manualeToolStripMenuItem
             // 
@@ -526,9 +498,6 @@
         private System.Windows.Forms.ToolStripMenuItem caricaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem salvaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem resettaToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem distintaBaseToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem catalogoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem manualeToolStripMenuItem;
     }
 }

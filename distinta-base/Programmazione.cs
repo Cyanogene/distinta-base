@@ -231,7 +231,7 @@ namespace distinta_base
             Componente comp = Componente.DeepClone<Componente>(distintaBase.TreeNodeToNode(treeView.SelectedNode));
             if (CatalogoContieneComp(comp))
             {
-                MessageBox.Show("In catalogo è già presente questo componente", "Distinta Base");
+                MessageBox.Show("In catalogo è già presente questo componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             else if (CatalogoContieneCompNoControlloSottocomp(comp))
@@ -295,6 +295,7 @@ namespace distinta_base
                     }
                 }
             }
+            catalogo.Nodi.Add(comp);
         }
 
         /// <summary>
@@ -444,8 +445,7 @@ namespace distinta_base
             distintaBase.Albero = comp;
             return distintaBase.NodeToTreeNode(distintaBase.Albero);
         }
-
-
+        
         /// <summary>
         /// Rimuove il nodo selezionato.
         /// </summary>

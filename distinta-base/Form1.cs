@@ -147,6 +147,8 @@ namespace distinta_base
         /// </summary>
         private void resettaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (programmazione.catalogo.Nodi.Count==0) return;
+            if (DialogResult.Yes == MessageBox.Show("Vuoi resettare il catalogo?", "Distinta base", MessageBoxButtons.YesNo, MessageBoxIcon.Stop))
             ResettaCatalogo();
         }
 
@@ -346,6 +348,8 @@ namespace distinta_base
         /// </summary>
         private void resettaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (programmazione.distintaBase.Albero.Codice == null) return;
+            if(DialogResult.Yes==MessageBox.Show("Vuoi resettare la distinta base?","Distinta base", MessageBoxButtons.YesNo, MessageBoxIcon.Stop))
             ResettaDistintaBase();
         }
 
@@ -551,7 +555,7 @@ namespace distinta_base
         /// <summary>
         /// Chiamato quando viene cliccata la voce informazioni distintaBase nel menu info del contextMenu.
         /// </summary>
-        private void distintaBaseToolStripMenuItem1_Click(object sender, EventArgs e)
+        /*private void distintaBaseToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Si può creare una nuova distinta base o caricarla da catalogo con gli appositi pulsanti." +
                 "\nSi può salvare, caricare o resettare la distinta base selezionado l'apposita voce nella barra-menu." +
@@ -569,7 +573,7 @@ namespace distinta_base
             MessageBox.Show("Si può caricare, salvare o resettare il catalogo tramite l'apposita voce nella barra-menu." +
                 "\nSi può caricare un componente o crearne uno nuovo con gli appositi pulsanti.", 
                 "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        }*/
 
         /// <summary>
         /// Chiamato quando viene cliccata la voce Manuale online distintaBase nel menu info del contextMenu. 
