@@ -439,7 +439,7 @@ namespace distinta_base
         /// </summary>
         public TreeNode CaricaDaCatalogo()
         {
-            if (Catalogo.Nodi.Count() == 0) { MessageBox.Show("Il catalogo è vuoto", "Distinta Base"); return null; }
+            if (Catalogo.Nodi.Count() == 0) { MessageBox.Show("Il catalogo è vuoto", "Distinta Base",MessageBoxButtons.OK,MessageBoxIcon.Information); return null; }
             Componente Comp = Componente.DeepClone(DistintaBase.CaricaDaCatalogo(Catalogo.Nodi));
             if (Comp == null) return null;
             DistintaBase.Albero = Comp;
@@ -483,7 +483,7 @@ namespace distinta_base
             }
             else
             {
-                MessageBox.Show("Nel semilavorato che si sta caricando vi sono 1 o più componenti con codice uguale a un componente presente nel programma sebbene non siano lo stesso componente", "Distinta Base");
+                MessageBox.Show("Nel semilavorato che si sta caricando vi sono 1 o più componenti con codice uguale a un componente presente nel programma sebbene non siano lo stesso componente", "Distinta Base",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 return null;
             }
             return DistintaBase.NodeToTreeNode(NewComponente);
@@ -495,7 +495,7 @@ namespace distinta_base
         /// <param name="TreeView">L'albero dove caricare il nodo.</param>
         public TreeNode CaricaNodoDaCatalogo(TreeView TreeView)
         {
-            if (Catalogo.Nodi.Count() == 0) { MessageBox.Show("Il catalogo è vuoto", "Distinta Base"); return null; }
+            if (Catalogo.Nodi.Count() == 0) { MessageBox.Show("Il catalogo è vuoto", "Distinta Base",MessageBoxButtons.OK,MessageBoxIcon.Information); return null; }
             Componente Comp = Componente.DeepClone(DistintaBase.CaricaDaCatalogo(Catalogo.Nodi));
             if (Comp == null) return null;
             Componente CompPadra = DistintaBase.TreeNodeToNode(TreeView.SelectedNode);
