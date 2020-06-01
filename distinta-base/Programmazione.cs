@@ -229,6 +229,7 @@ namespace distinta_base
         public void AggiungiComponenteACatalogo(TreeView TreeView)
         {
             Componente Comp = Componente.DeepClone<Componente>(DistintaBase.TreeNodeToNode(TreeView.SelectedNode));
+            Comp.CoefficenteUtilizzo = 1;
             if (CatalogoContieneComp(Comp))
             {
                 MessageBox.Show("In catalogo è già presente questo componente", "Distinta Base", MessageBoxButtons.OK, MessageBoxIcon.Information);
